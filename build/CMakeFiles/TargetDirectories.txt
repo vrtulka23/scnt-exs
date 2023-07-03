@@ -1,0 +1,3 @@
+/Users/perseus/Projects/arithmeticpp/build/CMakeFiles/ArithmetiCPP.dir
+/Users/perseus/Projects/arithmeticpp/build/CMakeFiles/edit_cache.dir
+/Users/perseus/Projects/arithmeticpp/build/CMakeFiles/rebuild_cache.dir

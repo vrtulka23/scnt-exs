@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.10)
+cmake_policy(SET CMP0074 NEW)
+project(ArithmetiCPP VERSION 1.0
+        LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CCX_STANDARD_REQUIRED True)
+
+# Enable verbose output from Makefile builds.
+set(CMAKE_VERBOSE_MAKEFILE on)
+
+file(GLOB SOURCES "src/*.cpp")
+add_executable(ArithmetiCPP ${SOURCES})
+
+find_package(Boost 1.56 REQUIRED COMPONENTS
+             date_time filesystem iostreams)
+target_link_libraries(ArithmetiCPP Boost::filesystem)
