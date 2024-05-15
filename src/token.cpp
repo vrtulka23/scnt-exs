@@ -6,30 +6,6 @@ TokenClass::TokenClass(TokenType t, OperatorType o): type(t), optype(o), atom(NU
 
 TokenClass::TokenClass(TokenType t, AtomInterface *a): type(t), atom(a) {};
 
-TokenClass TokenClass::operator+() {
-  return *this;
-}
-
-TokenClass TokenClass::operator+(TokenClass &other) {
-  return *this;
-}
-
-TokenClass TokenClass::operator-() {
-  return *this;
-}
-
-TokenClass TokenClass::operator-(TokenClass &other) {
-  return *this;
-}
-
-TokenClass TokenClass::operator*(TokenClass &other) {
-  return *this;
-}
-
-TokenClass TokenClass::operator/(TokenClass &other) {
-  return *this;
-}
-
 void TokenClass::print() {
   if (type==EMPTY_TOKEN) {
     std::cout << "Token(EMPTY)" << std::endl;

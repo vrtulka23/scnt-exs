@@ -11,12 +11,6 @@ public:
   TokenClass(TokenType t);
   TokenClass(TokenType t, OperatorType o);
   TokenClass(TokenType t, AtomInterface *a);
-  TokenClass operator+();
-  TokenClass operator+(TokenClass &other);
-  TokenClass operator-();
-  TokenClass operator-(TokenClass &other);
-  TokenClass operator*(TokenClass &other);
-  TokenClass operator/(TokenClass &other);
   void print();
 };
 
