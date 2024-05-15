@@ -12,7 +12,9 @@ public:
   std::deque<TokenClass> right;
   OperatorListClass *operators;
   TokenListClass(OperatorListClass *o): operators(o) {};
-  void append(const TokenClass &t);
+  void append(TokenType t);
+  void append(TokenType t, OperatorType o);
+  void append(TokenType t, AtomClass *a);
   TokenClass get_left();
   TokenClass get_right();
   void put_left(TokenClass t);

@@ -11,8 +11,7 @@ TEST(Tokens, Initialization) {
   EXPECT_EQ(tokens.right.size(), 0);
 
   AtomClass a("3.4");
-  TokenClass token(ATOM_TOKEN, &a);
-  tokens.append(token);
+  tokens.append(ATOM_TOKEN, &a);
   EXPECT_EQ(tokens.right.size(), 1);
   EXPECT_EQ(tokens.right.front().atom->value, (float)3.4);
 
@@ -35,7 +34,7 @@ TEST(Tokens, GetAndPut) {
   int nitems = 4;
   for (int i=0; i<nitems; i++) {
     AtomInterface *a = atoms.append(std::to_string(i));
-    tokens.append(TokenClass(ATOM_TOKEN, a));
+    tokens.append(ATOM_TOKEN, a);
   }
   
   // pass 2 strings from right to left

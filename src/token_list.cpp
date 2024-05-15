@@ -1,7 +1,13 @@
 #import "main.h"
 
-void TokenListClass::append(const TokenClass &t) {
-  right.push_back(t);
+void TokenListClass::append(TokenType t) {
+  right.push_back(TokenClass(t));
+}
+void TokenListClass::append(TokenType t, OperatorType o) {
+  right.push_back(TokenClass(t, o));
+}
+void TokenListClass::append(TokenType t, AtomClass *a) {
+  right.push_back(TokenClass(t, a));
 }
 
 TokenClass TokenListClass::get_left() {

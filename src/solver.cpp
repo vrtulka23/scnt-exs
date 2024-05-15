@@ -18,10 +18,10 @@ void SolverClass::solve(std::string expression) {
                 if (expr.left.length()>0) {
                     std::string left = expr.pop_left();
                     AtomInterface *a = atoms.append(left);
-                    tokens.append(TokenClass(ATOM_TOKEN, a));
+                    tokens.append(ATOM_TOKEN, a);
                 }
                 op->parse(expr);
-                tokens.append(TokenClass(OPERATOR_TOKEN, op->type));
+                tokens.append(OPERATOR_TOKEN, op->type);
                 expr.print();
             }
         }
@@ -33,7 +33,7 @@ void SolverClass::solve(std::string expression) {
     if (expr.left.length()>0) {
         std::string left = expr.pop_left();
         AtomInterface *a = atoms.append(left);
-        tokens.append(TokenClass(ATOM_TOKEN, a));    
+        tokens.append(ATOM_TOKEN, a);    
     }
     
     expr.print();
