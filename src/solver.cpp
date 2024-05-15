@@ -1,9 +1,10 @@
+#include <unordered_map>
+
 #include "main.h"
 
 void SolverClass::solve(std::string expression) {
     Expression expr(expression);
     expr.print();
-    OperatorListClass operators;
     TokenListClass tokens(&operators);
     
     // Tokenize expression
@@ -34,4 +35,6 @@ void SolverClass::solve(std::string expression) {
     
     expr.print();
     tokens.print(true);   
+    
+    //std::unordered_map<OperationType, OperatorInterface*>;
 }
