@@ -11,4 +11,3 @@ AtomInterface* AtomListClass::append(std::string a) {
     return atoms.back();
 }
 
-AtomListClass AtomList;

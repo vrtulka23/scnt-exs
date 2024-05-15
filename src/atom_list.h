@@ -8,6 +8,4 @@ public:
     AtomInterface* append(std::string a);
 };
 
-extern AtomListClass AtomList;
-
 #endif // ATOM_LIST_H

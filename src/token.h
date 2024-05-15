@@ -10,7 +10,7 @@ public:
   AtomInterface *atom;
   TokenClass(TokenType t);
   TokenClass(TokenType t, OperatorType o);
-  TokenClass(TokenType t, std::string a);
+  TokenClass(TokenType t, AtomClass *a);
   TokenClass operator+();
   TokenClass operator+(TokenClass &other);
   TokenClass operator-();

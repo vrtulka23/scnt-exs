@@ -6,6 +6,7 @@ void SolverClass::solve(std::string expression) {
     Expression expr(expression);
     expr.print();
     TokenListClass tokens(&operators);
+    AtomListClass atoms;
     
     // Tokenize expression
     while (expr.right.length()>0) {
@@ -16,7 +17,8 @@ void SolverClass::solve(std::string expression) {
                 is_operator = true;
                 if (expr.left.length()>0) {
                     std::string left = expr.pop_left();
-                    tokens.append(TokenClass(ATOM_TOKEN, left));
+                    AtomInterface *a = atoms.append(left);
+                    tokens.append(TokenClass(ATOM_TOKEN, a));
                 }
                 op->parse(expr);
                 tokens.append(TokenClass(OPERATOR_TOKEN, op->type));
@@ -30,7 +32,8 @@ void SolverClass::solve(std::string expression) {
     }
     if (expr.left.length()>0) {
         std::string left = expr.pop_left();
-        tokens.append(TokenClass(ATOM_TOKEN, left));    
+        AtomInterface *a = atoms.append(left);
+        tokens.append(TokenClass(ATOM_TOKEN, a));    
     }
     
     expr.print();

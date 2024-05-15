@@ -4,9 +4,7 @@ TokenClass::TokenClass(TokenType t): type(t), atom(NULL) {};
 
 TokenClass::TokenClass(TokenType t, OperatorType o): type(t), optype(o), atom(NULL) {};
 
-TokenClass::TokenClass(TokenType t, std::string a): type(t) {
-  atom = AtomList.append(a);
-};
+TokenClass::TokenClass(TokenType t, AtomClass *a): type(t), atom(a) {};
 
 TokenClass TokenClass::operator+() {
   return *this;
