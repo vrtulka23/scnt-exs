@@ -6,7 +6,7 @@ void TokenListClass::append(TokenType t) {
 void TokenListClass::append(TokenType t, OperatorType o) {
   right.push_back(TokenClass(t, o));
 }
-void TokenListClass::append(TokenType t, AtomClass *a) {
+void TokenListClass::append(TokenType t, AtomInterface *a) {
   right.push_back(TokenClass(t, a));
 }
 

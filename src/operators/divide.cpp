@@ -1,5 +1,8 @@
 #include "../main.h"
 
-void OperatorDivide::operate_unary(TokenListInterface *tokens) {
-  std::cout << "divide unary" << std::endl;
+void OperatorDivide::operate_binary(TokenListInterface *tokens) {
+  TokenClass left = tokens->get_left();
+  TokenClass right = tokens->get_right();
+  left.atom->value /= right.atom->value;
+  tokens->put_left(left);
 }

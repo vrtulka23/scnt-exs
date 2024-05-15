@@ -1,5 +1,8 @@
 #include "../main.h"
 
-void OperatorMultiply::operate_unary(TokenListInterface *tokens) {
-  std::cout << "multiply unary" << std::endl;
+void OperatorMultiply::operate_binary(TokenListInterface *tokens) {
+  TokenClass left = tokens->get_left();
+  TokenClass right = tokens->get_right();
+  left.atom->value *= right.atom->value;
+  tokens->put_left(left);
 }

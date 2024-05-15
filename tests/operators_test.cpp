@@ -16,7 +16,7 @@ TEST(Operators, Initialization) {
 TEST(Operators, CustomOperatorsList) {
 
   // create custom operator list
-  OperatorsType map;
+  OperatorListType map;
   map[ADD_OPERATOR] = new OperatorAdd();
   map[MULTIPLY_OPERATOR] = new OperatorMultiply();
 
@@ -37,16 +37,16 @@ TEST(Operators, OperatorAdd) {
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   AtomClass a("3.4");
   tokens.append(ATOM_TOKEN,     &a);
-  tokens.print(true);
+  //tokens.print(true);
 
   // extract first token on the right
   TokenClass token = tokens.get_right();
 
   // get an operator and perform unary operation on the remaining tokens
   OperatorInterface *op = operators.select(ADD_OPERATOR);
-  tokens.print(true);
+  //tokens.print(true);
   op->operate_unary(&tokens);
-  tokens.print(true);
+  //tokens.print(true);
 }
 
 TEST(Operators, OpearateAdd) {
@@ -59,7 +59,7 @@ TEST(Operators, OpearateAdd) {
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   AtomClass a("3.4");
   tokens.append(ATOM_TOKEN,     &a);
-  tokens.print(true);
+  //tokens.print(true);
 
   // create operator list
   std::vector<OperatorType> oper = {ADD_OPERATOR};
@@ -67,5 +67,5 @@ TEST(Operators, OpearateAdd) {
   
   // operate on tokens
   tokens.operate(oper, UNARY_OPERATION);
-  tokens.print(true);
+  //tokens.print(true);
 }

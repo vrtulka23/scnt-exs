@@ -38,13 +38,19 @@ public:
 class OperatorMultiply: public OperatorInterface {
 public:
   OperatorMultiply(): OperatorInterface("mul", "*", MULTIPLY_OPERATOR) {}
-  void operate_unary(TokenListInterface *tokens);
+  void operate_binary(TokenListInterface *tokens);
 };
 
 class OperatorDivide: public OperatorInterface {
 public:
   OperatorDivide(): OperatorInterface("div", "/", DIVIDE_OPERATOR) {}
-  void operate_unary(TokenListInterface *tokens);
+  void operate_binary(TokenListInterface *tokens);
+};
+
+class OperatorPower: public OperatorInterface {
+public:
+  OperatorPower(): OperatorInterface("pow", "**", POWER_OPERATOR) {}
+  void operate_binary(TokenListInterface *tokens);
 };
 
 #endif // OPERATORS_H

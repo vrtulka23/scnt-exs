@@ -5,9 +5,10 @@ OperatorListClass::OperatorListClass() {
   operators[SUBTRACT_OPERATOR] = new OperatorSubtract();
   operators[MULTIPLY_OPERATOR] = new OperatorMultiply();
   operators[DIVIDE_OPERATOR]   = new OperatorDivide();
+  operators[POWER_OPERATOR]    = new OperatorPower();
 }
 
-OperatorListClass::OperatorListClass(OperatorsType &o): operators(o) {
+OperatorListClass::OperatorListClass(OperatorListType &o): operators(o) {
 }
 
 OperatorListClass::~OperatorListClass() {
@@ -17,6 +18,10 @@ OperatorListClass::~OperatorListClass() {
 }
 
 OperatorInterface* OperatorListClass::select(OperatorType otype) {
-  OperatorsType::const_iterator it = operators.find(otype);
+  OperatorListType::const_iterator it = operators.find(otype);
   return it->second;
+}
+
+void OperatorListClass::insert(OperatorType t, OperatorInterface *o) {
+  operators[t] = o;
 }

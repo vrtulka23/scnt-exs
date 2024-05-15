@@ -25,13 +25,17 @@ enum OperatorType {
   SUBTRACT_OPERATOR,
   MULTIPLY_OPERATOR,
   DIVIDE_OPERATOR,
+  POWER_OPERATOR,
   NUM_OPERATOR_TYPES
 };
 
 class AtomInterface {
 public:
   float value;
-  AtomInterface(std::string v): value(std::stof(v)) {};
+  AtomInterface(std::string v) {
+    //std::cout << "'" << v << "'" << std::endl;
+    value = std::stof(v); 
+  };
   ~AtomInterface() {};
 };
 

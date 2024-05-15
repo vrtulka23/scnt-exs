@@ -3,15 +3,16 @@
 
 #include <unordered_map>
 
-typedef std::unordered_map<OperatorType, OperatorInterface*> OperatorsType;
+typedef std::unordered_map<OperatorType, OperatorInterface*> OperatorListType;
 
 class OperatorListClass {
 public:
-  OperatorsType operators;
+  OperatorListType operators;
   OperatorListClass();
-  OperatorListClass(OperatorsType &o);
+  OperatorListClass(OperatorListType &o);
   ~OperatorListClass();
   OperatorInterface* select(OperatorType otype);
+  void insert(OperatorType t, OperatorInterface *o);
 };
 
 #endif // OPERATOR_LIST_H

@@ -14,7 +14,7 @@ public:
   TokenListClass(OperatorListClass *o): operators(o) {};
   void append(TokenType t);
   void append(TokenType t, OperatorType o);
-  void append(TokenType t, AtomClass *a);
+  void append(TokenType t, AtomInterface *a);
   TokenClass get_left();
   TokenClass get_right();
   void put_left(TokenClass t);

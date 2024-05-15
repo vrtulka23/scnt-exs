@@ -1,10 +1,11 @@
 #include <unordered_map>
+#include <stdexcept>
 
 #include "main.h"
 
-void SolverClass::solve(std::string expression) {
+AtomInterface SolverClass::solve(std::string expression) {
     Expression expr(expression);
-    expr.print();
+    //expr.print();
     TokenListClass tokens(&operators);
     AtomListClass atoms;
     
@@ -15,29 +16,40 @@ void SolverClass::solve(std::string expression) {
             OperatorInterface *op = o.second;
             if (expr.right.rfind(op->symbol, 0) == 0) {
                 is_operator = true;
-                if (expr.left.length()>0) {
-                    std::string left = expr.pop_left();
+                std::string left = expr.pop_left();
+                if (left.length()>0) {
                     AtomInterface *a = atoms.append(left);
                     tokens.append(ATOM_TOKEN, a);
                 }
                 op->parse(expr);
                 tokens.append(OPERATOR_TOKEN, op->type);
-                expr.print();
+                //expr.print();
             }
         }
         if (is_operator == false) {
             expr.shift();
-            expr.print();
+            //expr.print();
         }
     }
-    if (expr.left.length()>0) {
-        std::string left = expr.pop_left();
+    std::string left = expr.pop_left();
+    if (left.length()>0) {
         AtomInterface *a = atoms.append(left);
-        tokens.append(ATOM_TOKEN, a);    
+        tokens.append(ATOM_TOKEN, a);
+    }
+    //expr.print();  
+    
+    for (auto s: steps) {
+        //tokens.print(true); 
+        tokens.operate(s.second, s.first);
+    }
+    //tokens.print(true);   
+    
+    if (tokens.left.size()>0 or tokens.right.size()>1) {
+        tokens.print(true);
+        throw std::logic_error("Cannot solve expression due to unprocessed tokens");
     }
     
-    expr.print();
-    tokens.print(true);   
-    
-    //std::unordered_map<OperationType, OperatorInterface*>;
+    TokenClass token = tokens.get_right();
+    //std::cout << &token << " " << token.atom << " " << token.atom->value << std::endl;
+    return *token.atom;
 }
