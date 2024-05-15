@@ -14,7 +14,7 @@ set(ENV{PATH} "settings.env")
 # compile source files
 #######################
 
-file(GLOB source_files "src/*.h" "src/*.cpp")
+file(GLOB source_files "src/*.h" "src/*.cpp" "src/**/*.h" "src/**/*.cpp")
 add_executable(ExprSolver ${source_files})
 
 # add Google tests

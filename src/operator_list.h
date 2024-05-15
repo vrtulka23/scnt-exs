@@ -7,13 +7,11 @@ typedef std::unordered_map<OperatorType, OperatorInterface*> OperatorsType;
 
 class OperatorListClass {
 public:
-  OperatorsType map;
+  OperatorsType operators;
   OperatorListClass();
-  OperatorListClass(OperatorsType &m);
+  OperatorListClass(OperatorsType &o);
   ~OperatorListClass();
-  OperatorInterface* find(OperatorType otype);
+  OperatorInterface* select(OperatorType otype);
 };
-
-extern OperatorListClass OperatorList;
 
 #endif // OPERATOR_LIST_H

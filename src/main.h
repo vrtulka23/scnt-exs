@@ -49,6 +49,7 @@ public:
   virtual void print(bool details=false) = 0;
 };
 
+#include "expression.h"
 #include "operators.h"
 #include "operator_list.h"
 #include "token_list.h"
@@ -64,16 +65,6 @@ static std::string trim(const std::string& str, const std::string& whitespace = 
     return str.substr(strBegin, strRange);
 }
 
-class Expression {
-public:
-  std::string left;  // left side
-  std::string right; // right side
-  std::string expr;  // original expression
-  Expression(std::string expression);
-  void shift(int nchar);
-  void remove(std::string string);
-  std::string pop_left();
-  void print();
-};
+#include "solver.h"
 
 #endif // MAIN_H

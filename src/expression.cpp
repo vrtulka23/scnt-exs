@@ -8,7 +8,7 @@ Expression::Expression(std::string expression) {
   expr  = expression;
 }
 
-void Expression::shift(int nchar=1) {
+void Expression::shift(int nchar) {
   left  += right.substr(0,nchar);
   right =  right.substr(nchar,right.length());
 }
@@ -24,5 +24,5 @@ std::string Expression::pop_left() {
 }
 
 void Expression::print() {
-  std::cout << "Expression(L: " << left << " R: " << right << " E: " << expr << ")" << std::endl;
+  std::cout << "Expression(L'" << left << "' R'" << right << "' E'" << expr << "')" << std::endl;
 }

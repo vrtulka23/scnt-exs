@@ -4,7 +4,9 @@
 // Initialization of the Tokens class
 TEST(Tokens, Initialization) {
 
-  TokenListClass tokens;
+  OperatorListClass operators;
+
+  TokenListClass tokens(&operators);
   EXPECT_EQ(tokens.left.size(),  0);
   EXPECT_EQ(tokens.right.size(), 0);
 
@@ -18,8 +20,10 @@ TEST(Tokens, Initialization) {
 // Test get and put tokenss
 TEST(Tokens, GetAndPut) {
 
+  OperatorListClass operators;
+  
   // prepare tokens
-  TokenListClass tokens;
+  TokenListClass tokens(&operators);
 
   // test empty arrays
   EXPECT_EQ(tokens.get_left().type,  EMPTY_TOKEN);  

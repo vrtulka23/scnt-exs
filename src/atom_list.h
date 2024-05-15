@@ -3,9 +3,9 @@
 
 class AtomListClass {
 public:
-    std::vector<AtomClass*> list;
+    std::vector<AtomInterface*> atoms;
     ~AtomListClass();
-    AtomClass* append(std::string a);
+    AtomInterface* append(std::string a);
 };
 
 extern AtomListClass AtomList;

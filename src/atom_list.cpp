@@ -1,14 +1,14 @@
 #include "main.h"
 
 AtomListClass::~AtomListClass() {
-    for (auto a : list) {
+    for (auto a : atoms) {
         delete a;
     }  
 }
 
-AtomClass* AtomListClass::append(std::string a) {
-    list.push_back(new AtomClass(a));
-    return list.back();
+AtomInterface* AtomListClass::append(std::string a) {
+    atoms.push_back(new AtomClass(a));
+    return atoms.back();
 }
 
 AtomListClass AtomList;

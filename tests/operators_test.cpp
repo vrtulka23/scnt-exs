@@ -6,10 +6,10 @@ TEST(Operators, Initialization) {
 
   OperatorListClass operators;
   
-  OperatorInterface *op = operators.find(ADD_OPERATOR);
+  OperatorInterface *op = operators.select(ADD_OPERATOR);
   EXPECT_EQ(op->type, ADD_OPERATOR);
 
-  op = operators.find(SUBTRACT_OPERATOR);
+  op = operators.select(SUBTRACT_OPERATOR);
   EXPECT_EQ(op->type, SUBTRACT_OPERATOR);
 }
 
@@ -22,15 +22,17 @@ TEST(Operators, CustomOperatorsList) {
 
   // initialize operator map
   OperatorListClass operators(map);
-  OperatorInterface *op = operators.find(MULTIPLY_OPERATOR);
+  OperatorInterface *op = operators.select(MULTIPLY_OPERATOR);
   EXPECT_EQ(op->type, MULTIPLY_OPERATOR);
   
 }
 
 TEST(Operators, OperatorAdd) {
 
+  OperatorListClass operators;
+
   // prepare tokens
-  TokenListClass tokens;
+  TokenListClass tokens(&operators);
   tokens.append(TokenClass(OPERATOR_TOKEN, ADD_OPERATOR));
   tokens.append(TokenClass(OPERATOR_TOKEN, ADD_OPERATOR));
   tokens.append(TokenClass(ATOM_TOKEN,     "3.4"));
@@ -40,7 +42,7 @@ TEST(Operators, OperatorAdd) {
   TokenClass token = tokens.get_right();
 
   // get an operator and perform unary operation on the remaining tokens
-  OperatorInterface *op = OperatorList.find(ADD_OPERATOR);
+  OperatorInterface *op = operators.select(ADD_OPERATOR);
   tokens.print(true);
   op->operate_unary(&tokens);
   tokens.print(true);
@@ -48,18 +50,20 @@ TEST(Operators, OperatorAdd) {
 
 TEST(Operators, OpearateAdd) {
 
+  OperatorListClass operators;
+
   // prepare tokens
-  TokenListClass tokens;
+  TokenListClass tokens(&operators);
   tokens.append(TokenClass(OPERATOR_TOKEN, ADD_OPERATOR));
   tokens.append(TokenClass(OPERATOR_TOKEN, ADD_OPERATOR));
   tokens.append(TokenClass(ATOM_TOKEN,     "3.4"));
   tokens.print(true);
 
   // create operator list
-  std::vector<OperatorType> operators = {ADD_OPERATOR};
-  OperatorInterface *op = OperatorList.find(ADD_OPERATOR);
+  std::vector<OperatorType> oper = {ADD_OPERATOR};
+  OperatorInterface *op = operators.select(ADD_OPERATOR);
   
   // operate on tokens
-  tokens.operate(operators, UNARY_OPERATION);
+  tokens.operate(oper, UNARY_OPERATION);
   tokens.print(true);
 }

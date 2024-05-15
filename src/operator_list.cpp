@@ -1,24 +1,22 @@
 #include "main.h"
 
 OperatorListClass::OperatorListClass() {
-  map[ADD_OPERATOR]      = new OperatorAdd();
-  map[SUBTRACT_OPERATOR] = new OperatorSubtract();
-  map[MULTIPLY_OPERATOR] = new OperatorMultiply();
-  map[DIVIDE_OPERATOR]   = new OperatorDivide();
+  operators[ADD_OPERATOR]      = new OperatorAdd();
+  operators[SUBTRACT_OPERATOR] = new OperatorSubtract();
+  operators[MULTIPLY_OPERATOR] = new OperatorMultiply();
+  operators[DIVIDE_OPERATOR]   = new OperatorDivide();
 }
 
-OperatorListClass::OperatorListClass(OperatorsType &m): map(m) {
+OperatorListClass::OperatorListClass(OperatorsType &o): operators(o) {
 }
 
 OperatorListClass::~OperatorListClass() {
-  for (auto o : map) {
+  for (auto o : operators) {
     delete o.second;
   }  
 }
 
-OperatorInterface* OperatorListClass::find(OperatorType otype) {
-  OperatorsType::const_iterator it = map.find(otype);
+OperatorInterface* OperatorListClass::select(OperatorType otype) {
+  OperatorsType::const_iterator it = operators.find(otype);
   return it->second;
 }
-
-OperatorListClass OperatorList;

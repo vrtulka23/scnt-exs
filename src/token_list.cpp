@@ -8,9 +8,9 @@ TokenClass TokenListClass::get_left() {
   if (left.empty()) {
     return TokenClass(EMPTY_TOKEN);
   } else {
-    TokenClass s = left.back();
+    TokenClass t = left.back();
     left.pop_back();
-    return s;
+    return t;
   }
 }
 
@@ -18,9 +18,9 @@ TokenClass TokenListClass::get_right() {
   if (right.empty()) {
     return TokenClass(EMPTY_TOKEN);
   } else {
-      TokenClass s = right.front();
+      TokenClass t = right.front();
       right.pop_front();
-      return s;
+      return t;
   }
 }
 
@@ -37,28 +37,31 @@ void TokenListClass::put_right(TokenClass t) {
 }
 
 void TokenListClass::operate(const std::vector<OperatorType> &ops, OperationType oitype) {
+  // perform operations on the individual tokens
   while (!right.empty()) {
     TokenClass token = get_right();
     if (std::find(ops.begin(), ops.end(), token.optype) != ops.end()) {
-      OperatorInterface *op = OperatorList.find(token.optype);
+      OperatorInterface *op = operators->select(token.optype);
       // token is an operator
       if (oitype==UNARY_OPERATION) {
-	op->operate_unary(this);
+      	op->operate_unary(this);
       } else if (oitype==BINARY_OPERATION) {
-	op->operate_binary(this);
+	      op->operate_binary(this);
       } else if (oitype==ARGUMENTS_OPERATION) {
-	op->operate_arguments(this);
+	      op->operate_arguments(this);
       } else {
-	throw std::invalid_argument("Invalid operation type");
+	      throw std::invalid_argument("Invalid operation type");
       }
     } else {
       // token is something else
       put_left(token);
     }
   }
+  // move all tokens from left to right
+  left.swap(right);
 }
 
-void TokenListClass::print(bool details=false) {
+void TokenListClass::print(bool details) {
   if (details) {
     std::cout << "TokenList( ";
     for (auto i = left.begin(); i!= left.end(); ++i) {
@@ -79,7 +82,7 @@ void TokenListClass::print_details(std::deque<TokenClass>::iterator i) {
   case EMPTY_TOKEN: std::cout << "E "; break;
   case ATOM_TOKEN: std::cout << "A "; break;
   case OPERATOR_TOKEN:
-    OperatorInterface *op = OperatorList.find(i->optype);
+    OperatorInterface *op = operators->select(i->optype);
     std::cout << op->name << " ";
     break;
   }
