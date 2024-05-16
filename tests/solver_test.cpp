@@ -29,10 +29,10 @@ TEST(Solver, SolvingExpression) {
 
 TEST(Solver, CustomSteps) {
     
-    StepListType steps;
-    steps.push_back({UNARY_OPERATION,  {ADD_OPERATOR}});
-    steps.push_back({BINARY_OPERATION, {MULTIPLY_OPERATOR}});
-    steps.push_back({BINARY_OPERATION, {ADD_OPERATOR}});
+    StepList steps;
+    steps.append(UNARY_OPERATION,  {ADD_OPERATOR});
+    steps.append(BINARY_OPERATION, {MULTIPLY_OPERATOR});
+    steps.append(BINARY_OPERATION, {ADD_OPERATOR});
     
     Solver<AtomBase> solver(steps);
 
@@ -44,7 +44,7 @@ TEST(Solver, CustomOperators) {
     
     // create custom operator list
     OperatorList operators;
-    operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+    operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
     operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
 
     Solver<AtomBase> solver(operators);

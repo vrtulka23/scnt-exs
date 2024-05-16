@@ -9,11 +9,11 @@ template <class A>
 class Solver {
 public:
     OperatorList operators;
-    StepListType steps;
+    StepList steps;
     Solver() {init_steps();init_operators();};
     Solver(OperatorList &o): operators(o) {init_steps();};
-    Solver(StepListType &s): steps(s) {init_operators();};
-    Solver(OperatorList &o, StepListType &s): operators(o), steps(s) {
+    Solver(StepList &s): steps(s) {init_operators();};
+    Solver(OperatorList &o, StepList &s): operators(o), steps(s) {
         std::cout << "b" << std::endl;
     };
     AtomBase solve(std::string expression) {
@@ -51,7 +51,7 @@ public:
         }
         //expr.print();  
         
-        for (auto s: steps) {
+        for (auto s: steps.steps) {
             //tokens.print(true); 
             tokens.operate(s.second, s.first);
         }
@@ -68,17 +68,17 @@ public:
     };
 private:
     void init_steps() {
-        steps.push_back({UNARY_OPERATION,  {ADD_OPERATOR, SUBTRACT_OPERATOR}});
-        steps.push_back({BINARY_OPERATION, {POWER_OPERATOR}});
-        steps.push_back({BINARY_OPERATION, {MULTIPLY_OPERATOR, DIVIDE_OPERATOR}});
-        steps.push_back({BINARY_OPERATION, {ADD_OPERATOR, SUBTRACT_OPERATOR}});
+        steps.append(UNARY_OPERATION,  {ADD_OPERATOR, SUBTRACT_OPERATOR});
+        steps.append(BINARY_OPERATION, {POWER_OPERATOR});
+        steps.append(BINARY_OPERATION, {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
+        steps.append(BINARY_OPERATION, {ADD_OPERATOR, SUBTRACT_OPERATOR});
     }
     void init_operators() {
-        operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+        operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
         operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract>());
         operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
-        operators.append(DIVIDE_OPERATOR, std::make_shared<OperatorDivide>());
-        operators.append(POWER_OPERATOR, std::make_shared<OperatorPower>());
+        operators.append(DIVIDE_OPERATOR,   std::make_shared<OperatorDivide>());
+        operators.append(POWER_OPERATOR,    std::make_shared<OperatorPower>());
     }
 };
 

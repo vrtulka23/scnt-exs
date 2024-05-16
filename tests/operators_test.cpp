@@ -7,7 +7,7 @@
 TEST(Operators, Initialization) {
 
   OperatorList operators;
-  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
   operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract>());
   
   OperatorBase *op = operators.select(ADD_OPERATOR);
@@ -21,7 +21,7 @@ TEST(Operators, CustomOperatorsList) {
 
   // initialize operators
   OperatorList operators;
-  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
   operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
   
   OperatorBase *op = operators.select(MULTIPLY_OPERATOR);

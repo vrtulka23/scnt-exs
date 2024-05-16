@@ -1,18 +1,15 @@
 #ifndef ATOM_LIST_H
 #define ATOM_LIST_H
 
-template <class T>
+#include <memory>
+
+template <class A>
 class AtomList {
 public:
-    std::vector<AtomBase*> atoms;
-    ~AtomList() {
-       for (auto a : atoms) {
-            delete a;
-        } 
-    };
+    std::vector<std::shared_ptr<A>> atoms;
     AtomBase* append(std::string a) {
-       atoms.push_back(new T(a));
-        return atoms.back();
+        atoms.push_back(std::make_shared<A>(a));
+        return &(*atoms.back());
     };
 };
 
