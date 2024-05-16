@@ -6,11 +6,11 @@ TEST(Tokens, Initialization) {
 
   OperatorList operators;
 
-  TokenList<AtomBase> tokens(&operators);
+  TokenList<Atom> tokens(&operators);
   EXPECT_EQ(tokens.left.size(),  0);
   EXPECT_EQ(tokens.right.size(), 0);
 
-  AtomBase a("3.4");
+  Atom a("3.4");
   tokens.append(ATOM_TOKEN, &a);
   EXPECT_EQ(tokens.right.size(), 1);
   EXPECT_EQ(std::get<float>(tokens.right.front().atom->value), (float)3.4);
@@ -23,17 +23,17 @@ TEST(Tokens, GetAndPut) {
   OperatorList operators;
   
   // prepare tokens
-  TokenList<AtomBase> tokens(&operators);
+  TokenList<Atom> tokens(&operators);
 
   // test empty arrays
   EXPECT_EQ(tokens.get_left().type,  EMPTY_TOKEN);  
   EXPECT_EQ(tokens.get_right().type, EMPTY_TOKEN);  
 
   // fill with some dummy values
-  AtomList<AtomBase> atoms;
+  AtomList<Atom> atoms;
   int nitems = 4;
   for (int i=0; i<nitems; i++) {
-    AtomBase *a = atoms.append(std::to_string(i));
+    Atom *a = atoms.append(std::to_string(i));
     tokens.append(ATOM_TOKEN, a);
   }
   

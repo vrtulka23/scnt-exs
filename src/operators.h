@@ -22,36 +22,10 @@ class OperatorBase {
   virtual void print() {};
 };
 
-class OperatorAdd: public OperatorBase {
-public:
-  OperatorAdd(): OperatorBase("add", "+", ADD_OPERATOR) {}
-  void operate_unary(TokenListBase *tokens);
-  void operate_binary(TokenListBase *tokens);
-};
-
-class OperatorSubtract: public OperatorBase {
-public:
-  OperatorSubtract(): OperatorBase("sub", "-", SUBTRACT_OPERATOR) {}
-  void operate_unary(TokenListBase *tokens);
-  void operate_binary(TokenListBase *tokens);
-};
-
-class OperatorMultiply: public OperatorBase {
-public:
-  OperatorMultiply(): OperatorBase("mul", "*", MULTIPLY_OPERATOR) {}
-  void operate_binary(TokenListBase *tokens);
-};
-
-class OperatorDivide: public OperatorBase {
-public:
-  OperatorDivide(): OperatorBase("div", "/", DIVIDE_OPERATOR) {}
-  void operate_binary(TokenListBase *tokens);
-};
-
-class OperatorPower: public OperatorBase {
-public:
-  OperatorPower(): OperatorBase("pow", "**", POWER_OPERATOR) {}
-  void operate_binary(TokenListBase *tokens);
-};
+#include "operators/add.h"
+#include "operators/subtract.h"
+#include "operators/multiply.h"
+#include "operators/divide.h"
+#include "operators/power.h"
 
 #endif // OPERATORS_H

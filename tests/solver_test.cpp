@@ -6,9 +6,9 @@
 // Initialization of the Soler
 TEST(Solver, SolvingExpression) {
     
-    Solver<AtomBase> solver;
+    Solver<Atom> solver;
     
-    AtomBase atom = solver.solve("1.2 + 34");
+    Atom atom = solver.solve("1.2 + 34");
     EXPECT_EQ(std::get<float>(atom.value), (float)35.2);
 
     atom = solver.solve("32 - 34");
@@ -36,8 +36,8 @@ TEST(Solver, CustomSteps) {
     steps.append(BINARY_OPERATION, {ADD_OPERATOR});
     
     // test the solver
-    Solver<AtomBase> solver(steps);
-    AtomBase atom = solver.solve("1.2 + 5 * 4");
+    Solver<Atom> solver(steps);
+    Atom atom = solver.solve("1.2 + 5 * 4");
     EXPECT_EQ(std::get<float>(atom.value), (float)21.2);
 }
 
@@ -49,7 +49,7 @@ TEST(Solver, CustomOperators) {
     operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
 
     // test the solver
-    Solver<AtomBase> solver(operators);
-    AtomBase atom = solver.solve("1.2 + 5 * 4");
+    Solver<Atom> solver(operators);
+    Atom atom = solver.solve("1.2 + 5 * 4");
     EXPECT_EQ(std::get<float>(atom.value), (float)21.2);
 }

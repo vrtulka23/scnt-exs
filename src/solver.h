@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <stdexcept>
 
-template <class A>
+template <class A = Atom>
 class Solver {
 public:
     OperatorList operators;

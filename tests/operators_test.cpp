@@ -35,10 +35,10 @@ TEST(Operators, OperatorAdd) {
   operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
 
   // prepare tokens
-  TokenList<AtomBase> tokens(&operators);
+  TokenList<Atom> tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
-  AtomBase a("3.4");
+  Atom a("3.4");
   tokens.append(ATOM_TOKEN,     &a);
   //tokens.print(true);
 
@@ -58,10 +58,10 @@ TEST(Operators, OpearateAdd) {
   operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
 
   // prepare tokens
-  TokenList<AtomBase> tokens(&operators);
+  TokenList<Atom> tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
-  AtomBase a("3.4");
+  Atom a("3.4");
   tokens.append(ATOM_TOKEN,     &a);
   //tokens.print(true);
 

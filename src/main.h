@@ -31,10 +31,10 @@ enum OperatorType {
   NUM_OPERATOR_TYPES
 };
 
-class AtomBase {
+class Atom {
 public:
   std::variant<int, float, bool> value;
-  AtomBase(std::string v) {
+  Atom(std::string v) {
     //std::cout << "'" << v << "'" << std::endl;
     value = std::stof(v); 
   };

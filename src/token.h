@@ -7,10 +7,10 @@ class Token {
 public:
   TokenType type;
   OperatorType optype;
-  AtomBase *atom;
+  Atom *atom;
   Token(TokenType t): type(t), atom(NULL) {}
   Token(TokenType t, OperatorType o): type(t), optype(o), atom(NULL) {};
-  Token(TokenType t, AtomBase *a): type(t), atom(a) {};
+  Token(TokenType t, Atom *a): type(t), atom(a) {};
   void print() {
     if (type==EMPTY_TOKEN) {
       std::cout << "Token(EMPTY)" << std::endl;
