@@ -23,8 +23,9 @@ public:
         // Tokenize expression
         while (expr.right.length()>0) {
             bool is_operator = false;
-            for (auto o : operators.operators) {
-                OperatorBase<A> *op = &(*o.second);
+            for (auto o : operators.order) {
+                OperatorBase<A> *op = operators.select(o);
+                //std::cout << op->symbol << std::endl;
                 if (expr.right.rfind(op->symbol, 0) == 0) {
                     is_operator = true;
                     std::string left = expr.pop_left();
@@ -70,13 +71,26 @@ private:
         steps.append(BINARY_OPERATION, {POWER_OPERATOR});
         steps.append(BINARY_OPERATION, {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
         steps.append(BINARY_OPERATION, {ADD_OPERATOR, SUBTRACT_OPERATOR});
+        steps.append(BINARY_OPERATION, {
+            EQUAL_OPERATOR,NOT_EQUAL_OPERATOR,
+            LOWER_EQUAL_OPERATOR,GREATER_EQUAL_OPERATOR,
+            LOWER_OPERATOR,GREATER_OPERATOR
+        });
     }
     void init_operators() {
-        operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<A>>());
-        operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract<A>>());
+        operators.append(POWER_OPERATOR,    std::make_shared<OperatorPower<A>>());
+
         operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply<A>>());
         operators.append(DIVIDE_OPERATOR,   std::make_shared<OperatorDivide<A>>());
-        operators.append(POWER_OPERATOR,    std::make_shared<OperatorPower<A>>());
+        operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<A>>());
+        operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract<A>>());
+        
+        operators.append(EQUAL_OPERATOR,          std::make_shared<OperatorEqual<A>>());
+        operators.append(NOT_EQUAL_OPERATOR,      std::make_shared<OperatorNotEqual<A>>());
+        operators.append(LOWER_EQUAL_OPERATOR,    std::make_shared<OperatorLowerEqual<A>>());
+        operators.append(GREATER_EQUAL_OPERATOR,  std::make_shared<OperatorGreaterEqual<A>>());
+        operators.append(LOWER_OPERATOR,          std::make_shared<OperatorLower<A>>());
+        operators.append(GREATER_OPERATOR,        std::make_shared<OperatorGreater<A>>());
     }
 };
 

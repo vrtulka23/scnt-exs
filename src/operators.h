@@ -29,4 +29,11 @@ class OperatorBase {
 #include "operators/divide.h"
 #include "operators/power.h"
 
+#include "operators/equal.h"
+#include "operators/not_equal.h"
+#include "operators/lower_equal.h"
+#include "operators/greater_equal.h"
+#include "operators/lower.h"
+#include "operators/greater.h"
+
 #endif // OPERATORS_H

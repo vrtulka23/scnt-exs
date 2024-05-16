@@ -3,8 +3,8 @@
 
 #include "../src/main.h"
 
-// Initialization of the Soler
-TEST(Solver, SolvingExpression) {
+// Basic mathematic expressions
+TEST(Solver, SolvingMath) {
     
     Solver<Atom> solver;
     
@@ -25,6 +25,30 @@ TEST(Solver, SolvingExpression) {
     
     atom = solver.solve("1.2 + +68/2 - -2**5 * 93");
     EXPECT_EQ(std::get<float>(atom.value), (float)3011.2);
+}
+
+// Basic comparison expressions
+TEST(Solver, SolvingComparison) {
+    
+    Solver<Atom> solver;
+    
+    Atom atom = solver.solve("23 == 34");
+    EXPECT_EQ(std::get<bool>(atom.value), false);
+    
+    atom = solver.solve("23 != 34");
+    EXPECT_EQ(std::get<bool>(atom.value), true);
+    
+    atom = solver.solve("23 <= 34");
+    EXPECT_EQ(std::get<bool>(atom.value), true);
+    
+    atom = solver.solve("23 >= 34");
+    EXPECT_EQ(std::get<bool>(atom.value), false);
+    
+    atom = solver.solve("23 < 34");
+    EXPECT_EQ(std::get<bool>(atom.value), true);
+    
+    atom = solver.solve("23 > 34");
+    EXPECT_EQ(std::get<bool>(atom.value), false);
 }
 
 TEST(Solver, CustomSteps) {
