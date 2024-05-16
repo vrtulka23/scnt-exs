@@ -1,10 +1,14 @@
 #include <gtest/gtest.h>
+#include <memory>
+
 #include "../src/main.h"
 
 // Initialization of the operators map
 TEST(Operators, Initialization) {
 
   OperatorList operators;
+  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+  operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract>());
   
   OperatorBase *op = operators.select(ADD_OPERATOR);
   EXPECT_EQ(op->type, ADD_OPERATOR);
@@ -15,13 +19,11 @@ TEST(Operators, Initialization) {
 
 TEST(Operators, CustomOperatorsList) {
 
-  // create custom operator list
-  OperatorListType map;
-  map[ADD_OPERATOR] = new OperatorAdd();
-  map[MULTIPLY_OPERATOR] = new OperatorMultiply();
-
-  // initialize operator map
-  OperatorList operators(map);
+  // initialize operators
+  OperatorList operators;
+  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+  operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
+  
   OperatorBase *op = operators.select(MULTIPLY_OPERATOR);
   EXPECT_EQ(op->type, MULTIPLY_OPERATOR);
   
@@ -30,6 +32,7 @@ TEST(Operators, CustomOperatorsList) {
 TEST(Operators, OperatorAdd) {
 
   OperatorList operators;
+  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
 
   // prepare tokens
   TokenList tokens(&operators);
@@ -52,6 +55,7 @@ TEST(Operators, OperatorAdd) {
 TEST(Operators, OpearateAdd) {
 
   OperatorList operators;
+  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
 
   // prepare tokens
   TokenList tokens(&operators);

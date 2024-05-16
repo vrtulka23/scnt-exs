@@ -5,16 +5,14 @@
 #include <unordered_map>
 #include <stdexcept>
 
-typedef std::vector<std::pair<OperationType, std::vector<OperatorType>>> StepListType;
-
 template <class A>
 class Solver {
 public:
     OperatorList operators;
     StepListType steps;
-    Solver() {init_steps();};
+    Solver() {init_steps();init_operators();};
     Solver(OperatorList &o): operators(o) {init_steps();};
-    Solver(StepListType &s): steps(s) {};
+    Solver(StepListType &s): steps(s) {init_operators();};
     Solver(OperatorList &o, StepListType &s): operators(o), steps(s) {
         std::cout << "b" << std::endl;
     };
@@ -28,7 +26,7 @@ public:
         while (expr.right.length()>0) {
             bool is_operator = false;
             for (auto o : operators.operators) {
-                OperatorBase *op = o.second;
+                OperatorBase *op = &(*o.second);
                 if (expr.right.rfind(op->symbol, 0) == 0) {
                     is_operator = true;
                     std::string left = expr.pop_left();
@@ -74,6 +72,13 @@ private:
         steps.push_back({BINARY_OPERATION, {POWER_OPERATOR}});
         steps.push_back({BINARY_OPERATION, {MULTIPLY_OPERATOR, DIVIDE_OPERATOR}});
         steps.push_back({BINARY_OPERATION, {ADD_OPERATOR, SUBTRACT_OPERATOR}});
+    }
+    void init_operators() {
+        operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+        operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract>());
+        operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
+        operators.append(DIVIDE_OPERATOR, std::make_shared<OperatorDivide>());
+        operators.append(POWER_OPERATOR, std::make_shared<OperatorPower>());
     }
 };
 

@@ -54,6 +54,7 @@ public:
 #include "expression.h"
 #include "operators.h"
 #include "operator_list.h"
+#include "step_list.h"
 #include "token_list.h"
 
 static std::string trim(const std::string& str, const std::string& whitespace = " \t") {

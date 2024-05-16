@@ -4,15 +4,22 @@
 #include <unordered_map>
 #include <memory>
 
-typedef std::unordered_map<OperatorType, OperatorBase*> OperatorListType;
+typedef std::unordered_map<OperatorType, std::shared_ptr<OperatorBase>> OperatorListType;
 
 class OperatorList {
 public:
   OperatorListType operators;
-  OperatorList();
-  OperatorList(OperatorListType &o);
-  ~OperatorList();
-  OperatorBase* select(OperatorType otype);
+  OperatorBase* select(OperatorType otype) {
+    auto it = operators.find(otype);
+    if (it != operators.end()) {
+      return &(*(it->second));
+    } else {
+      throw std::logic_error("Selecting non existing operator");
+    }
+  };
+  void append(OperatorType t, std::shared_ptr<OperatorBase> o) {
+    operators[t] = o;
+  };
 };
 
 #endif // OPERATOR_LIST_H

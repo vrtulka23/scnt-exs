@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <memory>
+
 #include "../src/main.h"
 
 // Initialization of the Soler
@@ -41,17 +43,12 @@ TEST(Solver, CustomSteps) {
 TEST(Solver, CustomOperators) {
     
     // create custom operator list
-    OperatorListType map;
-    map[ADD_OPERATOR] = new OperatorAdd();
-    map[MULTIPLY_OPERATOR] = new OperatorMultiply();
-    OperatorList operators(map);
-    
-    /*
-    std::cout << "a" << std::endl;
+    OperatorList operators;
+    operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+    operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
+
     Solver<AtomBase> solver(operators);
-    std::cout << "c" << std::endl;
 
     AtomBase atom = solver.solve("1.2 + 5 * 4");
     EXPECT_EQ(atom.value, (float)21.2);
-    */
 }
