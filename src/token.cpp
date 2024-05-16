@@ -4,7 +4,7 @@ TokenClass::TokenClass(TokenType t): type(t), atom(NULL) {};
 
 TokenClass::TokenClass(TokenType t, OperatorType o): type(t), optype(o), atom(NULL) {};
 
-TokenClass::TokenClass(TokenType t, AtomInterface *a): type(t), atom(a) {};
+TokenClass::TokenClass(TokenType t, AtomBase *a): type(t), atom(a) {};
 
 void TokenClass::print() {
   if (type==EMPTY_TOKEN) {

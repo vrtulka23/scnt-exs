@@ -7,10 +7,10 @@ class TokenClass {
 public:
   TokenType type;
   OperatorType optype;
-  AtomInterface *atom;
+  AtomBase *atom;
   TokenClass(TokenType t);
   TokenClass(TokenType t, OperatorType o);
-  TokenClass(TokenType t, AtomInterface *a);
+  TokenClass(TokenType t, AtomBase *a);
   void print();
 };
 

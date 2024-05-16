@@ -30,10 +30,10 @@ TEST(Tokens, GetAndPut) {
   EXPECT_EQ(tokens.get_right().type, EMPTY_TOKEN);  
 
   // fill with some dummy values
-  AtomListClass atoms;
+  AtomListClass<AtomClass> atoms;
   int nitems = 4;
   for (int i=0; i<nitems; i++) {
-    AtomInterface *a = atoms.append(std::to_string(i));
+    AtomBase *a = atoms.append(std::to_string(i));
     tokens.append(ATOM_TOKEN, a);
   }
   

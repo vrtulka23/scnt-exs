@@ -3,54 +3,54 @@
 
 #include <stdexcept>
 
-class OperatorInterface {
+class OperatorBase {
  public:
   std::string name;
   std::string symbol;
   OperatorType type;
-  OperatorInterface(std::string n, std::string s, OperatorType t): name(n), symbol(s), type(t) {};
-  virtual ~OperatorInterface() = default;
+  OperatorBase(std::string n, std::string s, OperatorType t): name(n), symbol(s), type(t) {};
+  virtual ~OperatorBase() = default;
   virtual void parse(Expression &expr) {
      if (expr.right.length()>0) {
        expr.remove(symbol);
      }  
   };
-  virtual void operate_unary(TokenListInterface *tokens) {throw std::logic_error("Function not yet implemented");};
-  virtual void operate_binary(TokenListInterface *tokens) {throw std::logic_error("Function not yet implemented");};
-  virtual void operate_arguments(TokenListInterface *tokens) {throw std::logic_error("Function not yet implemented");};
+  virtual void operate_unary(TokenListBase *tokens) {throw std::logic_error("Function not yet implemented");};
+  virtual void operate_binary(TokenListBase *tokens) {throw std::logic_error("Function not yet implemented");};
+  virtual void operate_arguments(TokenListBase *tokens) {throw std::logic_error("Function not yet implemented");};
   virtual void print() {};
 };
 
-class OperatorAdd: public OperatorInterface {
+class OperatorAdd: public OperatorBase {
 public:
-  OperatorAdd(): OperatorInterface("add", "+", ADD_OPERATOR) {}
-  void operate_unary(TokenListInterface *tokens);
-  void operate_binary(TokenListInterface *tokens);
+  OperatorAdd(): OperatorBase("add", "+", ADD_OPERATOR) {}
+  void operate_unary(TokenListBase *tokens);
+  void operate_binary(TokenListBase *tokens);
 };
 
-class OperatorSubtract: public OperatorInterface {
+class OperatorSubtract: public OperatorBase {
 public:
-  OperatorSubtract(): OperatorInterface("sub", "-", SUBTRACT_OPERATOR) {}
-  void operate_unary(TokenListInterface *tokens);
-  void operate_binary(TokenListInterface *tokens);
+  OperatorSubtract(): OperatorBase("sub", "-", SUBTRACT_OPERATOR) {}
+  void operate_unary(TokenListBase *tokens);
+  void operate_binary(TokenListBase *tokens);
 };
 
-class OperatorMultiply: public OperatorInterface {
+class OperatorMultiply: public OperatorBase {
 public:
-  OperatorMultiply(): OperatorInterface("mul", "*", MULTIPLY_OPERATOR) {}
-  void operate_binary(TokenListInterface *tokens);
+  OperatorMultiply(): OperatorBase("mul", "*", MULTIPLY_OPERATOR) {}
+  void operate_binary(TokenListBase *tokens);
 };
 
-class OperatorDivide: public OperatorInterface {
+class OperatorDivide: public OperatorBase {
 public:
-  OperatorDivide(): OperatorInterface("div", "/", DIVIDE_OPERATOR) {}
-  void operate_binary(TokenListInterface *tokens);
+  OperatorDivide(): OperatorBase("div", "/", DIVIDE_OPERATOR) {}
+  void operate_binary(TokenListBase *tokens);
 };
 
-class OperatorPower: public OperatorInterface {
+class OperatorPower: public OperatorBase {
 public:
-  OperatorPower(): OperatorInterface("pow", "**", POWER_OPERATOR) {}
-  void operate_binary(TokenListInterface *tokens);
+  OperatorPower(): OperatorBase("pow", "**", POWER_OPERATOR) {}
+  void operate_binary(TokenListBase *tokens);
 };
 
 #endif // OPERATORS_H

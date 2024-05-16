@@ -4,9 +4,9 @@
 // Initialization of the SolerClass
 TEST(Solver, SolvingExpression) {
     
-    SolverClass solver;
+    SolverClass<AtomClass> solver;
     
-    AtomInterface atom = solver.solve("1.2 + 34");
+    AtomBase atom = solver.solve("1.2 + 34");
     EXPECT_EQ(atom.value, (float)35.2);
 
     atom = solver.solve("32 - 34");

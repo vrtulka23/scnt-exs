@@ -1,6 +1,6 @@
 #include "../main.h"
 
-void OperatorMultiply::operate_binary(TokenListInterface *tokens) {
+void OperatorMultiply::operate_binary(TokenListBase *tokens) {
   TokenClass left = tokens->get_left();
   TokenClass right = tokens->get_right();
   left.atom->value *= right.atom->value;

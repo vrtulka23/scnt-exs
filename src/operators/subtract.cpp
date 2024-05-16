@@ -1,6 +1,6 @@
 #include "../main.h"
 
-void OperatorSubtract::operate_unary(TokenListInterface *tokens) {
+void OperatorSubtract::operate_unary(TokenListBase *tokens) {
   TokenClass left = tokens->get_left();
   TokenClass right = tokens->get_right();
   if (left.type==EMPTY_TOKEN && right.type==ATOM_TOKEN) {
@@ -23,7 +23,7 @@ void OperatorSubtract::operate_unary(TokenListInterface *tokens) {
   }
 }
 
-void OperatorSubtract::operate_binary(TokenListInterface *tokens) {
+void OperatorSubtract::operate_binary(TokenListBase *tokens) {
   TokenClass left = tokens->get_left();
   TokenClass right = tokens->get_right();
   left.atom->value -= right.atom->value;

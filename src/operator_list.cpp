@@ -17,11 +17,11 @@ OperatorListClass::~OperatorListClass() {
   }  
 }
 
-OperatorInterface* OperatorListClass::select(OperatorType otype) {
+OperatorBase* OperatorListClass::select(OperatorType otype) {
   OperatorListType::const_iterator it = operators.find(otype);
   return it->second;
 }
 
-void OperatorListClass::insert(OperatorType t, OperatorInterface *o) {
+void OperatorListClass::insert(OperatorType t, OperatorBase *o) {
   operators[t] = o;
 }

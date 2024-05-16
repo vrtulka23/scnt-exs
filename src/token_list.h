@@ -6,7 +6,7 @@
 #include <vector>
 #include <stdexcept>
 
-class TokenListClass: public TokenListInterface {
+class TokenListClass: public TokenListBase {
 public:
   std::deque<TokenClass> left;
   std::deque<TokenClass> right;
@@ -14,7 +14,7 @@ public:
   TokenListClass(OperatorListClass *o): operators(o) {};
   void append(TokenType t);
   void append(TokenType t, OperatorType o);
-  void append(TokenType t, AtomInterface *a);
+  void append(TokenType t, AtomBase *a);
   TokenClass get_left();
   TokenClass get_right();
   void put_left(TokenClass t);

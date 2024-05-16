@@ -29,22 +29,22 @@ enum OperatorType {
   NUM_OPERATOR_TYPES
 };
 
-class AtomInterface {
+class AtomBase {
 public:
   float value;
-  AtomInterface(std::string v) {
+  AtomBase(std::string v) {
     //std::cout << "'" << v << "'" << std::endl;
     value = std::stof(v); 
   };
-  ~AtomInterface() {};
+  ~AtomBase() {};
 };
 
-typedef AtomInterface AtomClass; // temporary alias, AtomClass should be defined by user
+typedef AtomBase AtomClass; // temporary alias, AtomClass should be defined by user
 
 #include "atom_list.h"
 #include "token.h"
 
-class TokenListInterface {
+class TokenListBase {
 public:
   virtual TokenClass get_left() = 0;
   virtual TokenClass get_right() = 0;

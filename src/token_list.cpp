@@ -6,7 +6,7 @@ void TokenListClass::append(TokenType t) {
 void TokenListClass::append(TokenType t, OperatorType o) {
   right.push_back(TokenClass(t, o));
 }
-void TokenListClass::append(TokenType t, AtomInterface *a) {
+void TokenListClass::append(TokenType t, AtomBase *a) {
   right.push_back(TokenClass(t, a));
 }
 
@@ -47,7 +47,7 @@ void TokenListClass::operate(const std::vector<OperatorType> &ops, OperationType
   while (!right.empty()) {
     TokenClass token = get_right();
     if (std::find(ops.begin(), ops.end(), token.optype) != ops.end()) {
-      OperatorInterface *op = operators->select(token.optype);
+      OperatorBase *op = operators->select(token.optype);
       // token is an operator
       if (oitype==UNARY_OPERATION) {
       	op->operate_unary(this);
@@ -88,7 +88,7 @@ void TokenListClass::print_details(std::deque<TokenClass>::iterator i) {
   case EMPTY_TOKEN: std::cout << "E "; break;
   case ATOM_TOKEN: std::cout << "A "; break;
   case OPERATOR_TOKEN:
-    OperatorInterface *op = operators->select(i->optype);
+    OperatorBase *op = operators->select(i->optype);
     std::cout << op->name << " ";
     break;
   }

@@ -6,7 +6,7 @@ TEST(Operators, Initialization) {
 
   OperatorListClass operators;
   
-  OperatorInterface *op = operators.select(ADD_OPERATOR);
+  OperatorBase *op = operators.select(ADD_OPERATOR);
   EXPECT_EQ(op->type, ADD_OPERATOR);
 
   op = operators.select(SUBTRACT_OPERATOR);
@@ -22,7 +22,7 @@ TEST(Operators, CustomOperatorsList) {
 
   // initialize operator map
   OperatorListClass operators(map);
-  OperatorInterface *op = operators.select(MULTIPLY_OPERATOR);
+  OperatorBase *op = operators.select(MULTIPLY_OPERATOR);
   EXPECT_EQ(op->type, MULTIPLY_OPERATOR);
   
 }
@@ -43,7 +43,7 @@ TEST(Operators, OperatorAdd) {
   TokenClass token = tokens.get_right();
 
   // get an operator and perform unary operation on the remaining tokens
-  OperatorInterface *op = operators.select(ADD_OPERATOR);
+  OperatorBase *op = operators.select(ADD_OPERATOR);
   //tokens.print(true);
   op->operate_unary(&tokens);
   //tokens.print(true);
@@ -63,7 +63,7 @@ TEST(Operators, OpearateAdd) {
 
   // create operator list
   std::vector<OperatorType> oper = {ADD_OPERATOR};
-  OperatorInterface *op = operators.select(ADD_OPERATOR);
+  OperatorBase *op = operators.select(ADD_OPERATOR);
   
   // operate on tokens
   tokens.operate(oper, UNARY_OPERATION);
