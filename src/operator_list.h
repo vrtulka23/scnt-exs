@@ -2,15 +2,16 @@
 #define OPERATOR_LIST_H
 
 #include <unordered_map>
+#include <memory>
 
 typedef std::unordered_map<OperatorType, OperatorBase*> OperatorListType;
 
-class OperatorListClass {
+class OperatorList {
 public:
   OperatorListType operators;
-  OperatorListClass();
-  OperatorListClass(OperatorListType &o);
-  ~OperatorListClass();
+  OperatorList();
+  OperatorList(OperatorListType &o);
+  ~OperatorList();
   OperatorBase* select(OperatorType otype);
 };
 

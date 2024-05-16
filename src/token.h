@@ -3,14 +3,14 @@
 
 #include <string>
 
-class TokenClass {
+class Token {
 public:
   TokenType type;
   OperatorType optype;
   AtomBase *atom;
-  TokenClass(TokenType t);
-  TokenClass(TokenType t, OperatorType o);
-  TokenClass(TokenType t, AtomBase *a);
+  Token(TokenType t);
+  Token(TokenType t, OperatorType o);
+  Token(TokenType t, AtomBase *a);
   void print();
 };
 

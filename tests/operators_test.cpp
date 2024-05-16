@@ -4,7 +4,7 @@
 // Initialization of the operators map
 TEST(Operators, Initialization) {
 
-  OperatorListClass operators;
+  OperatorList operators;
   
   OperatorBase *op = operators.select(ADD_OPERATOR);
   EXPECT_EQ(op->type, ADD_OPERATOR);
@@ -21,7 +21,7 @@ TEST(Operators, CustomOperatorsList) {
   map[MULTIPLY_OPERATOR] = new OperatorMultiply();
 
   // initialize operator map
-  OperatorListClass operators(map);
+  OperatorList operators(map);
   OperatorBase *op = operators.select(MULTIPLY_OPERATOR);
   EXPECT_EQ(op->type, MULTIPLY_OPERATOR);
   
@@ -29,10 +29,10 @@ TEST(Operators, CustomOperatorsList) {
 
 TEST(Operators, OperatorAdd) {
 
-  OperatorListClass operators;
+  OperatorList operators;
 
   // prepare tokens
-  TokenListClass tokens(&operators);
+  TokenList tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   AtomBase a("3.4");
@@ -40,7 +40,7 @@ TEST(Operators, OperatorAdd) {
   //tokens.print(true);
 
   // extract first token on the right
-  TokenClass token = tokens.get_right();
+  Token token = tokens.get_right();
 
   // get an operator and perform unary operation on the remaining tokens
   OperatorBase *op = operators.select(ADD_OPERATOR);
@@ -51,10 +51,10 @@ TEST(Operators, OperatorAdd) {
 
 TEST(Operators, OpearateAdd) {
 
-  OperatorListClass operators;
+  OperatorList operators;
 
   // prepare tokens
-  TokenListClass tokens(&operators);
+  TokenList tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   AtomBase a("3.4");

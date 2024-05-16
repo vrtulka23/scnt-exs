@@ -8,19 +8,21 @@
 typedef std::vector<std::pair<OperationType, std::vector<OperatorType>>> StepListType;
 
 template <class A>
-class SolverClass {
+class Solver {
 public:
-    OperatorListClass operators;
+    OperatorList operators;
     StepListType steps;
-    SolverClass() {init_steps();};
-    SolverClass(OperatorListClass &o): operators(o) {init_steps();};
-    SolverClass(StepListType &s): steps(s) {};
-    SolverClass(OperatorListClass &o, StepListType &s): operators(o), steps(s) {};
+    Solver() {init_steps();};
+    Solver(OperatorList &o): operators(o) {init_steps();};
+    Solver(StepListType &s): steps(s) {};
+    Solver(OperatorList &o, StepListType &s): operators(o), steps(s) {
+        std::cout << "b" << std::endl;
+    };
     AtomBase solve(std::string expression) {
         Expression expr(expression);
         //expr.print();
-        TokenListClass tokens(&operators);
-        AtomListClass<A> atoms;
+        TokenList tokens(&operators);
+        AtomList<A> atoms;
         
         // Tokenize expression
         while (expr.right.length()>0) {
@@ -62,7 +64,7 @@ public:
             throw std::logic_error("Cannot solve expression due to unprocessed tokens");
         }
         
-        TokenClass token = tokens.get_right();
+        Token token = tokens.get_right();
         //std::cout << &token << " " << token.atom << " " << token.atom->value << std::endl;
         return *token.atom;
     };

@@ -2,10 +2,10 @@
 #define ATOM_LIST_H
 
 template <class T>
-class AtomListClass {
+class AtomList {
 public:
     std::vector<AtomBase*> atoms;
-    ~AtomListClass() {
+    ~AtomList() {
        for (auto a : atoms) {
             delete a;
         } 

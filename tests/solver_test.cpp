@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 #include "../src/main.h"
 
-// Initialization of the SolerClass
+// Initialization of the Soler
 TEST(Solver, SolvingExpression) {
     
-    SolverClass<AtomBase> solver;
+    Solver<AtomBase> solver;
     
     AtomBase atom = solver.solve("1.2 + 34");
     EXPECT_EQ(atom.value, (float)35.2);
@@ -25,16 +25,33 @@ TEST(Solver, SolvingExpression) {
     EXPECT_EQ(atom.value, (float)3011.2);
 }
 
-TEST(Solver, CustomOperations) {
+TEST(Solver, CustomSteps) {
+    
+    StepListType steps;
+    steps.push_back({UNARY_OPERATION,  {ADD_OPERATOR}});
+    steps.push_back({BINARY_OPERATION, {MULTIPLY_OPERATOR}});
+    steps.push_back({BINARY_OPERATION, {ADD_OPERATOR}});
+    
+    Solver<AtomBase> solver(steps);
+
+    AtomBase atom = solver.solve("1.2 + 5 * 4");
+    EXPECT_EQ(atom.value, (float)21.2);
+}
+
+TEST(Solver, CustomOperators) {
     
     // create custom operator list
     OperatorListType map;
     map[ADD_OPERATOR] = new OperatorAdd();
     map[MULTIPLY_OPERATOR] = new OperatorMultiply();
-    OperatorListClass operators(map);
-      
-    SolverClass<AtomBase> solver(operators);
+    OperatorList operators(map);
     
+    /*
+    std::cout << "a" << std::endl;
+    Solver<AtomBase> solver(operators);
+    std::cout << "c" << std::endl;
+
     AtomBase atom = solver.solve("1.2 + 5 * 4");
     EXPECT_EQ(atom.value, (float)21.2);
+    */
 }

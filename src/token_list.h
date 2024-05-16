@@ -6,23 +6,23 @@
 #include <vector>
 #include <stdexcept>
 
-class TokenListClass: public TokenListBase {
+class TokenList: public TokenListBase {
 public:
-  std::deque<TokenClass> left;
-  std::deque<TokenClass> right;
-  OperatorListClass *operators;
-  TokenListClass(OperatorListClass *o): operators(o) {};
+  std::deque<Token> left;
+  std::deque<Token> right;
+  OperatorList *operators;
+  TokenList(OperatorList *o): operators(o) {};
   void append(TokenType t);
   void append(TokenType t, OperatorType o);
   void append(TokenType t, AtomBase *a);
-  TokenClass get_left();
-  TokenClass get_right();
-  void put_left(TokenClass t);
-  void put_right(TokenClass t);
+  Token get_left();
+  Token get_right();
+  void put_left(Token t);
+  void put_right(Token t);
   void operate(const std::vector<OperatorType> &ops, OperationType oitype);
   void print(bool details=false);
 private:
-  void print_details(std::deque<TokenClass>::iterator i);
+  void print_details(std::deque<Token>::iterator i);
 };
   
 #endif // TOKEN_LIST_H

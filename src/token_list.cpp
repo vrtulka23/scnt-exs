@@ -1,51 +1,51 @@
 #import "main.h"
 
-void TokenListClass::append(TokenType t) {
-  right.push_back(TokenClass(t));
+void TokenList::append(TokenType t) {
+  right.push_back(Token(t));
 }
-void TokenListClass::append(TokenType t, OperatorType o) {
-  right.push_back(TokenClass(t, o));
+void TokenList::append(TokenType t, OperatorType o) {
+  right.push_back(Token(t, o));
 }
-void TokenListClass::append(TokenType t, AtomBase *a) {
-  right.push_back(TokenClass(t, a));
+void TokenList::append(TokenType t, AtomBase *a) {
+  right.push_back(Token(t, a));
 }
 
-TokenClass TokenListClass::get_left() {
+Token TokenList::get_left() {
   if (left.empty()) {
-    return TokenClass(EMPTY_TOKEN);
+    return Token(EMPTY_TOKEN);
   } else {
-    TokenClass t = left.back();
+    Token t = left.back();
     left.pop_back();
     return t;
   }
 }
 
-TokenClass TokenListClass::get_right() {
+Token TokenList::get_right() {
   if (right.empty()) {
-    return TokenClass(EMPTY_TOKEN);
+    return Token(EMPTY_TOKEN);
   } else {
-      TokenClass t = right.front();
+      Token t = right.front();
       right.pop_front();
       return t;
   }
 }
 
-void TokenListClass::put_left(TokenClass t) {
+void TokenList::put_left(Token t) {
   if (t.type!=EMPTY_TOKEN) {
     left.push_back(t);
   }
 }
 
-void TokenListClass::put_right(TokenClass t) {
+void TokenList::put_right(Token t) {
   if (t.type!=EMPTY_TOKEN) {
     right.push_front(t);
   }
 }
 
-void TokenListClass::operate(const std::vector<OperatorType> &ops, OperationType oitype) {
+void TokenList::operate(const std::vector<OperatorType> &ops, OperationType oitype) {
   // perform operations on the individual tokens
   while (!right.empty()) {
-    TokenClass token = get_right();
+    Token token = get_right();
     if (std::find(ops.begin(), ops.end(), token.optype) != ops.end()) {
       OperatorBase *op = operators->select(token.optype);
       // token is an operator
@@ -67,7 +67,7 @@ void TokenListClass::operate(const std::vector<OperatorType> &ops, OperationType
   left.swap(right);
 }
 
-void TokenListClass::print(bool details) {
+void TokenList::print(bool details) {
   if (details) {
     std::cout << "TokenList( ";
     for (auto i = left.begin(); i!= left.end(); ++i) {
@@ -83,7 +83,7 @@ void TokenListClass::print(bool details) {
   }
 }
 
-void TokenListClass::print_details(std::deque<TokenClass>::iterator i) {
+void TokenList::print_details(std::deque<Token>::iterator i) {
   switch (i->type) {
   case EMPTY_TOKEN: std::cout << "E "; break;
   case ATOM_TOKEN: std::cout << "A "; break;
