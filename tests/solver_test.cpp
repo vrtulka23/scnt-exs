@@ -4,7 +4,7 @@
 // Initialization of the SolerClass
 TEST(Solver, SolvingExpression) {
     
-    SolverClass<AtomClass> solver;
+    SolverClass<AtomBase> solver;
     
     AtomBase atom = solver.solve("1.2 + 34");
     EXPECT_EQ(atom.value, (float)35.2);
@@ -23,4 +23,18 @@ TEST(Solver, SolvingExpression) {
     
     atom = solver.solve("1.2 + +68/2 - -2**5 * 93");
     EXPECT_EQ(atom.value, (float)3011.2);
+}
+
+TEST(Solver, CustomOperations) {
+    
+    // create custom operator list
+    OperatorListType map;
+    map[ADD_OPERATOR] = new OperatorAdd();
+    map[MULTIPLY_OPERATOR] = new OperatorMultiply();
+    OperatorListClass operators(map);
+      
+    SolverClass<AtomBase> solver(operators);
+    
+    AtomBase atom = solver.solve("1.2 + 5 * 4");
+    EXPECT_EQ(atom.value, (float)21.2);
 }

@@ -10,7 +10,7 @@ TEST(Tokens, Initialization) {
   EXPECT_EQ(tokens.left.size(),  0);
   EXPECT_EQ(tokens.right.size(), 0);
 
-  AtomClass a("3.4");
+  AtomBase a("3.4");
   tokens.append(ATOM_TOKEN, &a);
   EXPECT_EQ(tokens.right.size(), 1);
   EXPECT_EQ(tokens.right.front().atom->value, (float)3.4);
@@ -30,7 +30,7 @@ TEST(Tokens, GetAndPut) {
   EXPECT_EQ(tokens.get_right().type, EMPTY_TOKEN);  
 
   // fill with some dummy values
-  AtomListClass<AtomClass> atoms;
+  AtomListClass<AtomBase> atoms;
   int nitems = 4;
   for (int i=0; i<nitems; i++) {
     AtomBase *a = atoms.append(std::to_string(i));

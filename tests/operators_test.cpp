@@ -35,7 +35,7 @@ TEST(Operators, OperatorAdd) {
   TokenListClass tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
-  AtomClass a("3.4");
+  AtomBase a("3.4");
   tokens.append(ATOM_TOKEN,     &a);
   //tokens.print(true);
 
@@ -57,7 +57,7 @@ TEST(Operators, OpearateAdd) {
   TokenListClass tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
-  AtomClass a("3.4");
+  AtomBase a("3.4");
   tokens.append(ATOM_TOKEN,     &a);
   //tokens.print(true);
 

@@ -18,10 +18,10 @@ OperatorListClass::~OperatorListClass() {
 }
 
 OperatorBase* OperatorListClass::select(OperatorType otype) {
-  OperatorListType::const_iterator it = operators.find(otype);
-  return it->second;
-}
-
-void OperatorListClass::insert(OperatorType t, OperatorBase *o) {
-  operators[t] = o;
+  OperatorListType::iterator it = operators.find(otype);
+  if (it != operators.end()) {
+    return it->second;
+  } else {
+    throw std::logic_error("Selecting non existing operator");
+  }
 }

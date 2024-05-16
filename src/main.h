@@ -39,8 +39,6 @@ public:
   ~AtomBase() {};
 };
 
-typedef AtomBase AtomClass; // temporary alias, AtomClass should be defined by user
-
 #include "atom_list.h"
 #include "token.h"
 

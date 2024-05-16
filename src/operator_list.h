@@ -12,7 +12,6 @@ public:
   OperatorListClass(OperatorListType &o);
   ~OperatorListClass();
   OperatorBase* select(OperatorType otype);
-  void insert(OperatorType t, OperatorBase *o);
 };
 
 #endif // OPERATOR_LIST_H
