@@ -5,15 +5,15 @@
 #include <unordered_map>
 #include <stdexcept>
 
-template <class A = Atom>
+template <class A>
 class Solver {
 public:
-    OperatorList operators;
+    OperatorList<A> operators;
     StepList steps;
     Solver() {init_steps();init_operators();};
-    Solver(OperatorList &o): operators(o) {init_steps();};
+    Solver(OperatorList<A> &o): operators(o) {init_steps();};
     Solver(StepList &s): steps(s) {init_operators();};
-    Solver(OperatorList &o, StepList &s): operators(o), steps(s) {
+    Solver(OperatorList<A> &o, StepList &s): operators(o), steps(s) {
         std::cout << "b" << std::endl;
     };
     A solve(std::string expression) {
@@ -26,7 +26,7 @@ public:
         while (expr.right.length()>0) {
             bool is_operator = false;
             for (auto o : operators.operators) {
-                OperatorBase *op = &(*o.second);
+                OperatorBase<A> *op = &(*o.second);
                 if (expr.right.rfind(op->symbol, 0) == 0) {
                     is_operator = true;
                     std::string left = expr.pop_left();
@@ -74,11 +74,11 @@ private:
         steps.append(BINARY_OPERATION, {ADD_OPERATOR, SUBTRACT_OPERATOR});
     }
     void init_operators() {
-        operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
-        operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract>());
-        operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
-        operators.append(DIVIDE_OPERATOR,   std::make_shared<OperatorDivide>());
-        operators.append(POWER_OPERATOR,    std::make_shared<OperatorPower>());
+        operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<A>>());
+        operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract<A>>());
+        operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply<A>>());
+        operators.append(DIVIDE_OPERATOR,   std::make_shared<OperatorDivide<A>>());
+        operators.append(POWER_OPERATOR,    std::make_shared<OperatorPower<A>>());
     }
 };
 

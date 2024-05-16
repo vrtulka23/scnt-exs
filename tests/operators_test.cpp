@@ -6,11 +6,11 @@
 // Initialization of the operators map
 TEST(Operators, Initialization) {
 
-  OperatorList operators;
-  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
-  operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract>());
+  OperatorList<Atom> operators;
+  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<Atom>>());
+  operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract<Atom>>());
   
-  OperatorBase *op = operators.select(ADD_OPERATOR);
+  OperatorBase<Atom> *op = operators.select(ADD_OPERATOR);
   EXPECT_EQ(op->type, ADD_OPERATOR);
 
   op = operators.select(SUBTRACT_OPERATOR);
@@ -20,19 +20,19 @@ TEST(Operators, Initialization) {
 TEST(Operators, CustomOperatorsList) {
 
   // initialize operators
-  OperatorList operators;
-  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
-  operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
+  OperatorList<Atom> operators;
+  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<Atom>>());
+  operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply<Atom>>());
   
-  OperatorBase *op = operators.select(MULTIPLY_OPERATOR);
+  OperatorBase<Atom> *op = operators.select(MULTIPLY_OPERATOR);
   EXPECT_EQ(op->type, MULTIPLY_OPERATOR);
   
 }
 
 TEST(Operators, OperatorAdd) {
 
-  OperatorList operators;
-  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+  OperatorList<Atom> operators;
+  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd<Atom>>());
 
   // prepare tokens
   TokenList<Atom> tokens(&operators);
@@ -46,7 +46,7 @@ TEST(Operators, OperatorAdd) {
   Token token = tokens.get_right();
 
   // get an operator and perform unary operation on the remaining tokens
-  OperatorBase *op = operators.select(ADD_OPERATOR);
+  OperatorBase<Atom> *op = operators.select(ADD_OPERATOR);
   //tokens.print(true);
   op->operate_unary(&tokens);
   //tokens.print(true);
@@ -54,8 +54,8 @@ TEST(Operators, OperatorAdd) {
 
 TEST(Operators, OpearateAdd) {
 
-  OperatorList operators;
-  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd>());
+  OperatorList<Atom> operators;
+  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd<Atom>>());
 
   // prepare tokens
   TokenList<Atom> tokens(&operators);
@@ -67,7 +67,7 @@ TEST(Operators, OpearateAdd) {
 
   // create operator list
   std::vector<OperatorType> oper = {ADD_OPERATOR};
-  OperatorBase *op = operators.select(ADD_OPERATOR);
+  OperatorBase<Atom> *op = operators.select(ADD_OPERATOR);
   
   // operate on tokens
   tokens.operate(oper, UNARY_OPERATION);

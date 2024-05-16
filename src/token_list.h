@@ -7,45 +7,45 @@
 #include <stdexcept>
 
 template <class A>
-class TokenList: public TokenListBase {
+class TokenList: public TokenListBase<A> {
 public:
-  std::deque<Token> left;
-  std::deque<Token> right;
-  OperatorList *operators;
-  TokenList(OperatorList *o): operators(o) {};
+  std::deque<Token<A>> left;
+  std::deque<Token<A>> right;
+  OperatorList<A> *operators;
+  TokenList(OperatorList<A> *o): operators(o) {};
   void append(TokenType t) {
-    right.push_back(Token(t));
+    right.push_back(Token<A>(t));
   };
   void append(TokenType t, OperatorType o) {
-    right.push_back(Token(t, o));
+    right.push_back(Token<A>(t, o));
   };
   void append(TokenType t, A *a) {
-    right.push_back(Token(t, a));
+    right.push_back(Token<A>(t, a));
   };
-  Token get_left() {
+  Token<A> get_left() {
     if (left.empty()) {
-      return Token(EMPTY_TOKEN);
+      return Token<A>(EMPTY_TOKEN);
     } else {
-      Token t = left.back();
+      Token<A> t = left.back();
       left.pop_back();
       return t;
     }
   };
-  Token get_right() {
+  Token<A> get_right() {
     if (right.empty()) {
-      return Token(EMPTY_TOKEN);
+      return Token<A>(EMPTY_TOKEN);
     } else {
-        Token t = right.front();
+        Token<A> t = right.front();
         right.pop_front();
         return t;
     }
   };
-  void put_left(Token t) {
+  void put_left(Token<A> t) {
     if (t.type!=EMPTY_TOKEN) {
       left.push_back(t);
     }
   };
-  void put_right(Token t) {
+  void put_right(Token<A> t) {
     if (t.type!=EMPTY_TOKEN) {
       right.push_front(t);
     }
@@ -53,9 +53,9 @@ public:
   void operate(const std::vector<OperatorType> &ops, OperationType oitype) {
     // perform operations on the individual tokens
     while (!right.empty()) {
-      Token token = get_right();
+      Token<A> token = get_right();
       if (std::find(ops.begin(), ops.end(), token.optype) != ops.end()) {
-        OperatorBase *op = operators->select(token.optype);
+        OperatorBase<A> *op = operators->select(token.optype);
         // token is an operator
         if (oitype==UNARY_OPERATION) {
         	op->operate_unary(this);
@@ -78,11 +78,11 @@ public:
     if (details) {
       std::cout << "TokenList( ";
       for (auto i = left.begin(); i!= left.end(); ++i) {
-        print_details(i);
+        print_details(i->type, i->optype);
       }
       std::cout << "| ";
       for (auto i = right.begin(); i!= right.end(); ++i) {
-        print_details(i);
+        print_details(i->type, i->optype);
       }
       std::cout << ")" << std::endl;
       } else {
@@ -90,12 +90,12 @@ public:
     }
   };
 private:
-  void print_details(std::deque<Token>::iterator i) {
-    switch (i->type) {
+  void print_details(TokenType type, OperatorType optype) {
+    switch (type) {
     case EMPTY_TOKEN: std::cout << "E "; break;
     case ATOM_TOKEN: std::cout << "A "; break;
     case OPERATOR_TOKEN:
-      OperatorBase *op = operators->select(i->optype);
+      OperatorBase<A> *op = operators->select(optype);
       std::cout << op->name << " ";
       break;
     }

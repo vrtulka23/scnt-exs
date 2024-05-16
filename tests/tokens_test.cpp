@@ -4,7 +4,7 @@
 // Initialization of the Tokens class
 TEST(Tokens, Initialization) {
 
-  OperatorList operators;
+  OperatorList<Atom> operators;
 
   TokenList<Atom> tokens(&operators);
   EXPECT_EQ(tokens.left.size(),  0);
@@ -20,7 +20,7 @@ TEST(Tokens, Initialization) {
 // Test get and put tokenss
 TEST(Tokens, GetAndPut) {
 
-  OperatorList operators;
+  OperatorList<Atom> operators;
   
   // prepare tokens
   TokenList<Atom> tokens(&operators);

@@ -3,14 +3,15 @@
 
 #include <string>
 
+template <class A>
 class Token {
 public:
   TokenType type;
   OperatorType optype;
-  Atom *atom;
+  A *atom;
   Token(TokenType t): type(t), atom(NULL) {}
   Token(TokenType t, OperatorType o): type(t), optype(o), atom(NULL) {};
-  Token(TokenType t, Atom *a): type(t), atom(a) {};
+  Token(TokenType t, A *a): type(t), atom(a) {};
   void print() {
     if (type==EMPTY_TOKEN) {
       std::cout << "Token(EMPTY)" << std::endl;

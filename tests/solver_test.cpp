@@ -44,9 +44,9 @@ TEST(Solver, CustomSteps) {
 TEST(Solver, CustomOperators) {
     
     // create custom operator list
-    OperatorList operators;
-    operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd>());
-    operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply>());
+    OperatorList<Atom> operators;
+    operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<Atom>>());
+    operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply<Atom>>());
 
     // test the solver
     Solver<Atom> solver(operators);
