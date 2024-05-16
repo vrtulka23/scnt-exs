@@ -7,7 +7,7 @@
 #include <memory>
 #include <vector>
 #include <variant>
-
+  
 enum TokenType {
   EMPTY_TOKEN,
   OPERATOR_TOKEN,
@@ -31,15 +31,7 @@ enum OperatorType {
   NUM_OPERATOR_TYPES
 };
 
-class Atom {
-public:
-  std::variant<int, float, bool> value;
-  Atom(std::string v) {
-    //std::cout << "'" << v << "'" << std::endl;
-    value = std::stof(v); 
-  };
-};
-
+#include "atom.h"
 #include "atom_list.h"
 #include "token.h"
 
@@ -53,12 +45,6 @@ public:
   virtual void print(bool details=false) = 0;
 };
 
-#include "expression.h"
-#include "operators.h"
-#include "operator_list.h"
-#include "step_list.h"
-#include "token_list.h"
-
 static std::string trim(const std::string& str, const std::string& whitespace = " \t") {
     const auto strBegin = str.find_first_not_of(whitespace);
     if (strBegin == std::string::npos)
@@ -70,6 +56,11 @@ static std::string trim(const std::string& str, const std::string& whitespace = 
     return str.substr(strBegin, strRange);
 }
 
+#include "expression.h"
+#include "operators.h"
+#include "operator_list.h"
+#include "step_list.h"
+#include "token_list.h"
 #include "solver.h"
 
 #endif // MAIN_H

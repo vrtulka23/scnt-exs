@@ -28,7 +28,7 @@ public:
   void operate_binary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
-    left.atom->value = std::get<float>(left.atom->value) + std::get<float>(right.atom->value);
+    left.atom->add(right.atom);
     tokens->put_left(left);
   };
 };

@@ -13,9 +13,7 @@ public:
     Solver() {init_steps();init_operators();};
     Solver(OperatorList<A> &o): operators(o) {init_steps();};
     Solver(StepList &s): steps(s) {init_operators();};
-    Solver(OperatorList<A> &o, StepList &s): operators(o), steps(s) {
-        std::cout << "b" << std::endl;
-    };
+    Solver(OperatorList<A> &o, StepList &s): operators(o), steps(s) {};
     A solve(std::string expression) {
         Expression expr(expression);
         //expr.print();

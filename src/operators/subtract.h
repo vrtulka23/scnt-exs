@@ -9,7 +9,7 @@ public:
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     if (left.type==EMPTY_TOKEN && right.type==ATOM_TOKEN) {
-      right.atom->value = -std::get<float>(right.atom->value);
+      right.atom->negate();
       tokens->put_right(right);  
     } else if (right.optype==ADD_OPERATOR) {
       tokens->put_left(left);
@@ -19,7 +19,7 @@ public:
       tokens->put_right(Token<A>(OPERATOR_TOKEN, ADD_OPERATOR));
     } else if (left.type!=ATOM_TOKEN && right.type==ATOM_TOKEN) {
       tokens->put_left(left);
-      right.atom->value = -std::get<float>(right.atom->value);
+      right.atom->negate();
       tokens->put_right(right);      
     } else {
       tokens->put_left(left);
@@ -30,7 +30,7 @@ public:
   void operate_binary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
-    left.atom->value = std::get<float>(left.atom->value) - std::get<float>(right.atom->value);
+    left.atom->subtract(right.atom);
     tokens->put_left(left);
   };
 };
