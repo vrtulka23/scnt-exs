@@ -16,10 +16,10 @@ public:
     Solver(OperatorList &o, StepList &s): operators(o), steps(s) {
         std::cout << "b" << std::endl;
     };
-    AtomBase solve(std::string expression) {
+    A solve(std::string expression) {
         Expression expr(expression);
         //expr.print();
-        TokenList tokens(&operators);
+        TokenList<A> tokens(&operators);
         AtomList<A> atoms;
         
         // Tokenize expression
@@ -31,7 +31,7 @@ public:
                     is_operator = true;
                     std::string left = expr.pop_left();
                     if (left.length()>0) {
-                        AtomBase *a = atoms.append(left);
+                        A *a = atoms.append(left);
                         tokens.append(ATOM_TOKEN, a);
                     }
                     op->parse(expr);
@@ -46,7 +46,7 @@ public:
         }
         std::string left = expr.pop_left();
         if (left.length()>0) {
-            AtomBase *a = atoms.append(left);
+            A *a = atoms.append(left);
             tokens.append(ATOM_TOKEN, a);
         }
         //expr.print();  

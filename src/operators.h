@@ -15,9 +15,10 @@ class OperatorBase {
        expr.remove(symbol);
      }  
   };
-  virtual void operate_unary(TokenListBase *tokens) {throw std::logic_error("Function not yet implemented");};
-  virtual void operate_binary(TokenListBase *tokens) {throw std::logic_error("Function not yet implemented");};
-  virtual void operate_arguments(TokenListBase *tokens) {throw std::logic_error("Function not yet implemented");};
+  virtual void operate_unary(TokenListBase *tokens) {throw std::logic_error("Unary operation is not implemented");};
+  virtual void operate_binary(TokenListBase *tokens) {throw std::logic_error("Binary operation is not implemented");};
+  virtual void operate_ternary(TokenListBase *tokens) {throw std::logic_error("Ternary operation is not implemented");};
+  virtual void operate_arguments(TokenListBase *tokens) {throw std::logic_error("Argument operation is not implemented");};
   virtual void print() {};
 };
 

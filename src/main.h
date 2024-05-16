@@ -6,6 +6,7 @@
 #include <any>
 #include <memory>
 #include <vector>
+#include <variant>
 
 enum TokenType {
   EMPTY_TOKEN,
@@ -16,6 +17,7 @@ enum TokenType {
 enum OperationType {
   UNARY_OPERATION,
   BINARY_OPERATION,
+  TERNARY_OPERATION,
   ARGUMENTS_OPERATION,
 };
 
@@ -31,12 +33,11 @@ enum OperatorType {
 
 class AtomBase {
 public:
-  float value;
+  std::variant<int, float, bool> value;
   AtomBase(std::string v) {
     //std::cout << "'" << v << "'" << std::endl;
     value = std::stof(v); 
   };
-  ~AtomBase() {};
 };
 
 #include "atom_list.h"
