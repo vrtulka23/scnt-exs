@@ -4,12 +4,12 @@
 template <class A>
 class OperatorSubtract: public OperatorBase<A> {
 public:
-  OperatorSubtract(): OperatorBase<A>("sub", "-", SUBTRACT_OPERATOR) {}
+  OperatorSubtract(std::string s="-"): OperatorBase<A>("sub", s, SUBTRACT_OPERATOR) {}
   void operate_unary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     if (left.type==EMPTY_TOKEN && right.type==ATOM_TOKEN) {
-      right.atom->negate();
+      right.atom->math_negate();
       tokens->put_right(right);  
     } else if (right.optype==ADD_OPERATOR) {
       tokens->put_left(left);
@@ -19,7 +19,7 @@ public:
       tokens->put_right(Token<A>(OPERATOR_TOKEN, ADD_OPERATOR));
     } else if (left.type!=ATOM_TOKEN && right.type==ATOM_TOKEN) {
       tokens->put_left(left);
-      right.atom->negate();
+      right.atom->math_negate();
       tokens->put_right(right);      
     } else {
       tokens->put_left(left);
@@ -30,7 +30,7 @@ public:
   void operate_binary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
-    left.atom->subtract(right.atom);
+    left.atom->math_subtract(right.atom);
     tokens->put_left(left);
   };
 };

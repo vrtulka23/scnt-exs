@@ -23,17 +23,21 @@ class OperatorBase {
   virtual void print() {};
 };
 
-#include "operators/add.h"
-#include "operators/subtract.h"
-#include "operators/multiply.h"
-#include "operators/divide.h"
-#include "operators/power.h"
+#include "math/add.h"
+#include "math/subtract.h"
+#include "math/multiply.h"
+#include "math/divide.h"
+#include "math/power.h"
 
-#include "operators/equal.h"
-#include "operators/not_equal.h"
-#include "operators/lower_equal.h"
-#include "operators/greater_equal.h"
-#include "operators/lower.h"
-#include "operators/greater.h"
+#include "comparison/equal.h"
+#include "comparison/not_equal.h"
+#include "comparison/lower_equal.h"
+#include "comparison/greater_equal.h"
+#include "comparison/lower.h"
+#include "comparison/greater.h"
+
+#include "logical/not.h"
+#include "logical/and.h"
+#include "logical/or.h"
 
 #endif // OPERATORS_H

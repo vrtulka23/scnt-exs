@@ -10,9 +10,16 @@ class Solver {
 public:
     OperatorList<A> operators;
     StepList steps;
-    Solver() {init_steps();init_operators();};
-    Solver(OperatorList<A> &o): operators(o) {init_steps();};
-    Solver(StepList &s): steps(s) {init_operators();};
+    Solver() {
+        init_steps();
+        init_operators();
+    };
+    Solver(OperatorList<A> &o): operators(o) {
+        init_steps();
+    };
+    Solver(StepList &s): steps(s) {
+        init_operators();
+    };
     Solver(OperatorList<A> &o, StepList &s): operators(o), steps(s) {};
     A solve(std::string expression) {
         Expression expr(expression);
@@ -76,21 +83,30 @@ private:
             LOWER_EQUAL_OPERATOR,GREATER_EQUAL_OPERATOR,
             LOWER_OPERATOR,GREATER_OPERATOR
         });
+        steps.append(UNARY_OPERATION,  {NOT_OPERATOR});
+        steps.append(BINARY_OPERATION, {AND_OPERATOR});
+        steps.append(BINARY_OPERATION, {OR_OPERATOR});
     }
     void init_operators() {
-        operators.append(POWER_OPERATOR,    std::make_shared<OperatorPower<A>>());
+        operators.append(POWER_OPERATOR,          std::make_shared<OperatorPower<A>>());
 
-        operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply<A>>());
-        operators.append(DIVIDE_OPERATOR,   std::make_shared<OperatorDivide<A>>());
-        operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<A>>());
-        operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract<A>>());
+        operators.append(MULTIPLY_OPERATOR,       std::make_shared<OperatorMultiply<A>>());
+        operators.append(DIVIDE_OPERATOR,         std::make_shared<OperatorDivide<A>>());
+        operators.append(ADD_OPERATOR,            std::make_shared<OperatorAdd<A>>());
+        operators.append(SUBTRACT_OPERATOR,       std::make_shared<OperatorSubtract<A>>());
         
         operators.append(EQUAL_OPERATOR,          std::make_shared<OperatorEqual<A>>());
         operators.append(NOT_EQUAL_OPERATOR,      std::make_shared<OperatorNotEqual<A>>());
+        
+        operators.append(NOT_OPERATOR,            std::make_shared<OperatorNot<A>>()); // needs to be after NOT_EQUAL
+        
         operators.append(LOWER_EQUAL_OPERATOR,    std::make_shared<OperatorLowerEqual<A>>());
         operators.append(GREATER_EQUAL_OPERATOR,  std::make_shared<OperatorGreaterEqual<A>>());
         operators.append(LOWER_OPERATOR,          std::make_shared<OperatorLower<A>>());
         operators.append(GREATER_OPERATOR,        std::make_shared<OperatorGreater<A>>());
+        
+        operators.append(AND_OPERATOR,            std::make_shared<OperatorAnd<A>>());
+        operators.append(OR_OPERATOR,             std::make_shared<OperatorOr<A>>());
     }
 };
 

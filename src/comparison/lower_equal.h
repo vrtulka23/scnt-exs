@@ -4,11 +4,11 @@
 template <class A>
 class OperatorLowerEqual: public OperatorBase<A> {
 public:
-  OperatorLowerEqual(): OperatorBase<A>("le", "<=", LOWER_EQUAL_OPERATOR) {}
+  OperatorLowerEqual(std::string s="<="): OperatorBase<A>("le", s, LOWER_EQUAL_OPERATOR) {}
     void operate_binary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
-    left.atom->lower_equal(right.atom);
+    left.atom->comparison_lower_equal(right.atom);
     tokens->put_left(left);
   };
 };

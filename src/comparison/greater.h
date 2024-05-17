@@ -4,11 +4,11 @@
 template <class A>
 class OperatorGreater: public OperatorBase<A> {
 public:
-  OperatorGreater(): OperatorBase<A>("gt", ">", GREATER_OPERATOR) {}
+  OperatorGreater(std::string s=">"): OperatorBase<A>("gt", s, GREATER_OPERATOR) {}
     void operate_binary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
-    left.atom->greater(right.atom);
+    left.atom->comparison_greater(right.atom);
     tokens->put_left(left);
   };
 };

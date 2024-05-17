@@ -4,7 +4,7 @@
 template <class A>
 class OperatorAdd: public OperatorBase<A> {
 public:
-  OperatorAdd(): OperatorBase<A>("add", "+", ADD_OPERATOR) {}
+  OperatorAdd(std::string s="+"): OperatorBase<A>("add", s, ADD_OPERATOR) {}
   void operate_unary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
@@ -28,7 +28,7 @@ public:
   void operate_binary(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
-    left.atom->add(right.atom);
+    left.atom->math_add(right.atom);
     tokens->put_left(left);
   };
 };
