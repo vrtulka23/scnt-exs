@@ -89,6 +89,7 @@ private:
             SQUARE_ROOT_OPERATOR, SINUS_OPERATOR, COSINUS_OPERATOR, TANGENS_OPERATOR
         });
         steps.append(UNARY_OPERATION,     {ADD_OPERATOR, SUBTRACT_OPERATOR});
+        steps.append(TERNARY_OPERATION,   {CONDITION_OPERATOR});
         steps.append(BINARY_OPERATION,    {POWER_OPERATOR});
         steps.append(BINARY_OPERATION,    {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
         steps.append(BINARY_OPERATION,    {ADD_OPERATOR, SUBTRACT_OPERATOR});
@@ -112,6 +113,8 @@ private:
         operators.append(LOGARITHM_OPERATOR,      std::make_shared<OperatorLogarithm<A>>());
         operators.append(EXPONENT_OPERATOR,       std::make_shared<OperatorExponent<A>>());
         operators.append(PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses<A>>()); // should be last of argument operators
+        
+        operators.append(CONDITION_OPERATOR,      std::make_shared<OperatorCondition<A>>());
         
         operators.append(POWER_OPERATOR,          std::make_shared<OperatorPower<A>>());
 

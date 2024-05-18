@@ -6,9 +6,9 @@ class OperatorSquareRoot: public OperatorArguments<A, 1> {
 public:
   OperatorSquareRoot(): OperatorArguments<A, 1>("sqrt","sqrt(",SQUARE_ROOT_OPERATOR) {}
   void operate_arguments(TokenListBase<A> *tokens) {
-    Token<A> left = tokens->get_left();
-    left.atom->arg_square_root();
-    tokens->put_left(left);
+    Token<A> arg1 = tokens->get_left();
+    arg1.atom->arg_square_root();
+    tokens->put_left(arg1);
   };
 };
 

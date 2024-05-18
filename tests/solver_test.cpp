@@ -123,6 +123,21 @@ TEST(Solver, SolvingArguments) {
     EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
 }
     
+// Conditional operator
+TEST(Solver, SolvingCondition) {
+    
+    Solver<Atom> solver;
+    
+    Atom atom = solver.solve("(true ? 2 : 3)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-1);
+    
+    atom = solver.solve("(false ? 2 : 3)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-0);
+    
+    atom = solver.solve("((2==3) ? 2 : 3)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-0);
+}
+
 TEST(Solver, CustomSteps) {
     
     // create custom step list

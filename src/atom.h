@@ -76,6 +76,11 @@ public:
       value = std::get<bool>(value) || std::get<bool>(other->value);
   }
   
+  // Conditional operator
+  void condition(Atom *option1, Atom *option2) {
+      value = std::get<bool>(value) ? std::get<float>(option1->value) : std::get<float>(option2->value);
+  }
+  
   // Argument operators
   void arg_exponent() {
       value = std::exp(std::get<float>(value));

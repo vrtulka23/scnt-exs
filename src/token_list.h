@@ -61,10 +61,12 @@ public:
         	op->operate_unary(this);
         } else if (oitype==BINARY_OPERATION) {
   	      op->operate_binary(this);
+        } else if (oitype==TERNARY_OPERATION) {
+  	      op->operate_ternary(this);
         } else if (oitype==ARGUMENTS_OPERATION) {
   	      op->operate_arguments(this);
         } else {
-  	      throw std::invalid_argument("Invalid operation type");
+  	      throw std::invalid_argument("Invalid operation type: "+oitype);
         }
       } else {
         // token is something else

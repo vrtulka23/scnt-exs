@@ -6,9 +6,9 @@ class OperatorExponent: public OperatorArguments<A, 1> {
 public:
   OperatorExponent(): OperatorArguments<A, 1>("exp","exp(",EXPONENT_OPERATOR) {}
   void operate_arguments(TokenListBase<A> *tokens) {
-    Token<A> left = tokens->get_left();
-    left.atom->arg_exponent();
-    tokens->put_left(left);
+    Token<A> arg1 = tokens->get_left();
+    arg1.atom->arg_exponent();
+    tokens->put_left(arg1);
   };
 };
 
