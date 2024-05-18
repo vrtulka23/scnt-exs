@@ -20,7 +20,7 @@ class OperatorBase {
   virtual void operate_unary(TokenListBase<A> *tokens) {throw std::logic_error("Unary operation is not implemented");};
   virtual void operate_binary(TokenListBase<A> *tokens) {throw std::logic_error("Binary operation is not implemented");};
   virtual void operate_ternary(TokenListBase<A> *tokens) {throw std::logic_error("Ternary operation is not implemented");};
-  virtual void operate_arguments(TokenListBase<A> *tokens) {throw std::logic_error("Argument operation is not implemented");};
+  virtual void operate_group(TokenListBase<A> *tokens) {throw std::logic_error("Argument operation is not implemented");};
   virtual void print() {};
 };
 
@@ -54,12 +54,12 @@ public:
 };
 
 template <class A, int N=1>
-class OperatorArguments: public OperatorBase<A> {
+class OperatorGroup: public OperatorBase<A> {
 public:
   std::string symbol_open      = "(";
   std::string symbol_separator = ",";
   std::string symbol_close     = ")";
-  OperatorArguments(
+  OperatorGroup(
     std::string  n,
     std::string  s,
     OperatorType t
@@ -87,10 +87,10 @@ public:
       expr.shift();
     }
     if (this->args.size()!=N) {
-      throw std::logic_error("Wrong number of arguments: "+std::to_string(this->args.size())+", "+std::to_string(N));
+      throw std::logic_error("Wrong number of group members: "+std::to_string(this->args.size())+", "+std::to_string(N));
     }
   };
-  void operate_arguments(TokenListBase<A> *tokens) {};
+  void operate_group(TokenListBase<A> *tokens) {};
 };
 
 #include "math/add.h"
@@ -112,15 +112,15 @@ public:
 
 #include "branching/condition.h"
 
-#include "arguments/parentheses.h"
-#include "arguments/exponent.h"
-#include "arguments/logarithm.h"
-#include "arguments/logarithm_10.h"
-#include "arguments/logarithm_base.h"
-#include "arguments/power_base.h"
-#include "arguments/square_root.h"
-#include "arguments/sinus.h"
-#include "arguments/cosinus.h"
-#include "arguments/tangens.h"
+#include "group/parentheses.h"
+#include "group/exponent.h"
+#include "group/logarithm.h"
+#include "group/logarithm_10.h"
+#include "group/logarithm_base.h"
+#include "group/power_base.h"
+#include "group/square_root.h"
+#include "group/sinus.h"
+#include "group/cosinus.h"
+#include "group/tangens.h"
 
 #endif // OPERATORS_H

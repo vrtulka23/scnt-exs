@@ -84,7 +84,7 @@ TEST(Solver, SolvingLogical) {
 }
 
 // Basic argument expressions
-TEST(Solver, SolvingArguments) {
+TEST(Solver, SolvingGroups) {
     
     Solver<Atom> solver;
     

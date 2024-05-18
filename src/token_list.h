@@ -63,8 +63,8 @@ public:
   	      op->operate_binary(this);
         } else if (oitype==TERNARY_OPERATION) {
   	      op->operate_ternary(this);
-        } else if (oitype==ARGUMENTS_OPERATION) {
-  	      op->operate_arguments(this);
+        } else if (oitype==GROUP_OPERATION) {
+  	      op->operate_group(this);
         } else {
   	      throw std::invalid_argument("Invalid operation type: "+oitype);
         }
