@@ -9,7 +9,7 @@ class OperatorBase {
   std::string name;
   std::string symbol;
   OperatorType type;
-  std::vector<std::string> args;
+  std::vector<std::string> groups;
   OperatorBase(std::string n, std::string s, OperatorType t): name(n), symbol(s), type(t) {};
   virtual ~OperatorBase() = default;
   virtual void parse(Expression &expr) {
@@ -35,13 +35,13 @@ public:
     OperatorType t
   ): OperatorBase<A>(n, s, t), symbol_other(so) {}
   virtual void parse(Expression &expr) {
-    this->args.clear();
+    this->groups.clear();
     expr.remove(this->symbol);
     bool closed = false;
     while (expr.right.length()>0) {
       if (expr.right.rfind(symbol_other, 0) == 0) {
         expr.remove(symbol_other);
-        this->args.push_back(expr.pop_left());
+        this->groups.push_back(expr.pop_left());
         closed = true;
         break;
       }
@@ -65,7 +65,7 @@ public:
     OperatorType t
   ): OperatorBase<A>(n, s, t) {}
   virtual void parse(Expression &expr) {
-    this->args.clear();
+    this->groups.clear();
     expr.remove(this->symbol);
     int depth = 1;
     while (depth>0) {
@@ -75,19 +75,19 @@ public:
         depth++;
       } else if (expr.right.rfind(symbol_separator, 0) == 0 && depth==1) {
         expr.remove(symbol_separator);
-        this->args.push_back(expr.pop_left());
+        this->groups.push_back(expr.pop_left());
       } else if (expr.right.rfind(symbol_close, 0) == 0) {
         depth--;
         if (depth==0) {
           expr.remove(symbol_close);
-          this->args.push_back(expr.pop_left());
+          this->groups.push_back(expr.pop_left());
           break;
         }
       }
       expr.shift();
     }
-    if (this->args.size()!=N) {
-      throw std::logic_error("Wrong number of group members: "+std::to_string(this->args.size())+", "+std::to_string(N));
+    if (this->groups.size()!=N) {
+      throw std::logic_error("Wrong number of group members: "+std::to_string(this->groups.size())+", "+std::to_string(N));
     }
   };
   void operate_group(TokenListBase<A> *tokens) {};
@@ -98,6 +98,15 @@ public:
 #include "math/multiply.h"
 #include "math/divide.h"
 #include "math/power.h"
+#include "math/exponent.h"
+#include "math/logarithm.h"
+#include "math/logarithm_10.h"
+#include "math/logarithm_base.h"
+#include "math/power_base.h"
+#include "math/square_root.h"
+#include "math/sinus.h"
+#include "math/cosinus.h"
+#include "math/tangens.h"
 
 #include "comparison/equal.h"
 #include "comparison/not_equal.h"
@@ -111,16 +120,6 @@ public:
 #include "logical/or.h"
 
 #include "branching/condition.h"
-
-#include "group/parentheses.h"
-#include "group/exponent.h"
-#include "group/logarithm.h"
-#include "group/logarithm_10.h"
-#include "group/logarithm_base.h"
-#include "group/power_base.h"
-#include "group/square_root.h"
-#include "group/sinus.h"
-#include "group/cosinus.h"
-#include "group/tangens.h"
+#include "branching/parentheses.h"
 
 #endif // OPERATORS_H

@@ -41,10 +41,10 @@ public:
                         tokens.append(ATOM_TOKEN, a);
                     }
                     op->parse(expr);
-                    if (op->args.size()>0) {
-                        std::vector<std::string> args = op->args;
-                        //std::cout <<  args.size() << std::endl;
-                        for (auto e: args) {
+                    if (op->groups.size()>0) {
+                        std::vector<std::string> groups = op->groups;
+                        //std::cout <<  groups.size() << std::endl;
+                        for (auto e: groups) {
                             A *a = atoms.append(solve(e));
                             tokens.append(ATOM_TOKEN, a);
                         }
@@ -112,7 +112,7 @@ private:
         operators.append(LOGARITHM_10_OPERATOR,   std::make_shared<OperatorLogarithm10<A>>());
         operators.append(LOGARITHM_OPERATOR,      std::make_shared<OperatorLogarithm<A>>());
         operators.append(EXPONENT_OPERATOR,       std::make_shared<OperatorExponent<A>>());
-        operators.append(PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses<A>>()); // should be last of argument operators
+        operators.append(PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses<A>>()); // should be last of group operators
         
         operators.append(CONDITION_OPERATOR,      std::make_shared<OperatorCondition<A>>());
         

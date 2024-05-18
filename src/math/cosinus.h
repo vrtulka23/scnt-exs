@@ -6,9 +6,9 @@ class OperatorCosinus: public OperatorGroup<A, 1> {
 public:
   OperatorCosinus(): OperatorGroup<A, 1>("cos","cos(",COSINUS_OPERATOR) {}
   void operate_group(TokenListBase<A> *tokens) {
-    Token<A> arg1 = tokens->get_left();
-    arg1.atom->arg_cosinus();
-    tokens->put_left(arg1);
+    Token<A> group1 = tokens->get_left();
+    group1.atom->group_cosinus();
+    tokens->put_left(group1);
   };
 };
 

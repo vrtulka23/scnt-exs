@@ -6,9 +6,9 @@ class OperatorSinus: public OperatorGroup<A, 1> {
 public:
   OperatorSinus(): OperatorGroup<A, 1>("sin","sin(",SINUS_OPERATOR) {}
   void operate_group(TokenListBase<A> *tokens) {
-    Token<A> arg1 = tokens->get_left();
-    arg1.atom->arg_sinus();
-    tokens->put_left(arg1);
+    Token<A> group1 = tokens->get_left();
+    group1.atom->group_sinus();
+    tokens->put_left(group1);
   };
 };
 

@@ -6,9 +6,9 @@ class OperatorTangens: public OperatorGroup<A, 1> {
 public:
   OperatorTangens(): OperatorGroup<A, 1>("tan","tan(",TANGENS_OPERATOR) {}
   void operate_group(TokenListBase<A> *tokens) {
-    Token<A> arg1 = tokens->get_left();
-    arg1.atom->arg_tangens();
-    tokens->put_left(arg1);
+    Token<A> group1 = tokens->get_left();
+    group1.atom->group_tangens();
+    tokens->put_left(group1);
   };
 };
 

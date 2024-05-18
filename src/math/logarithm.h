@@ -6,9 +6,9 @@ class OperatorLogarithm: public OperatorGroup<A, 1> {
 public:
   OperatorLogarithm(): OperatorGroup<A, 1>("log","log(",LOGARITHM_OPERATOR) {}
   void operate_group(TokenListBase<A> *tokens) {
-    Token<A> arg1 = tokens->get_left();
-    arg1.atom->arg_logarithm();
-    tokens->put_left(arg1);
+    Token<A> group1 = tokens->get_left();
+    group1.atom->group_logarithm();
+    tokens->put_left(group1);
   };
 };
 

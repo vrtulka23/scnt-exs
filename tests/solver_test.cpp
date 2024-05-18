@@ -83,7 +83,7 @@ TEST(Solver, SolvingLogical) {
     EXPECT_EQ(std::get<bool>(atom.value), false);
 }
 
-// Basic argument expressions
+// Basic group expressions
 TEST(Solver, SolvingGroups) {
     
     Solver<Atom> solver;
@@ -118,7 +118,7 @@ TEST(Solver, SolvingGroups) {
     atom = solver.solve("tan(16)-3");
     EXPECT_EQ(std::get<float>(atom.value), (float)-2.6993677579760966);
     
-    // nested argument operators
+    // nested group operators
     atom = solver.solve("exp(1+(5-3))-3");
     EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
 }

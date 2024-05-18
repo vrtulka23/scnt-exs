@@ -82,31 +82,31 @@ public:
   }
   
   // Argument operators
-  void arg_exponent() {
+  void group_exponent() {
       value = std::exp(std::get<float>(value));
   }
-  void arg_logarithm() {
+  void group_logarithm() {
       value = std::log(std::get<float>(value));
   }
-  void arg_logarithm_10() {
+  void group_logarithm_10() {
       value = std::log10(std::get<float>(value));
   }
-  void arg_logarithm_base(Atom *other) {
+  void group_logarithm_base(Atom *other) {
       value = std::log(std::get<float>(value)) / std::log(std::get<float>(other->value));
   }
-  void arg_power_base(Atom *other) {
+  void group_power_base(Atom *other) {
       value = pow(std::get<float>(value), std::get<float>(other->value));
   }
-  void arg_square_root() {
+  void group_square_root() {
       value = std::sqrt(std::get<float>(value));
   }
-  void arg_sinus() {
+  void group_sinus() {
       value = std::sin(std::get<float>(value));
   }
-  void arg_cosinus() {
+  void group_cosinus() {
       value = std::cos(std::get<float>(value));
   }
-  void arg_tangens() {
+  void group_tangens() {
       value = std::tan(std::get<float>(value));
   }
 };

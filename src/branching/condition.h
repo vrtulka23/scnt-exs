@@ -6,11 +6,11 @@ class OperatorCondition: public OperatorTernary<A> {
 public:
   OperatorCondition(): OperatorTernary<A>("cond", "?", ":", CONDITION_OPERATOR) {}
   void operate_ternary(TokenListBase<A> *tokens) {
-    Token<A> arg2 = tokens->get_left();
-    Token<A> arg1 = tokens->get_left();
-    Token<A> arg3 = tokens->get_right();
-    arg1.atom->condition(arg2.atom, arg3.atom);
-    tokens->put_left(arg1);
+    Token<A> group2 = tokens->get_left();
+    Token<A> group1 = tokens->get_left();
+    Token<A> group3 = tokens->get_right();
+    group1.atom->condition(group2.atom, group3.atom);
+    tokens->put_left(group1);
   };
 };
 
