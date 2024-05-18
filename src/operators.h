@@ -85,5 +85,13 @@ public:
 
 #include "arguments/parentheses.h"
 #include "arguments/exponent.h"
+#include "arguments/logarithm.h"
+#include "arguments/logarithm_10.h"
+#include "arguments/logarithm_base.h"
+#include "arguments/power_base.h"
+#include "arguments/square_root.h"
+#include "arguments/sinus.h"
+#include "arguments/cosinus.h"
+#include "arguments/tangens.h"
 
 #endif // OPERATORS_H

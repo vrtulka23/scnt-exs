@@ -83,7 +83,11 @@ public:
     };
 private:
     void init_steps() {
-        steps.append(ARGUMENTS_OPERATION, {PARENTHESES_OPERATOR, EXPONENT_OPERATOR});
+        steps.append(ARGUMENTS_OPERATION, {
+            PARENTHESES_OPERATOR, EXPONENT_OPERATOR, LOGARITHM_OPERATOR,
+            LOGARITHM_10_OPERATOR, LOGARITHM_BASE_OPERATOR, POWER_BASE_OPERATOR,
+            SQUARE_ROOT_OPERATOR, SINUS_OPERATOR, COSINUS_OPERATOR, TANGENS_OPERATOR
+        });
         steps.append(UNARY_OPERATION,     {ADD_OPERATOR, SUBTRACT_OPERATOR});
         steps.append(BINARY_OPERATION,    {POWER_OPERATOR});
         steps.append(BINARY_OPERATION,    {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
@@ -98,8 +102,16 @@ private:
         steps.append(BINARY_OPERATION,    {OR_OPERATOR});
     }
     void init_operators() {
+        operators.append(TANGENS_OPERATOR,        std::make_shared<OperatorTangens<A>>());
+        operators.append(COSINUS_OPERATOR,        std::make_shared<OperatorCosinus<A>>());
+        operators.append(SINUS_OPERATOR,          std::make_shared<OperatorSinus<A>>());
+        operators.append(SQUARE_ROOT_OPERATOR,    std::make_shared<OperatorSquareRoot<A>>());
+        operators.append(POWER_BASE_OPERATOR,     std::make_shared<OperatorPowerBase<A>>());
+        operators.append(LOGARITHM_BASE_OPERATOR, std::make_shared<OperatorLogarithmBase<A>>());
+        operators.append(LOGARITHM_10_OPERATOR,   std::make_shared<OperatorLogarithm10<A>>());
+        operators.append(LOGARITHM_OPERATOR,      std::make_shared<OperatorLogarithm<A>>());
         operators.append(EXPONENT_OPERATOR,       std::make_shared<OperatorExponent<A>>());
-        operators.append(PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses<A>>());
+        operators.append(PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses<A>>()); // should be last of argument operators
         
         operators.append(POWER_OPERATOR,          std::make_shared<OperatorPower<A>>());
 

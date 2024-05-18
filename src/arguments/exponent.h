@@ -4,7 +4,7 @@
 template <class A>
 class OperatorExponent: public OperatorArguments<A, 1> {
 public:
-  OperatorExponent(): OperatorArguments<A, 1>("par","exp(",EXPONENT_OPERATOR) {}
+  OperatorExponent(): OperatorArguments<A, 1>("exp","exp(",EXPONENT_OPERATOR) {}
   void operate_arguments(TokenListBase<A> *tokens) {
     Token<A> left = tokens->get_left();
     left.atom->arg_exponent();

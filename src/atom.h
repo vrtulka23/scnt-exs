@@ -80,6 +80,30 @@ public:
   void arg_exponent() {
       value = std::exp(std::get<float>(value));
   }
+  void arg_logarithm() {
+      value = std::log(std::get<float>(value));
+  }
+  void arg_logarithm_10() {
+      value = std::log10(std::get<float>(value));
+  }
+  void arg_logarithm_base(Atom *other) {
+      value = std::log(std::get<float>(value)) / std::log(std::get<float>(other->value));
+  }
+  void arg_power_base(Atom *other) {
+      value = pow(std::get<float>(value), std::get<float>(other->value));
+  }
+  void arg_square_root() {
+      value = std::sqrt(std::get<float>(value));
+  }
+  void arg_sinus() {
+      value = std::sin(std::get<float>(value));
+  }
+  void arg_cosinus() {
+      value = std::cos(std::get<float>(value));
+  }
+  void arg_tangens() {
+      value = std::tan(std::get<float>(value));
+  }
 };
 
 #endif // ATOM_H

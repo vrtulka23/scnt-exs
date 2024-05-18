@@ -93,6 +93,34 @@ TEST(Solver, SolvingArguments) {
     
     atom = solver.solve("exp(1+2)-3");
     EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
+    
+    atom = solver.solve("log(1+2)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-1.9013877113318902);
+    
+    atom = solver.solve("log10(1+2)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-2.5228787452803374);
+    
+    atom = solver.solve("logb(1+2,2)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-1.4150374992788437);
+    
+    atom = solver.solve("powb(2,3)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)5);
+    
+    atom = solver.solve("sqrt(16)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)1);
+    
+    atom = solver.solve("sin(16)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-3.2879033166650653);
+    
+    atom = solver.solve("cos(16)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-3.9576594803233847);
+    
+    atom = solver.solve("tan(16)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)-2.6993677579760966);
+    
+    // nested argument operators
+    atom = solver.solve("exp(1+(5-3))-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
 }
     
 TEST(Solver, CustomSteps) {
