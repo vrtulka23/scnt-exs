@@ -11,6 +11,10 @@ public:
         atoms.push_back(std::make_shared<A>(a));
         return &(*atoms.back());
     };
+    A* append(A a) {
+        atoms.push_back(std::make_shared<A>(a.value));
+        return &(*atoms.back());
+    };
 };
 
 #endif // ATOM_LIST_H

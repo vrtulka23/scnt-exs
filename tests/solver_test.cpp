@@ -83,6 +83,18 @@ TEST(Solver, SolvingLogical) {
     EXPECT_EQ(std::get<bool>(atom.value), false);
 }
 
+// Basic argument expressions
+TEST(Solver, SolvingArguments) {
+    
+    Solver<Atom> solver;
+    
+    Atom atom = solver.solve("(1+2)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)0);
+    
+    atom = solver.solve("exp(1+2)-3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
+}
+    
 TEST(Solver, CustomSteps) {
     
     // create custom step list

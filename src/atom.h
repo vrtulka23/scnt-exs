@@ -4,10 +4,12 @@
 #include <regex>
 #include <math.h>
 #include <stdexcept>
+#include <cmath>
 
 class Atom {
 public:
   std::variant<float, bool> value;
+  Atom(std::variant<float, bool> v): value(v) {};
   Atom(std::string v) {
     if (v=="true") {
       value=true; 
@@ -18,7 +20,7 @@ public:
       if (std::regex_match(v, rx)) {
         value=std::stof(v);
       } else {
-        throw std::logic_error("Atom has a wrong format: "+v);
+        throw std::logic_error("Atom string could not be parsed: "+v);
       }
     }
   };
@@ -72,6 +74,11 @@ public:
   }
   void logical_or(Atom *other) {
       value = std::get<bool>(value) || std::get<bool>(other->value);
+  }
+  
+  // Argument operators
+  void arg_exponent() {
+      value = std::exp(std::get<float>(value));
   }
 };
 

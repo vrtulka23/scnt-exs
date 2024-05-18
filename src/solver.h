@@ -41,6 +41,14 @@ public:
                         tokens.append(ATOM_TOKEN, a);
                     }
                     op->parse(expr);
+                    if (op->args.size()>0) {
+                        std::vector<std::string> args = op->args;
+                        //std::cout <<  args.size() << std::endl;
+                        for (auto e: args) {
+                            A *a = atoms.append(solve(e));
+                            tokens.append(ATOM_TOKEN, a);
+                        }
+                    }
                     tokens.append(OPERATOR_TOKEN, op->type);
                     //expr.print();
                 }
@@ -49,6 +57,7 @@ public:
                 expr.shift();
                 //expr.print();
             }
+            //tokens.print(true);
         }
         std::string left = expr.pop_left();
         if (left.length()>0) {
@@ -64,7 +73,7 @@ public:
         //tokens.print(true);   
         
         if (tokens.left.size()>0 or tokens.right.size()>1) {
-            tokens.print(true);
+            //tokens.print(true);
             throw std::logic_error("Cannot solve expression due to unprocessed tokens");
         }
         
@@ -74,20 +83,24 @@ public:
     };
 private:
     void init_steps() {
-        steps.append(UNARY_OPERATION,  {ADD_OPERATOR, SUBTRACT_OPERATOR});
-        steps.append(BINARY_OPERATION, {POWER_OPERATOR});
-        steps.append(BINARY_OPERATION, {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
-        steps.append(BINARY_OPERATION, {ADD_OPERATOR, SUBTRACT_OPERATOR});
-        steps.append(BINARY_OPERATION, {
+        steps.append(ARGUMENTS_OPERATION, {PARENTHESES_OPERATOR, EXPONENT_OPERATOR});
+        steps.append(UNARY_OPERATION,     {ADD_OPERATOR, SUBTRACT_OPERATOR});
+        steps.append(BINARY_OPERATION,    {POWER_OPERATOR});
+        steps.append(BINARY_OPERATION,    {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
+        steps.append(BINARY_OPERATION,    {ADD_OPERATOR, SUBTRACT_OPERATOR});
+        steps.append(BINARY_OPERATION,    {
             EQUAL_OPERATOR,NOT_EQUAL_OPERATOR,
             LOWER_EQUAL_OPERATOR,GREATER_EQUAL_OPERATOR,
             LOWER_OPERATOR,GREATER_OPERATOR
         });
-        steps.append(UNARY_OPERATION,  {NOT_OPERATOR});
-        steps.append(BINARY_OPERATION, {AND_OPERATOR});
-        steps.append(BINARY_OPERATION, {OR_OPERATOR});
+        steps.append(UNARY_OPERATION,     {NOT_OPERATOR});
+        steps.append(BINARY_OPERATION,    {AND_OPERATOR});
+        steps.append(BINARY_OPERATION,    {OR_OPERATOR});
     }
     void init_operators() {
+        operators.append(EXPONENT_OPERATOR,       std::make_shared<OperatorExponent<A>>());
+        operators.append(PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses<A>>());
+        
         operators.append(POWER_OPERATOR,          std::make_shared<OperatorPower<A>>());
 
         operators.append(MULTIPLY_OPERATOR,       std::make_shared<OperatorMultiply<A>>());
