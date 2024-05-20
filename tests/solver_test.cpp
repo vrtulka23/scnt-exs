@@ -128,7 +128,10 @@ TEST(Solver, SolvingCondition) {
     
     Solver<Atom> solver;
     
-    Atom atom = solver.solve("(true ? 2 : 3)-3");
+    Atom atom = solver.solve("true ? 2 : 3");
+    EXPECT_EQ(std::get<float>(atom.value), (float)2);
+    
+    atom = solver.solve("(true ? 2 : 3)-3");
     EXPECT_EQ(std::get<float>(atom.value), (float)-1);
     
     atom = solver.solve("(false ? 2 : 3)-3");
