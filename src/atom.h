@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdexcept>
 #include <cmath>
+#include <sstream>
 
 class Atom {
 public:
@@ -16,7 +17,7 @@ public:
     } else if (v=="false") {
       value=false;
     } else {
-      std::regex rx(R"((?:^|\s)([+-]?[[:digit:]]+(?:\.[[:digit:]]+)?)(?=$|\s))");
+      std::regex rx("((\\+|-)?[[:digit:]]+)(\\.(([[:digit:]]+)?))?((e|E)((\\+|-)?)[[:digit:]]+)?");
       if (std::regex_match(v, rx)) {
         value=std::stof(v);
       } else {
@@ -26,9 +27,12 @@ public:
   };
   std::string to_string() {
     if (std::holds_alternative<float>(value)) {
-      return std::to_string(std::get<float>(value));
+      std::stringstream str;
+      str << std::get<float>(value) << std::scientific;
+      return str.str();
     } else {
-      return std::to_string(std::get<bool>(value));
+      if (std::get<bool>(value)==0) return "false";
+      else return "true";
     }
   }
   // Math operations
@@ -49,6 +53,35 @@ public:
   }
   void math_power(Atom *other) {
       value = pow(std::get<float>(value), std::get<float>(other->value));
+  }
+
+  // Argument math operators
+  void math_exponent() {
+      value = std::exp(std::get<float>(value));
+  }
+  void math_logarithm() {
+      value = std::log(std::get<float>(value));
+  }
+  void math_logarithm_10() {
+      value = std::log10(std::get<float>(value));
+  }
+  void math_logarithm_base(Atom *other) {
+      value = std::log(std::get<float>(value)) / std::log(std::get<float>(other->value));
+  }
+  void math_power_base(Atom *other) {
+      value = pow(std::get<float>(value), std::get<float>(other->value));
+  }
+  void math_square_root() {
+      value = std::sqrt(std::get<float>(value));
+  }
+  void math_sinus() {
+      value = std::sin(std::get<float>(value));
+  }
+  void math_cosinus() {
+      value = std::cos(std::get<float>(value));
+  }
+  void math_tangens() {
+      value = std::tan(std::get<float>(value));
   }
   
   // Comparison operations
@@ -87,34 +120,6 @@ public:
       value = std::get<bool>(value) ? std::get<float>(option1->value) : std::get<float>(option2->value);
   }
   
-  // Argument operators
-  void group_exponent() {
-      value = std::exp(std::get<float>(value));
-  }
-  void group_logarithm() {
-      value = std::log(std::get<float>(value));
-  }
-  void group_logarithm_10() {
-      value = std::log10(std::get<float>(value));
-  }
-  void group_logarithm_base(Atom *other) {
-      value = std::log(std::get<float>(value)) / std::log(std::get<float>(other->value));
-  }
-  void group_power_base(Atom *other) {
-      value = pow(std::get<float>(value), std::get<float>(other->value));
-  }
-  void group_square_root() {
-      value = std::sqrt(std::get<float>(value));
-  }
-  void group_sinus() {
-      value = std::sin(std::get<float>(value));
-  }
-  void group_cosinus() {
-      value = std::cos(std::get<float>(value));
-  }
-  void group_tangens() {
-      value = std::tan(std::get<float>(value));
-  }
 };
 
 #endif // ATOM_H

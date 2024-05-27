@@ -7,7 +7,7 @@ public:
   OperatorLogarithm10(): OperatorGroup<A, 1>("log10","log10(",LOGARITHM_10_OPERATOR) {}
   void operate_group(TokenListBase<A> *tokens) {
     Token<A> group1 = tokens->get_left();
-    group1.atom->group_logarithm_10();
+    group1.atom->math_logarithm_10();
     tokens->put_left(group1);
   };
 };

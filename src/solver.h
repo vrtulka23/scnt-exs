@@ -25,7 +25,6 @@ public:
         Expression expr(expression);
         //expr.print();
         TokenList<A> tokens(&operators);
-        AtomList<A> atoms;
         
         // Tokenize expression
         while (expr.right.length()>0) {
@@ -37,16 +36,14 @@ public:
                     is_operator = true;
                     std::string left = expr.pop_left();
                     if (left.length()>0) {
-                        A *a = atoms.append(left);
-                        tokens.append(ATOM_TOKEN, a);
+                        tokens.append(ATOM_TOKEN, left);
                     }
                     op->parse(expr);
                     if (op->groups.size()>0) {
                         std::vector<std::string> groups = op->groups;
                         //std::cout <<  groups.size() << std::endl;
                         for (auto e: groups) {
-                            A *a = atoms.append(solve(e));
-                            tokens.append(ATOM_TOKEN, a);
+                            tokens.append(ATOM_TOKEN, solve(e));
                         }
                     }
                     tokens.append(OPERATOR_TOKEN, op->type);
@@ -61,8 +58,7 @@ public:
         }
         std::string left = expr.pop_left();
         if (left.length()>0) {
-            A *a = atoms.append(left);
-            tokens.append(ATOM_TOKEN, a);
+            tokens.append(ATOM_TOKEN, left);
         }
         //expr.print();  
         

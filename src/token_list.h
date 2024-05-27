@@ -12,6 +12,7 @@ public:
   std::deque<Token<A>> left;
   std::deque<Token<A>> right;
   OperatorList<A> *operators;
+  AtomList<A> atoms;
   TokenList(OperatorList<A> *o): operators(o) {};
   void append(TokenType t) {
     right.push_back(Token<A>(t));
@@ -19,7 +20,12 @@ public:
   void append(TokenType t, OperatorType o) {
     right.push_back(Token<A>(t, o));
   };
-  void append(TokenType t, A *a) {
+  void append(TokenType t, std::string s) {
+    A *a = atoms.append(s);
+    right.push_back(Token<A>(t, a));
+  };
+  void append(TokenType t, A at) {
+    A *a = atoms.append(at);
     right.push_back(Token<A>(t, a));
   };
   Token<A> get_left() {

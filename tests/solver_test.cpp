@@ -9,17 +9,19 @@ TEST(Solver, SolvingMath) {
     Solver<Atom> solver;
 
     Atom atom = solver.solve("1.2 + 34");
-    EXPECT_EQ(std::get<float>(atom.value), (float)35.2);
+    EXPECT_EQ(atom.to_string(), "35.2");
     atom = solver.solve("32 - 34");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-2);
+    EXPECT_EQ(atom.to_string(), "-2");
     atom = solver.solve("32 * 2");
-    EXPECT_EQ(std::get<float>(atom.value), (float)64);
+    EXPECT_EQ(atom.to_string(), "64");
     atom = solver.solve("32.4 / 2");
-    EXPECT_EQ(std::get<float>(atom.value), (float)16.2);
+    EXPECT_EQ(atom.to_string(), "16.2");
     atom = solver.solve("3 ** 3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)27);
+    EXPECT_EQ(atom.to_string(), "27");
     atom = solver.solve("1.2 + +68/2 - -2**5 * 93");
-    EXPECT_EQ(std::get<float>(atom.value), (float)3011.2);
+    EXPECT_EQ(atom.to_string(), "3011.2");
+    atom = solver.solve("1.234e32 * 3.33");
+    EXPECT_EQ(atom.to_string(), "4.10922e+32");
 }
 
 // Basic comparison expressions
@@ -28,38 +30,38 @@ TEST(Solver, SolvingComparison) {
     Solver<Atom> solver;
     
     Atom atom = solver.solve("23 == 34");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     atom = solver.solve("23.2 == 23.2");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     
     atom = solver.solve("23 != 34");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     atom = solver.solve("23.2 != 23.2");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     
     atom = solver.solve("23 <= 34");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     atom = solver.solve("34 <= 23");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     atom = solver.solve("23 <= 23");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     
     atom = solver.solve("23 >= 34");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     atom = solver.solve("34 >= 23");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     atom = solver.solve("23 >= 23");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     
     atom = solver.solve("23 < 34");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     atom = solver.solve("34.2 < 23.2");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     
     atom = solver.solve("23 > 34");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     atom = solver.solve("34.2 > 23.2");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
 }
 
 // Basic logical expressions
@@ -68,19 +70,19 @@ TEST(Solver, SolvingLogical) {
     Solver<Atom> solver;
     
     Atom atom = solver.solve("!true");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     atom = solver.solve("!false");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     
     atom = solver.solve("false && true");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
     atom = solver.solve("true && true");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     
     atom = solver.solve("false || true");
-    EXPECT_EQ(std::get<bool>(atom.value), true);
+    EXPECT_EQ(atom.to_string(), "true");
     atom = solver.solve("false || false");
-    EXPECT_EQ(std::get<bool>(atom.value), false);
+    EXPECT_EQ(atom.to_string(), "false");
 }
 
 // Basic group expressions
@@ -89,38 +91,38 @@ TEST(Solver, SolvingGroups) {
     Solver<Atom> solver;
     
     Atom atom = solver.solve("(1+2)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)0);
+    EXPECT_EQ(atom.to_string(), "0");
     
     atom = solver.solve("exp(1+2)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
+    EXPECT_EQ(atom.to_string(), "17.0855");
     
     atom = solver.solve("log(1+2)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-1.9013877113318902);
+    EXPECT_EQ(atom.to_string(), "-1.90139");
     
     atom = solver.solve("log10(1+2)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-2.5228787452803374);
+    EXPECT_EQ(atom.to_string(), "-2.52288");
     
     atom = solver.solve("logb(1+2,2)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-1.4150374992788437);
+    EXPECT_EQ(atom.to_string(), "-1.41504");
     
     atom = solver.solve("powb(2,3)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)5);
+    EXPECT_EQ(atom.to_string(), "5");
     
     atom = solver.solve("sqrt(16)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)1);
+    EXPECT_EQ(atom.to_string(), "1");
     
     atom = solver.solve("sin(16)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-3.2879033166650653);
+    EXPECT_EQ(atom.to_string(), "-3.2879");
     
     atom = solver.solve("cos(16)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-3.9576594803233847);
+    EXPECT_EQ(atom.to_string(), "-3.95766");
     
     atom = solver.solve("tan(16)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-2.6993677579760966);
+    EXPECT_EQ(atom.to_string(), "-2.69937");
     
     // nested group operators
     atom = solver.solve("exp(1+(5-3))-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)17.085536923187668);
+    EXPECT_EQ(atom.to_string(), "17.0855");
 }
     
 // Conditional operator
@@ -129,16 +131,16 @@ TEST(Solver, SolvingCondition) {
     Solver<Atom> solver;
     
     Atom atom = solver.solve("true ? 2 : 3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)2);
+    EXPECT_EQ(atom.to_string(), "2");
     
     atom = solver.solve("(true ? 2 : 3)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-1);
+    EXPECT_EQ(atom.to_string(), "-1");
     
     atom = solver.solve("(false ? 2 : 3)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-0);
+    EXPECT_EQ(atom.to_string(), "0");
     
     atom = solver.solve("((2==3) ? 2 : 3)-3");
-    EXPECT_EQ(std::get<float>(atom.value), (float)-0);
+    EXPECT_EQ(atom.to_string(), "0");
 }
 
 TEST(Solver, CustomSteps) {
@@ -152,7 +154,7 @@ TEST(Solver, CustomSteps) {
     // test the solver
     Solver<Atom> solver(steps);
     Atom atom = solver.solve("1.2 + 5 * 4");
-    EXPECT_EQ(std::get<float>(atom.value), (float)21.2);
+    EXPECT_EQ(atom.to_string(), "21.2");
 }
 
 TEST(Solver, CustomOperators) {
@@ -166,5 +168,5 @@ TEST(Solver, CustomOperators) {
     // test the solver
     Solver<Atom> solver(operators);
     Atom atom = solver.solve("1.2 + 5 * 2^2");
-    EXPECT_EQ(std::get<float>(atom.value), (float)21.2);
+    EXPECT_EQ(atom.to_string(), "21.2");
 }

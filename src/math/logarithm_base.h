@@ -8,7 +8,7 @@ public:
   void operate_group(TokenListBase<A> *tokens) {
     Token<A> group2 = tokens->get_left();
     Token<A> group1 = tokens->get_left();
-    group1.atom->group_logarithm_base(group2.atom);
+    group1.atom->math_logarithm_base(group2.atom);
     tokens->put_left(group1);
   };
 };

@@ -38,8 +38,7 @@ TEST(Operators, OperatorAdd) {
   TokenList<Atom> tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
-  Atom a("3.4");
-  tokens.append(ATOM_TOKEN,     &a);
+  tokens.append(ATOM_TOKEN,     "3.4");
   //tokens.print(true);
 
   // extract first token on the right
@@ -61,8 +60,7 @@ TEST(Operators, OpearateAdd) {
   TokenList<Atom> tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
-  Atom a("3.4");
-  tokens.append(ATOM_TOKEN,     &a);
+  tokens.append(ATOM_TOKEN,     "3.4");
   //tokens.print(true);
 
   // create operator list
