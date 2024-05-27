@@ -67,8 +67,8 @@ public:
         //expr.print();  
         
         for (auto s: steps.steps) {
-            //tokens.print(true); 
-            tokens.operate(s.second, s.first);
+	  //tokens.print(true); 
+          tokens.operate(s.second, s.first);
         }
         //tokens.print(true);   
         

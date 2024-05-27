@@ -66,7 +66,7 @@ public:
         } else if (oitype==GROUP_OPERATION) {
   	      op->operate_group(this);
         } else {
-  	      throw std::invalid_argument("Invalid operation type: "+oitype);
+	  throw std::invalid_argument("Invalid operation type: "+std::to_string(oitype));
         }
       } else {
         // token is something else
