@@ -70,7 +70,7 @@ public:
 	  //tokens.print(true); 
           tokens.operate(s.second, s.first);
         }
-        //tokens.print(true);   
+        //tokens.print(true);
         
         if (tokens.left.size()>0 or tokens.right.size()>1) {
             //tokens.print(true);

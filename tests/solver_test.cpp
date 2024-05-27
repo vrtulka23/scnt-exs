@@ -7,7 +7,7 @@
 TEST(Solver, SolvingMath) {
     
     Solver<Atom> solver;
-    
+
     Atom atom = solver.solve("1.2 + 34");
     EXPECT_EQ(std::get<float>(atom.value), (float)35.2);
     atom = solver.solve("32 - 34");

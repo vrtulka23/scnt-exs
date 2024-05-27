@@ -51,40 +51,51 @@ public:
     }
   };
   void operate(const std::vector<OperatorType> &ops, OperationType oitype) {
+    /*
+    std::cout << "token_list::operate oitype=" << oitype << " operators=[ ";
+    for (auto i: ops) std::cout << i << " ";
+    std::cout << "]" << std::endl;
+    print(true);
+    */
     // perform operations on the individual tokens
     while (!right.empty()) {
       Token<A> token = get_right();
+      //token.print();
       if (std::find(ops.begin(), ops.end(), token.optype) != ops.end()) {
         OperatorBase<A> *op = operators->select(token.optype);
         // token is an operator
         if (oitype==UNARY_OPERATION) {
-        	op->operate_unary(this);
+	  op->operate_unary(this);
         } else if (oitype==BINARY_OPERATION) {
-  	      op->operate_binary(this);
+	  op->operate_binary(this);
         } else if (oitype==TERNARY_OPERATION) {
-  	      op->operate_ternary(this);
+	  op->operate_ternary(this);
         } else if (oitype==GROUP_OPERATION) {
-  	      op->operate_group(this);
+	  op->operate_group(this);
         } else {
 	  throw std::invalid_argument("Invalid operation type: "+std::to_string(oitype));
         }
       } else {
         // token is something else
+	//std::cout << "putting left" << std::endl;
         put_left(token);
       }
+      //print(true);
     }
     // move all tokens from left to right
     left.swap(right);
+    //print(true);
+    //std::cout << std::endl;
   };
   void print(bool details=false) {
     if (details) {
       std::cout << "TokenList( ";
       for (auto i = left.begin(); i!= left.end(); ++i) {
-        print_details(i->type, i->optype);
+        print_details(i->type, i->optype, i->atom);
       }
       std::cout << "| ";
       for (auto i = right.begin(); i!= right.end(); ++i) {
-        print_details(i->type, i->optype);
+        print_details(i->type, i->optype, i->atom);
       }
       std::cout << ")" << std::endl;
       } else {
@@ -92,10 +103,12 @@ public:
     }
   };
 private:
-  void print_details(TokenType type, OperatorType optype) {
+  void print_details(TokenType type, OperatorType optype, A *atom) {
     switch (type) {
     case EMPTY_TOKEN: std::cout << "E "; break;
-    case ATOM_TOKEN: std::cout << "A "; break;
+    case ATOM_TOKEN:
+      std::cout << "A{" << atom->to_string() << "} ";
+      break;
     case OPERATOR_TOKEN:
       OperatorBase<A> *op = operators->select(optype);
       std::cout << op->name << " ";

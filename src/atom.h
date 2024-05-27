@@ -24,7 +24,13 @@ public:
       }
     }
   };
-  
+  std::string to_string() {
+    if (std::holds_alternative<float>(value)) {
+      return std::to_string(std::get<float>(value));
+    } else {
+      return std::to_string(std::get<bool>(value));
+    }
+  }
   // Math operations
   void math_add(Atom *other) {
       value = std::get<float>(value) + std::get<float>(other->value);
