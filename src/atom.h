@@ -9,23 +9,28 @@
 
 namespace exs {
 
+typedef std::variant<float, bool> AtomValueType;
+  
 class Atom {
 public:
-  std::variant<float, bool> value;
-  Atom(std::variant<float, bool> v): value(v) {};
-  Atom(std::string v) {
-    if (v=="true") {
-      value=true; 
-    } else if (v=="false") {
-      value=false;
+  AtomValueType value;
+  Atom(Atom &a): value(a.value) {};
+  Atom(AtomValueType v): value(v) {};
+  static AtomValueType parse(std::string s) {
+    AtomValueType v;
+    if (s=="true") {
+      v=true; 
+    } else if (s=="false") {
+      v=false;
     } else {
       std::regex rx("((\\+|-)?[[:digit:]]+)(\\.(([[:digit:]]+)?))?((e|E)((\\+|-)?)[[:digit:]]+)?");
-      if (std::regex_match(v, rx)) {
-        value=std::stof(v);
+      if (std::regex_match(s, rx)) {
+        v=std::stof(s);
       } else {
-        throw std::logic_error("Atom string could not be parsed, probably due to unknown symbol or operator: "+v);
+        throw std::logic_error("Atom string could not be parsed, probably due to unknown symbol or operator: "+s);
       }
     }
+    return v;
   };
   std::string to_string() {
     if (std::holds_alternative<float>(value)) {

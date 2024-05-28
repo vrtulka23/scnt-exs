@@ -8,15 +8,15 @@ namespace exs {
 template <class A>
 class AtomList {
 public:
-    std::vector<std::shared_ptr<A>> atoms;
-    A* append(std::string a) {
-        atoms.push_back(std::make_shared<A>(a));
-        return &(*atoms.back());
-    };
-    A* append(A a) {
-        atoms.push_back(std::make_shared<A>(a.value));
-        return &(*atoms.back());
-    };
+  std::vector<std::shared_ptr<A>> atoms;
+  A* append(std::string s) {
+    atoms.push_back(std::make_shared<A>(A::parse(s)));
+    return &(*atoms.back());
+  };
+  A* append(A a) {
+    atoms.push_back(std::make_shared<A>(a));
+    return &(*atoms.back());
+  };
 };
 
 }
