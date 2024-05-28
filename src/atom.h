@@ -21,7 +21,7 @@ public:
       if (std::regex_match(v, rx)) {
         value=std::stof(v);
       } else {
-        throw std::logic_error("Atom string could not be parsed: "+v);
+        throw std::logic_error("Atom string could not be parsed, probably due to unknown symbol or operator: "+v);
       }
     }
   };
@@ -53,6 +53,9 @@ public:
   }
   void math_power(Atom *other) {
       value = pow(std::get<float>(value), std::get<float>(other->value));
+  }
+  void math_modulo(Atom *other) {
+    value = (float)((int)std::get<float>(value) % (int) std::get<float>(other->value));
   }
 
   // Argument math operators

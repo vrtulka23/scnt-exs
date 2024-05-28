@@ -98,6 +98,7 @@ public:
 #include "math/multiply.h"
 #include "math/divide.h"
 #include "math/power.h"
+#include "math/modulo.h"
 #include "math/exponent.h"
 #include "math/logarithm.h"
 #include "math/logarithm_10.h"

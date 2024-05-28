@@ -87,7 +87,7 @@ private:
         steps.append(UNARY_OPERATION,     {ADD_OPERATOR, SUBTRACT_OPERATOR});
         steps.append(TERNARY_OPERATION,   {CONDITION_OPERATOR});
         steps.append(BINARY_OPERATION,    {POWER_OPERATOR});
-        steps.append(BINARY_OPERATION,    {MULTIPLY_OPERATOR, DIVIDE_OPERATOR});
+        steps.append(BINARY_OPERATION,    {MULTIPLY_OPERATOR, DIVIDE_OPERATOR, MODULO_OPERATOR});
         steps.append(BINARY_OPERATION,    {ADD_OPERATOR, SUBTRACT_OPERATOR});
         steps.append(BINARY_OPERATION,    {
             EQUAL_OPERATOR,NOT_EQUAL_OPERATOR,
@@ -114,6 +114,7 @@ private:
         
         operators.append(POWER_OPERATOR,          std::make_shared<OperatorPower<A>>());
 
+        operators.append(MODULO_OPERATOR,         std::make_shared<OperatorModulo<A>>());
         operators.append(MULTIPLY_OPERATOR,       std::make_shared<OperatorMultiply<A>>());
         operators.append(DIVIDE_OPERATOR,         std::make_shared<OperatorDivide<A>>());
         operators.append(ADD_OPERATOR,            std::make_shared<OperatorAdd<A>>());

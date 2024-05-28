@@ -18,6 +18,8 @@ TEST(Solver, SolvingMath) {
     EXPECT_EQ(atom.to_string(), "16.2");
     atom = solver.solve("3 ** 3");
     EXPECT_EQ(atom.to_string(), "27");
+    atom = solver.solve("19 % 3");
+    EXPECT_EQ(atom.to_string(), "1");
     atom = solver.solve("1.2 + +68/2 - -2**5 * 93");
     EXPECT_EQ(atom.to_string(), "3011.2");
     atom = solver.solve("1.234e32 * 3.33");
