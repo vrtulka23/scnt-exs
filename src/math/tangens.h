@@ -1,6 +1,8 @@
 #ifndef OPERATOR_TANGENS_H
 #define OPERATOR_TANGENS_H
 
+namespace exs {
+  
 template <class A>
 class OperatorTangens: public OperatorGroup<A, 1> {
 public:
@@ -12,4 +14,6 @@ public:
   };
 };
 
+}
+  
 #endif // OPERATOR_TANGENS_H

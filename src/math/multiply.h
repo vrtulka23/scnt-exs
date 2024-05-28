@@ -1,6 +1,8 @@
 #ifndef OPERATOR_MULTIPLY_H
 #define OPERATOR_MULTIPLY_H
 
+namespace exs {
+
 template <class A>
 class OperatorMultiply: public OperatorBase<A> {
 public:
@@ -13,4 +15,6 @@ public:
   };
 };
 
+}
+  
 #endif // OPERATOR_MULTIPLY_H

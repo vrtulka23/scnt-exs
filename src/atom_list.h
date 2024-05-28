@@ -3,6 +3,8 @@
 
 #include <memory>
 
+namespace exs {
+  
 template <class A>
 class AtomList {
 public:
@@ -17,4 +19,6 @@ public:
     };
 };
 
+}
+  
 #endif // ATOM_LIST_H

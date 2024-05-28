@@ -1,6 +1,8 @@
 #ifndef OPERATOR_NOT_H
 #define OPERATOR_NOT_H
 
+namespace exs {
+  
 template <class A>
 class OperatorNot: public OperatorBase<A> {
 public:
@@ -11,5 +13,7 @@ public:
     tokens->put_right(right);      
   };
 };
+
+}
 
 #endif // OPERATOR_NOT_H

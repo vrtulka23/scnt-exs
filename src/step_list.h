@@ -4,6 +4,8 @@
 #include <vector>
 #include <memory>
 
+namespace exs {
+
 typedef std::vector<std::pair<OperationType, std::vector<OperatorType>>> StepListType;
 
 class StepList {
@@ -14,4 +16,6 @@ public:
   };
 };
 
+}
+  
 #endif // STEP_LIST_H

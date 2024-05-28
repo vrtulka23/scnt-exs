@@ -1,6 +1,8 @@
 #ifndef OPERATOR_LOGARITHM_BASE_H
 #define OPERATOR_LOGARITHM_BASE_H
 
+namespace exs {
+  
 template <class A>
 class OperatorLogarithmBase: public OperatorGroup<A, 2> {
 public:
@@ -12,5 +14,7 @@ public:
     tokens->put_left(group1);
   };
 };
+
+}
 
 #endif // OPERATOR_LOGARITHM_BASE_H

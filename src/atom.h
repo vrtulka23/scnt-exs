@@ -7,6 +7,8 @@
 #include <cmath>
 #include <sstream>
 
+namespace exs {
+
 class Atom {
 public:
   std::variant<float, bool> value;
@@ -124,5 +126,7 @@ public:
   }
   
 };
+
+}
 
 #endif // ATOM_H

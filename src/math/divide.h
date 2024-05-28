@@ -1,6 +1,8 @@
 #ifndef OPERATOR_DIVIDE_H
 #define OPERATOR_DIVIDE_H
 
+namespace exs {
+  
 template <class A>
 class OperatorDivide: public OperatorBase<A> {
 public:
@@ -13,4 +15,6 @@ public:
   };
 };
 
+}
+  
 #endif // OPERATOR_DIVIDE_H

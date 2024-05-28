@@ -1,6 +1,8 @@
 #ifndef OPERATOR_AND_H
 #define OPERATOR_AND_H
 
+namespace exs {
+  
 template <class A>
 class OperatorAnd: public OperatorBase<A> {
 public:
@@ -12,5 +14,7 @@ public:
     tokens->put_left(left);
   };
 };
+
+}
 
 #endif // OPERATOR_AND_H

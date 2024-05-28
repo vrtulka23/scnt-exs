@@ -1,6 +1,8 @@
 #ifndef OPERATOR_CONDITION_H
 #define OPERATOR_CONDITION_H
 
+namespace exs {
+  
 template <class A>
 class OperatorCondition: public OperatorTernary<A> {
 public:
@@ -14,4 +16,6 @@ public:
   };
 };
 
+}
+  
 #endif // OPERATOR_CONDITION_H

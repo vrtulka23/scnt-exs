@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 
+namespace exs {
+  
 template <class A>
 class OperatorList {
   typedef std::unordered_map<OperatorType, std::shared_ptr<OperatorBase<A>>> OperatorListType;
@@ -25,4 +27,6 @@ public:
   };
 };
 
+}
+  
 #endif // OPERATOR_LIST_H

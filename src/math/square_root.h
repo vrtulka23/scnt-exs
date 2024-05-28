@@ -1,6 +1,8 @@
 #ifndef OPERATOR_SQUARE_ROOT_H
 #define OPERATOR_SQUARE_ROOT_H
 
+namespace exs {
+  
 template <class A>
 class OperatorSquareRoot: public OperatorGroup<A, 1> {
 public:
@@ -11,5 +13,7 @@ public:
     tokens->put_left(group1);
   };
 };
+
+}
 
 #endif // OPERATOR_SQUARE_ROOT_H

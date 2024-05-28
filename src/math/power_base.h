@@ -1,6 +1,8 @@
 #ifndef OPERATOR_POWER_BASE_H
 #define OPERATOR_POWER_BASE_H
 
+namespace exs {
+  
 template <class A>
 class OperatorPowerBase: public OperatorGroup<A, 2> {
 public:
@@ -12,5 +14,7 @@ public:
     tokens->put_left(group1);
   };
 };
+
+}
 
 #endif // OPERATOR_POWER_BASE_H

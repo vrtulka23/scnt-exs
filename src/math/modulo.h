@@ -1,6 +1,8 @@
 #ifndef OPERATOR_MODULO_H
 #define OPERATOR_MODULO_H
 
+namespace exs {
+  
 template <class A>
 class OperatorModulo: public OperatorBase<A> {
 public:
@@ -12,5 +14,7 @@ public:
     tokens->put_left(left);
   };
 };
+
+}
 
 #endif // OPERATOR_MODULO_H

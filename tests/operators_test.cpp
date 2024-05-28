@@ -6,11 +6,11 @@
 // Initialization of the operators map
 TEST(Operators, Initialization) {
 
-  OperatorList<Atom> operators;
-  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<Atom>>());
-  operators.append(SUBTRACT_OPERATOR, std::make_shared<OperatorSubtract<Atom>>());
+  exs::OperatorList<exs::Atom> operators;
+  operators.append(ADD_OPERATOR,      std::make_shared<exs::OperatorAdd<exs::Atom>>());
+  operators.append(SUBTRACT_OPERATOR, std::make_shared<exs::OperatorSubtract<exs::Atom>>());
   
-  OperatorBase<Atom> *op = operators.select(ADD_OPERATOR);
+  exs::OperatorBase<exs::Atom> *op = operators.select(ADD_OPERATOR);
   EXPECT_EQ(op->type, ADD_OPERATOR);
 
   op = operators.select(SUBTRACT_OPERATOR);
@@ -20,32 +20,32 @@ TEST(Operators, Initialization) {
 TEST(Operators, CustomOperatorsList) {
 
   // initialize operators
-  OperatorList<Atom> operators;
-  operators.append(ADD_OPERATOR,      std::make_shared<OperatorAdd<Atom>>());
-  operators.append(MULTIPLY_OPERATOR, std::make_shared<OperatorMultiply<Atom>>());
+  exs::OperatorList<exs::Atom> operators;
+  operators.append(ADD_OPERATOR,      std::make_shared<exs::OperatorAdd<exs::Atom>>());
+  operators.append(MULTIPLY_OPERATOR, std::make_shared<exs::OperatorMultiply<exs::Atom>>());
   
-  OperatorBase<Atom> *op = operators.select(MULTIPLY_OPERATOR);
+  exs::OperatorBase<exs::Atom> *op = operators.select(MULTIPLY_OPERATOR);
   EXPECT_EQ(op->type, MULTIPLY_OPERATOR);
   
 }
 
 TEST(Operators, OperatorAdd) {
 
-  OperatorList<Atom> operators;
-  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd<Atom>>());
+  exs::OperatorList<exs::Atom> operators;
+  operators.append(ADD_OPERATOR, std::make_shared<exs::OperatorAdd<exs::Atom>>());
 
   // prepare tokens
-  TokenList<Atom> tokens(&operators);
+  exs::TokenList<exs::Atom> tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(ATOM_TOKEN,     "3.4");
   //tokens.print(true);
 
   // extract first token on the right
-  Token token = tokens.get_right();
+  exs::Token token = tokens.get_right();
 
   // get an operator and perform unary operation on the remaining tokens
-  OperatorBase<Atom> *op = operators.select(ADD_OPERATOR);
+  exs::OperatorBase<exs::Atom> *op = operators.select(ADD_OPERATOR);
   //tokens.print(true);
   op->operate_unary(&tokens);
   //tokens.print(true);
@@ -53,11 +53,11 @@ TEST(Operators, OperatorAdd) {
 
 TEST(Operators, OpearateAdd) {
 
-  OperatorList<Atom> operators;
-  operators.append(ADD_OPERATOR, std::make_shared<OperatorAdd<Atom>>());
+  exs::OperatorList<exs::Atom> operators;
+  operators.append(ADD_OPERATOR, std::make_shared<exs::OperatorAdd<exs::Atom>>());
 
   // prepare tokens
-  TokenList<Atom> tokens(&operators);
+  exs::TokenList<exs::Atom> tokens(&operators);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(OPERATOR_TOKEN, ADD_OPERATOR);
   tokens.append(ATOM_TOKEN,     "3.4");
@@ -65,7 +65,7 @@ TEST(Operators, OpearateAdd) {
 
   // create operator list
   std::vector<OperatorType> oper = {ADD_OPERATOR};
-  OperatorBase<Atom> *op = operators.select(ADD_OPERATOR);
+  exs::OperatorBase<exs::Atom> *op = operators.select(ADD_OPERATOR);
   
   // operate on tokens
   tokens.operate(oper, UNARY_OPERATION);

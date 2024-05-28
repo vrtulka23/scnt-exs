@@ -1,6 +1,8 @@
 #ifndef OPERATOR_LOWER_EQUAL_H
 #define OPERATOR_LOWER_EQUAL_H
 
+namespace exs {
+  
 template <class A>
 class OperatorLowerEqual: public OperatorBase<A> {
 public:
@@ -12,5 +14,7 @@ public:
         tokens->put_left(left);
     };
 };
+
+}
 
 #endif // OPERATOR_LOWER_EQUAL_H

@@ -1,6 +1,8 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 
+namespace exs {
+
 class Expression {
 public:
   std::string left;  // left side
@@ -27,5 +29,7 @@ public:
     std::cout << "Expression(L'" << left << "' R'" << right << "' E'" << expr << "')" << std::endl;
   };
 };
+
+}
 
 #endif // EXPRESSION_H

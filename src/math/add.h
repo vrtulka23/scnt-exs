@@ -1,6 +1,8 @@
 #ifndef OPERATOR_ADD_H
 #define OPERATOR_ADD_H
 
+namespace exs {
+
 template <class A>
 class OperatorAdd: public OperatorBase<A> {
 public:
@@ -40,4 +42,6 @@ public:
   };
 };
 
+}
+  
 #endif // OPERATOR_ADD_H

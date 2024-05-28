@@ -1,6 +1,8 @@
 #ifndef OPERATOR_GREATER_EQUAL_H
 #define OPERATOR_GREATER_EQUAL_H
 
+namespace exs {
+  
 template <class A>
 class OperatorGreaterEqual: public OperatorBase<A> {
 public:
@@ -12,5 +14,7 @@ public:
         tokens->put_left(left);
     };
 };
+
+}
 
 #endif // OPERATOR_GREATER_EQUAL_H

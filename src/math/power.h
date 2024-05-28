@@ -3,6 +3,8 @@
 
 #include <math.h>
 
+namespace exs {
+  
 template <class A>
 class OperatorPower: public OperatorBase<A> {
 public:
@@ -14,5 +16,7 @@ public:
     tokens->put_left(left);
   };
 };
+
+}
 
 #endif // OPERATOR_POWER_H

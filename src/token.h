@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace exs {
+
 template <class A>
 class Token {
 public:
@@ -25,5 +27,7 @@ public:
     std::cout << to_string() << std::endl;
   };
 };
+
+}
 
 #endif //TOKEN

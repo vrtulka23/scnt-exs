@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+namespace exs {
+
 template <class A>
 class OperatorBase {
  public:
@@ -93,6 +95,8 @@ public:
   void operate_group(TokenListBase<A> *tokens) {};
 };
 
+}
+  
 #include "math/add.h"
 #include "math/subtract.h"
 #include "math/multiply.h"

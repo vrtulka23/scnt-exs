@@ -4,7 +4,7 @@
 // Initialization of the Expression class
 TEST(Expression, Initialization) {
 
-  Expression e("Hello + World");
+  exs::Expression e("Hello + World");
 
   EXPECT_EQ(e.left, "");
   EXPECT_EQ(e.right, "Hello + World");
@@ -14,7 +14,7 @@ TEST(Expression, Initialization) {
 // Test correct print statement
 TEST(Expression, Print) {
 
-  Expression e("Hello + World");
+  exs::Expression e("Hello + World");
   
   testing::internal::CaptureStdout();
   e.print();
@@ -25,7 +25,7 @@ TEST(Expression, Print) {
 // Manipulation of the text
 TEST(Expression, Methods) {
 
-  Expression e("Hello + World");
+  exs::Expression e("Hello + World");
 
   e.shift(6);
   EXPECT_EQ(e.left, "Hello ");

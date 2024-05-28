@@ -5,6 +5,8 @@
 #include <unordered_map>
 #include <stdexcept>
 
+namespace exs {
+
 template <class A>
 class Solver {
 public:
@@ -134,5 +136,7 @@ private:
         operators.append(OR_OPERATOR,             std::make_shared<OperatorOr<A>>());
     }
 };
+
+}
 
 #endif // SOLVER_H

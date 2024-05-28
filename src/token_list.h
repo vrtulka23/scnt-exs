@@ -6,6 +6,8 @@
 #include <vector>
 #include <stdexcept>
 
+namespace exs {
+  
 template <class A>
 class TokenList: public TokenListBase<A> {
 public:
@@ -122,5 +124,7 @@ private:
     }
   };
 };
+
+}
   
 #endif // TOKEN_LIST_H

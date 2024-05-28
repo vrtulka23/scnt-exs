@@ -62,6 +62,8 @@ enum OperatorType {
 #include "atom_list.h"
 #include "token.h"
 
+namespace exs {
+
 template <class A>
 class TokenListBase {
 public:
@@ -81,6 +83,8 @@ static std::string trim(const std::string& str, const std::string& whitespace = 
     const auto strRange = strEnd - strBegin + 1;
 
     return str.substr(strBegin, strRange);
+}
+
 }
 
 #include "expression.h"

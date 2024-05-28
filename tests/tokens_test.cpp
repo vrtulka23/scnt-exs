@@ -4,9 +4,9 @@
 // Initialization of the Tokens class
 TEST(Tokens, Initialization) {
 
-  OperatorList<Atom> operators;
+  exs::OperatorList<exs::Atom> operators;
 
-  TokenList<Atom> tokens(&operators);
+  exs::TokenList<exs::Atom> tokens(&operators);
   EXPECT_EQ(tokens.left.size(),  0);
   EXPECT_EQ(tokens.right.size(), 0);
 
@@ -19,24 +19,24 @@ TEST(Tokens, Initialization) {
 // Test get and put tokenss
 TEST(Tokens, GetAndPut) {
 
-  OperatorList<Atom> operators;
+  exs::OperatorList<exs::Atom> operators;
   
   // prepare tokens
-  TokenList<Atom> tokens(&operators);
+  exs::TokenList<exs::Atom> tokens(&operators);
 
   // test empty arrays
   EXPECT_EQ(tokens.get_left().type,  EMPTY_TOKEN);  
   EXPECT_EQ(tokens.get_right().type, EMPTY_TOKEN);  
 
   // fill with some dummy values
-  AtomList<Atom> atoms;
+  exs::AtomList<exs::Atom> atoms;
   int nitems = 4;
   for (int i=0; i<nitems; i++) {
     tokens.append(ATOM_TOKEN, std::to_string(i));
   }
   
   // pass 2 strings from right to left
-  Token token = tokens.get_right();
+  exs::Token token = tokens.get_right();
   tokens.put_left(token);
   EXPECT_EQ(token.atom->to_string(), "0");
 
