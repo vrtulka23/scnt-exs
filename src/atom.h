@@ -9,13 +9,20 @@
 
 namespace exs {
 
-typedef std::variant<float, bool> AtomValueType;
-  
-class Atom {
+template <typename T>
+class AtomBase {
 public:
-  AtomValueType value;
-  Atom(Atom &a): value(a.value) {};
-  Atom(AtomValueType v): value(v) {};
+  T value;
+  AtomBase(AtomBase &a): value(a.value) {};
+  AtomBase(T v): value(v) {};
+};
+  
+typedef std::variant<float, bool> AtomValueType;
+
+class Atom: public AtomBase<AtomValueType> {
+public:
+  Atom(Atom &a): AtomBase(a) {};
+  Atom(AtomValueType v): AtomBase(v) {};  
   static AtomValueType parse(std::string s) {
     AtomValueType v;
     if (s=="true") {
@@ -31,7 +38,7 @@ public:
       }
     }
     return v;
-  };
+  }
   std::string to_string() {
     if (std::holds_alternative<float>(value)) {
       std::stringstream str;
