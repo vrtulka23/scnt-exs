@@ -49,6 +49,9 @@ public:
       else return "true";
     }
   }
+  void print() {
+    std::cout << to_string() << "\n";
+  }
   // Math operations
   void math_add(Atom *other) {
       value = std::get<float>(value) + std::get<float>(other->value);

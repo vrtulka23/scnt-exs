@@ -31,7 +31,7 @@ function test_code {
 }
 
 function run_code {
-    ./$DIR_BUILD/ExprSolver
+    ./$DIR_BUILD/$1
 }
 
 function grep_code {
@@ -46,15 +46,16 @@ function show_help {
     echo "Options:"
     echo " -c|--clean          clean the build directory"
     echo " -b|--build          build code"
-    echo " -r|--run            run code"
+    echo " -r|--run <example>  run an example code"
     echo " -t|--test [<test>]  run all/specific tests"
     echo " -g|--grep <expr>    find expression in a code"
     echo " -h|--help           show this help"
     echo ""
     echo "Examples:"
-    echo "./setup.sh -c -b -r        clean build and run the code"
-    echo "./setup.sh -t Output.Data  run 'Output.Data' test"
-    echo "./setup.sh -g class        find 'class' in the code or test"
+    echo "./setup.sh -c -b               clean and build the code"
+    echo "./setup.sh -r DefaultSolver    run DefaultSolver example"
+    echo "./setup.sh -t Output.Data      run 'Output.Data' test"
+    echo "./setup.sh -g class            find 'class' in the code or test"
 }
 
 if [[ "${1}" == "" ]]; then
@@ -67,7 +68,7 @@ while [[ $# -gt 0 ]]; do
 	-b|--build)
 	    build_code; shift;;
 	-r|--run)
-	    run_code; shift;;
+	    run_code $2; shift; shift;;
 	-t|--test)
 	    test_code $2; shift; shift;;
 	-g|--grep)

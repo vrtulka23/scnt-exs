@@ -105,9 +105,9 @@ public:
       for (auto i = right.begin(); i!= right.end(); ++i) {
         print_details(i->type, i->optype, i->atom);
       }
-      std::cout << ")" << std::endl;
-      } else {
-      std::cout << "TokenList(" << left.size() << " | " << right.size() << ")" << std::endl;
+      std::cout << ")\n";
+    } else {
+      std::cout << "TokenList(" << left.size() << " | " << right.size() << ")\n";
     }
   };
 private:

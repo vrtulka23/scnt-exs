@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "../src/main.h"
+#include "../src/exs.h"
 
 // Basic mathematic expressions
 TEST(Solver, SolvingMath) {

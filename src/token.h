@@ -24,7 +24,7 @@ public:
     }
   }
   void print() {
-    std::cout << to_string() << std::endl;
+    std::cout << to_string() << "\n";
   };
 };
 

@@ -26,7 +26,7 @@ public:
     return dummy;
   };
   void print() {
-    std::cout << "Expression(L'" << left << "' R'" << right << "' E'" << expr << "')" << std::endl;
+    std::cout << "Expression(L'" << left << "' R'" << right << "' E'" << expr << "')\n";
   };
 };
 
