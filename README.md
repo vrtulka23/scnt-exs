@@ -33,7 +33,7 @@ int main() {
   Atom atom = solver.solve("23 * 34.5 + 4");
   atom.print();
 }
-```
+``
 
 This example can be compiled and run using the ``setup.sh`` script mentioned above
 
@@ -43,4 +43,31 @@ This example can be compiled and run using the ``setup.sh`` script mentioned abo
 
 and will print ``797.5`` into the terminal.
 
-Other, more comprehensive examples are provided in the ``example`` directory, and additional code tests are implemented in the ``tests`` directory.
+The list of all default operations and their order is initialized in the [``Solver`` class](https://github.com/vrtulka23/exs-cpp/blob/main/src/solver.h).
+However, individual operators and their order can be easily modified as in the example below.
+
+```cpp
+// modifying default operator symbols
+OperatorList<Atom> operators;
+operators.append(NOT_OPERATOR, std::make_shared<OperatorNot<Atom>>("N"));
+operators.append(AND_OPERATOR, std::make_shared<OperatorAnd<Atom>>("A"));
+operators.append(OR_OPERATOR,  std::make_shared<OperatorOr<Atom>>("O"));
+
+// changing default operation steps
+StepList steps;
+steps.append(BINARY_OPERATION, {OR_OPERATOR});
+steps.append(BINARY_OPERATION, {AND_OPERATOR});
+steps.append(UNARY_OPERATION,  {NOT_OPERATOR});
+
+Solver<Atom> solver(operators, steps);
+Atom atom = solver.solve("N false A false O true");
+atom.print();
+```
+
+The corresponding example can be compiled using the following command.
+
+```bash
+./setup.sh -c -b -r ModifiedSolver
+```
+
+More comprehensive examples (e.g. custom ``Atom`` and operator classes) are provided in the ``example`` directory, and additional code tests are implemented in the ``tests`` directory.

@@ -96,32 +96,41 @@ public:
     //std::cout << std::endl;
   };
   void print(bool details=false) {
-    if (details) {
-      std::cout << "TokenList( ";
-      for (auto i = left.begin(); i!= left.end(); ++i) {
-        print_details(i->type, i->optype, i->atom);
-      }
-      std::cout << "| ";
-      for (auto i = right.begin(); i!= right.end(); ++i) {
-        print_details(i->type, i->optype, i->atom);
-      }
-      std::cout << ")\n";
-    } else {
-      std::cout << "TokenList(" << left.size() << " | " << right.size() << ")\n";
-    }
+    std::cout << to_string(details) << "\n";
   };
+  std::string to_string(bool details=false) {
+    std::stringstream str;
+    if (details) {
+      str << "TokenList( ";
+      for (auto i = left.begin(); i!= left.end(); ++i) {
+        str << print_details(i->type, i->optype, i->atom);
+      }
+      str << "| ";
+      for (auto i = right.begin(); i!= right.end(); ++i) {
+        str << print_details(i->type, i->optype, i->atom);
+      }
+      str << ")\n";
+    } else {
+      str << "TokenList(" << left.size() << " | " << right.size() << ")\n";
+    }
+    return str.str();
+  }
 private:
-  void print_details(TokenType type, OperatorType optype, A *atom) {
+  std::string print_details(TokenType type, OperatorType optype, A *atom) {
+    std::stringstream str;
     switch (type) {
-    case EMPTY_TOKEN: std::cout << "E "; break;
+    case EMPTY_TOKEN:
+      str << "E ";
+      break;
     case ATOM_TOKEN:
-      std::cout << "A{" << atom->to_string() << "} ";
+      str << "A{" << atom->to_string() << "} ";
       break;
     case OPERATOR_TOKEN:
       OperatorBase<A> *op = operators->select(optype);
-      std::cout << op->name << " ";
+      str << op->name << " ";
       break;
     }
+    return str.str();
   };
 };
 

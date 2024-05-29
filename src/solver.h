@@ -72,7 +72,7 @@ public:
         
         if (tokens.left.size()>0 or tokens.right.size()>1) {
             //tokens.print(true);
-            throw std::logic_error("Cannot solve expression due to unprocessed tokens");
+	  throw std::logic_error("Cannot solve expression due to unprocessed tokens: "+tokens.to_string(true));
         }
         
         Token token = tokens.get_right();
