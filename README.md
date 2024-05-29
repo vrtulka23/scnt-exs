@@ -33,7 +33,7 @@ int main() {
   Atom atom = solver.solve("23 * 34.5 + 4");
   atom.print();
 }
-``
+```
 
 This example can be compiled and run using the ``setup.sh`` script mentioned above
 
