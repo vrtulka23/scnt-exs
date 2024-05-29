@@ -21,7 +21,7 @@ For purpose of developing and debugging we created a simple **setup.sh** shell s
 The Equation Solver is implemented in C++ as a header file template library.
 The main class ``Solver`` takes as a template argument the ``Atom`` class.
 A standard implementation of an ``Atom`` is provided in the code, nevertheless, it can be easily modified by the user.
-Source code of the following simple example can be found in the [examples/DefaultSolver](https://github.com/vrtulka23/arithmeticpp/tree/main/examples/DefaultSolver) directory.
+Source code of the following simple example can be found in the [examples/DefaultSolver](https://github.com/vrtulka23/exs-cpp/tree/main/examples/DefaultSolver) directory.
 
 ```cpp
 #include "../../src/exs.h"
