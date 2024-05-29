@@ -1,5 +1,5 @@
-#ifndef SOLVER_H
-#define SOLVER_H
+#ifndef EXS_SOLVER_H
+#define EXS_SOLVER_H
 
 #include <memory>
 #include <unordered_map>
@@ -92,10 +92,10 @@ private:
         steps.append(BINARY_OPERATION,    {MULTIPLY_OPERATOR, DIVIDE_OPERATOR, MODULO_OPERATOR});
         steps.append(BINARY_OPERATION,    {ADD_OPERATOR, SUBTRACT_OPERATOR});
         steps.append(BINARY_OPERATION,    {
-            EQUAL_OPERATOR,NOT_EQUAL_OPERATOR,
             LOWER_EQUAL_OPERATOR,GREATER_EQUAL_OPERATOR,
             LOWER_OPERATOR,GREATER_OPERATOR
         });
+        steps.append(BINARY_OPERATION,    {EQUAL_OPERATOR,NOT_EQUAL_OPERATOR});
         steps.append(UNARY_OPERATION,     {NOT_OPERATOR});
         steps.append(BINARY_OPERATION,    {AND_OPERATOR});
         steps.append(BINARY_OPERATION,    {OR_OPERATOR});
@@ -139,4 +139,4 @@ private:
 
 }
 
-#endif // SOLVER_H
+#endif // EXS_SOLVER_H

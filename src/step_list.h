@@ -1,5 +1,5 @@
-#ifndef STEP_LIST_H
-#define STEP_LIST_H
+#ifndef EXS_STEP_LIST_H
+#define EXS_STEP_LIST_H
 
 #include <vector>
 #include <memory>
@@ -18,4 +18,4 @@ public:
 
 }
   
-#endif // STEP_LIST_H
+#endif // EXS_STEP_LIST_H

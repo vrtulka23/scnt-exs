@@ -1,5 +1,5 @@
-#ifndef ATOM_LIST_H
-#define ATOM_LIST_H
+#ifndef EXS_ATOM_LIST_H
+#define EXS_ATOM_LIST_H
 
 #include <memory>
 
@@ -21,4 +21,4 @@ public:
 
 }
   
-#endif // ATOM_LIST_H
+#endif // EXS_ATOM_LIST_H

@@ -1,5 +1,5 @@
-#ifndef TOKEN_H
-#define TOKEN_H
+#ifndef EXS_TOKEN_H
+#define EXS_TOKEN_H
 
 #include <string>
 
@@ -30,4 +30,4 @@ public:
 
 }
 
-#endif //TOKEN
+#endif // EXS_TOKEN_H

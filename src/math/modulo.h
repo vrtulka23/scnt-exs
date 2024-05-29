@@ -1,5 +1,5 @@
-#ifndef OPERATOR_MODULO_H
-#define OPERATOR_MODULO_H
+#ifndef EXS_OPERATOR_MODULO_H
+#define EXS_OPERATOR_MODULO_H
 
 namespace exs {
   
@@ -17,4 +17,4 @@ public:
 
 }
 
-#endif // OPERATOR_MODULO_H
+#endif // EXS_OPERATOR_MODULO_H

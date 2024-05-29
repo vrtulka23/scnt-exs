@@ -1,5 +1,5 @@
-#ifndef OPERATOR_LIST_H
-#define OPERATOR_LIST_H
+#ifndef EXS_OPERATOR_LIST_H
+#define EXS_OPERATOR_LIST_H
 
 #include <unordered_map>
 #include <memory>
@@ -29,4 +29,4 @@ public:
 
 }
   
-#endif // OPERATOR_LIST_H
+#endif // EXS_OPERATOR_LIST_H

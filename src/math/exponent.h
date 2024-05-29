@@ -1,5 +1,5 @@
-#ifndef OPERATOR_EXPONENT_H
-#define OPERATOR_EXPONENT_H
+#ifndef EXS_OPERATOR_EXPONENT_H
+#define EXS_OPERATOR_EXPONENT_H
 
 namespace exs {
   
@@ -16,4 +16,4 @@ public:
 
 }
 
-#endif // OPERATOR_EXPONENT_H
+#endif // EXS_OPERATOR_EXPONENT_H

@@ -1,5 +1,5 @@
-#ifndef OPERATOR_DIVIDE_H
-#define OPERATOR_DIVIDE_H
+#ifndef EXS_OPERATOR_DIVIDE_H
+#define EXS_OPERATOR_DIVIDE_H
 
 namespace exs {
   
@@ -17,4 +17,4 @@ public:
 
 }
   
-#endif // OPERATOR_DIVIDE_H
+#endif // EXS_OPERATOR_DIVIDE_H

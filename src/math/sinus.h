@@ -1,5 +1,5 @@
-#ifndef OPERATOR_SINUS_H
-#define OPERATOR_SINUS_H
+#ifndef EXS_OPERATOR_SINUS_H
+#define EXS_OPERATOR_SINUS_H
 
 namespace exs {
   
@@ -16,4 +16,4 @@ public:
 
 }
 
-#endif // OPERATOR_SINUS_H
+#endif // EXS_OPERATOR_SINUS_H

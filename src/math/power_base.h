@@ -1,5 +1,5 @@
-#ifndef OPERATOR_POWER_BASE_H
-#define OPERATOR_POWER_BASE_H
+#ifndef EXS_OPERATOR_POWER_BASE_H
+#define EXS_OPERATOR_POWER_BASE_H
 
 namespace exs {
   
@@ -17,4 +17,4 @@ public:
 
 }
 
-#endif // OPERATOR_POWER_BASE_H
+#endif // EXS_OPERATOR_POWER_BASE_H

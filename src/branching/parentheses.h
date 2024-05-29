@@ -1,5 +1,5 @@
-#ifndef OPERATOR_PARENTHESES_H
-#define OPERATOR_PARENTHESES_H
+#ifndef EXS_OPERATOR_PARENTHESES_H
+#define EXS_OPERATOR_PARENTHESES_H
 
 namespace exs {
   
@@ -11,4 +11,4 @@ public:
 
 }
 
-#endif // OPERATOR_PARENTHESES_H
+#endif // EXS_OPERATOR_PARENTHESES_H

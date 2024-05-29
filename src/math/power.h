@@ -1,5 +1,5 @@
-#ifndef OPERATOR_POWER_H
-#define OPERATOR_POWER_H
+#ifndef EXS_OPERATOR_POWER_H
+#define EXS_OPERATOR_POWER_H
 
 #include <math.h>
 
@@ -19,4 +19,4 @@ public:
 
 }
 
-#endif // OPERATOR_POWER_H
+#endif // EXS_OPERATOR_POWER_H

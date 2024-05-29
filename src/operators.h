@@ -1,5 +1,5 @@
-#ifndef OPERATORS_H
-#define OPERATORS_H
+#ifndef EXS_OPERATORS_H
+#define EXS_OPERATORS_H
 
 #include <stdexcept>
 
@@ -127,4 +127,4 @@ public:
 #include "branching/condition.h"
 #include "branching/parentheses.h"
 
-#endif // OPERATORS_H
+#endif // EXS_OPERATORS_H

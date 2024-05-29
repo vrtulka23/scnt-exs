@@ -1,5 +1,5 @@
-#ifndef OPERATOR_GREATER_H
-#define OPERATOR_GREATER_H
+#ifndef EXS_OPERATOR_GREATER_H
+#define EXS_OPERATOR_GREATER_H
 
 namespace exs {
   
@@ -17,4 +17,4 @@ public:
 
 }
 
-#endif // OPERATOR_GREATER_H
+#endif // EXS_OPERATOR_GREATER_H

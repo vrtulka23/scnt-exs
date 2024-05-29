@@ -1,5 +1,5 @@
-#ifndef OPERATOR_MULTIPLY_H
-#define OPERATOR_MULTIPLY_H
+#ifndef EXS_OPERATOR_MULTIPLY_H
+#define EXS_OPERATOR_MULTIPLY_H
 
 namespace exs {
 
@@ -17,4 +17,4 @@ public:
 
 }
   
-#endif // OPERATOR_MULTIPLY_H
+#endif // EXS_OPERATOR_MULTIPLY_H

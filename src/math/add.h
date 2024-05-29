@@ -1,5 +1,5 @@
-#ifndef OPERATOR_ADD_H
-#define OPERATOR_ADD_H
+#ifndef EXS_OPERATOR_ADD_H
+#define EXS_OPERATOR_ADD_H
 
 namespace exs {
 
@@ -44,4 +44,4 @@ public:
 
 }
   
-#endif // OPERATOR_ADD_H
+#endif // EXS_OPERATOR_ADD_H

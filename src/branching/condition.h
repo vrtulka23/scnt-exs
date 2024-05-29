@@ -1,5 +1,5 @@
-#ifndef OPERATOR_CONDITION_H
-#define OPERATOR_CONDITION_H
+#ifndef EXS_OPERATOR_CONDITION_H
+#define EXS_OPERATOR_CONDITION_H
 
 namespace exs {
   
@@ -18,4 +18,4 @@ public:
 
 }
   
-#endif // OPERATOR_CONDITION_H
+#endif // EXS_OPERATOR_CONDITION_H

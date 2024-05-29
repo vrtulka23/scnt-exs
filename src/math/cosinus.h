@@ -1,5 +1,5 @@
-#ifndef OPERATOR_COSINUS_H
-#define OPERATOR_COSINUS_H
+#ifndef EXS_OPERATOR_COSINUS_H
+#define EXS_OPERATOR_COSINUS_H
 
 namespace exs {
   
@@ -16,4 +16,4 @@ public:
 
 }
 
-#endif // OPERATOR_COSINUS_H
+#endif // EXS_OPERATOR_COSINUS_H

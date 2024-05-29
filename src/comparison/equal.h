@@ -1,5 +1,5 @@
-#ifndef OPERATOR_EQUAL_H
-#define OPERATOR_EQUAL_H
+#ifndef EXS_OPERATOR_EQUAL_H
+#define EXS_OPERATOR_EQUAL_H
 
 namespace exs {
   
@@ -17,4 +17,4 @@ public:
 
 }
 
-#endif // OPERATOR_EQUAL_H
+#endif // EXS_OPERATOR_EQUAL_H

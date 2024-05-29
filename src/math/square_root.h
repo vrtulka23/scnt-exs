@@ -1,5 +1,5 @@
-#ifndef OPERATOR_SQUARE_ROOT_H
-#define OPERATOR_SQUARE_ROOT_H
+#ifndef EXS_OPERATOR_SQUARE_ROOT_H
+#define EXS_OPERATOR_SQUARE_ROOT_H
 
 namespace exs {
   
@@ -16,4 +16,4 @@ public:
 
 }
 
-#endif // OPERATOR_SQUARE_ROOT_H
+#endif // EXS_OPERATOR_SQUARE_ROOT_H

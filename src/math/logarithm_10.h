@@ -1,5 +1,5 @@
-#ifndef OPERATOR_LOGARITHM_10_H
-#define OPERATOR_LOGARITHM_10_H
+#ifndef EXS_OPERATOR_LOGARITHM_10_H
+#define EXS_OPERATOR_LOGARITHM_10_H
 
 namespace exs {
   
@@ -16,4 +16,4 @@ public:
 
 }
 
-#endif // OPERATOR_LOGARITHM_10_H
+#endif // EXS_OPERATOR_LOGARITHM_10_H

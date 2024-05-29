@@ -1,5 +1,5 @@
-#ifndef OPERATOR_TANGENS_H
-#define OPERATOR_TANGENS_H
+#ifndef EXS_OPERATOR_TANGENS_H
+#define EXS_OPERATOR_TANGENS_H
 
 namespace exs {
   
@@ -16,4 +16,4 @@ public:
 
 }
   
-#endif // OPERATOR_TANGENS_H
+#endif // EXS_OPERATOR_TANGENS_H

@@ -1,5 +1,5 @@
-#ifndef ATOM_H
-#define ATOM_H
+#ifndef EXS_ATOM_H
+#define EXS_ATOM_H
 
 #include <regex>
 #include <math.h>
@@ -144,4 +144,4 @@ public:
 
 }
 
-#endif // ATOM_H
+#endif // EXS_ATOM_H

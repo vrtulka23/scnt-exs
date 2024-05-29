@@ -1,5 +1,5 @@
-#ifndef EXPRESSION_H
-#define EXPRESSION_H
+#ifndef EXS_EXPRESSION_H
+#define EXS_EXPRESSION_H
 
 namespace exs {
 
@@ -32,4 +32,4 @@ public:
 
 }
 
-#endif // EXPRESSION_H
+#endif // EXS_EXPRESSION_H

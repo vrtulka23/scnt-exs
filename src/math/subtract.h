@@ -1,5 +1,5 @@
-#ifndef OPERATOR_SUBTRACT_H
-#define OPERATOR_SUBTRACT_H
+#ifndef EXS_OPERATOR_SUBTRACT_H
+#define EXS_OPERATOR_SUBTRACT_H
 
 namespace exs {
 
@@ -39,4 +39,4 @@ public:
   
 }
 
-#endif // OPERATOR_SUBTRACT_H
+#endif // EXS_OPERATOR_SUBTRACT_H

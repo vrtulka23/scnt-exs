@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef EXS_MAIN_H
+#define EXS_MAIN_H
 
 #include <string>
 #include <iostream>
@@ -94,4 +94,4 @@ static std::string trim(const std::string& str, const std::string& whitespace = 
 #include "token_list.h"
 #include "solver.h"
 
-#endif // MAIN_H
+#endif // EXS_MAIN_H
