@@ -4,7 +4,7 @@ General purpose solver of mathematical expressions in C++
 
 ## Introduction
 
-This project is a reimplementation of already existing solver into the C++ language.
+This project is a reimplementation of already existing [Expression Solver](https://vrtulka23.github.io/scinumtools/solver/index.html) into the C++ language.
 Original version of the code, written in Python, is available in the [scinumtools.solver](https://github.com/vrtulka23/scinumtools/tree/main/src/scinumtools/solver) repository.
 In the future, this version is supposed to replace the original and further improve performance of the **scinumtools** package.
 
