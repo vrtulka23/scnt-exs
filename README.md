@@ -1,6 +1,6 @@
 # Expression Solver (EXS)
 
-General purpose solver of mathematical expressions in C++
+General purpose solver of textual expressions in C++
 
 ## Introduction
 
