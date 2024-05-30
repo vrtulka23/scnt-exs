@@ -4,13 +4,13 @@ General purpose solver of textual expressions in C++
 
 ## Introduction
 
-This project is a reimplementation of already existing [Expression Solver](https://vrtulka23.github.io/scinumtools/solver/index.html) into the C++ language.
-Original version of the code, written in Python, is available in the [scinumtools.solver](https://github.com/vrtulka23/scinumtools/tree/main/src/scinumtools/solver) repository.
-In the future, this version is supposed to replace the original and further improve performance of the **scinumtools** package.
+This project is a reimplementation of an already existing [Expression Solver](https://vrtulka23.github.io/scinumtools/solver/index.html) into the C++ language.
+The original version of the code, written in Python, is available in the [scinumtools.solver](https://github.com/vrtulka23/scinumtools/tree/main/src/scinumtools/solver) repository.
+In the future, this version is supposed to replace the original and further improve the performance of the **scinumtools** package.
 
 ## Setup
 
-For purpose of developing and debugging we created a simple **setup.sh** shell script that implements the most used routines: cleaning, building, testing, and running of the code. For more instructions how to use this script refer to its help section:
+For purpose of developing and debugging we created a simple **setup.sh** shell script that implements the most used routines: cleaning, building, testing, and running of the code. For more instructions on how to use this script, refer to its help section:
 
 ```bash
 ./setup.sh -h
@@ -44,7 +44,7 @@ This example can be compiled and run using the ``setup.sh`` script mentioned abo
 and will print ``797.5`` into the terminal.
 
 The list of all default operations and their order is initialized in the [``Solver`` class](https://github.com/vrtulka23/exs-cpp/blob/main/src/solver.h).
-However, individual operators and their order can be easily modified as in the example below.
+However, individual operators and their order can be easily modified, as in the example below.
 
 ```cpp
 // modifying default operator symbols

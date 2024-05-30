@@ -15,6 +15,10 @@ public:
   T value;
   AtomBase(AtomBase &a): value(a.value) {};
   AtomBase(T v): value(v) {};
+  virtual std::string to_string() =0;
+  void print() {
+    std::cout << to_string() << "\n";
+  }
 };
   
 typedef std::variant<float, bool> AtomValueType;
@@ -48,9 +52,6 @@ public:
       if (std::get<bool>(value)==0) return "false";
       else return "true";
     }
-  }
-  void print() {
-    std::cout << to_string() << "\n";
   }
   // Math operations
   void math_add(Atom *other) {
