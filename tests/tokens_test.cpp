@@ -11,7 +11,7 @@ TEST(Tokens, Initialization) {
   EXPECT_EQ(tokens.left.size(),  0);
   EXPECT_EQ(tokens.right.size(), 0);
 
-  tokens.append(ATOM_TOKEN, "3.4");
+  tokens.append(exs::ATOM_TOKEN, "3.4");
   EXPECT_EQ(tokens.right.size(), 1);
   EXPECT_EQ(tokens.right.front().atom->to_string(), "3.4");
 
@@ -26,14 +26,14 @@ TEST(Tokens, GetAndPut) {
   exs::TokenList<exs::Atom> tokens(&operators);
 
   // test empty arrays
-  EXPECT_EQ(tokens.get_left().type,  EMPTY_TOKEN);  
-  EXPECT_EQ(tokens.get_right().type, EMPTY_TOKEN);  
+  EXPECT_EQ(tokens.get_left().type,  exs::EMPTY_TOKEN);  
+  EXPECT_EQ(tokens.get_right().type, exs::EMPTY_TOKEN);  
 
   // fill with some dummy values
   exs::AtomList<exs::Atom> atoms;
   int nitems = 4;
   for (int i=0; i<nitems; i++) {
-    tokens.append(ATOM_TOKEN, std::to_string(i));
+    tokens.append(exs::ATOM_TOKEN, std::to_string(i));
   }
   
   // pass 2 strings from right to left

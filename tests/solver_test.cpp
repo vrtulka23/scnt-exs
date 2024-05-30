@@ -149,9 +149,9 @@ TEST(Solver, CustomSteps) {
     
   // create custom step list
   exs::StepList steps;
-  steps.append(UNARY_OPERATION,  {ADD_OPERATOR});
-  steps.append(BINARY_OPERATION, {MULTIPLY_OPERATOR});
-  steps.append(BINARY_OPERATION, {ADD_OPERATOR});
+  steps.append(exs::UNARY_OPERATION,  {exs::ADD_OPERATOR});
+  steps.append(exs::BINARY_OPERATION, {exs::MULTIPLY_OPERATOR});
+  steps.append(exs::BINARY_OPERATION, {exs::ADD_OPERATOR});
   
   // test the solver
   exs::Solver<exs::Atom> solver(steps);
@@ -163,9 +163,9 @@ TEST(Solver, CustomOperators) {
   
   // create custom operator list
   exs::OperatorList<exs::Atom> operators;
-  operators.append(ADD_OPERATOR,      std::make_shared<exs::OperatorAdd<exs::Atom>>());
-  operators.append(MULTIPLY_OPERATOR, std::make_shared<exs::OperatorMultiply<exs::Atom>>());
-  operators.append(POWER_OPERATOR,    std::make_shared<exs::OperatorPower<exs::Atom>>("^")); // changin the symbol
+  operators.append(exs::ADD_OPERATOR,      std::make_shared<exs::OperatorAdd<exs::Atom>>());
+  operators.append(exs::MULTIPLY_OPERATOR, std::make_shared<exs::OperatorMultiply<exs::Atom>>());
+  operators.append(exs::POWER_OPERATOR,    std::make_shared<exs::OperatorPower<exs::Atom>>("^")); // changin the symbol
   
   // test the solver
   exs::Solver<exs::Atom> solver(operators);

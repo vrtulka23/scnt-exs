@@ -7,7 +7,9 @@
 #include <memory>
 #include <vector>
 #include <variant>
-  
+
+namespace exs {
+
 enum TokenType {
   EMPTY_TOKEN,
   OPERATOR_TOKEN,
@@ -58,6 +60,8 @@ enum OperatorType {
   NUM_OPERATOR_TYPES
 };
 
+}
+  
 #include "atom.h"
 #include "atom_list.h"
 #include "token.h"

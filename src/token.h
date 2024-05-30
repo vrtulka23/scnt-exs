@@ -9,10 +9,10 @@ template <class A>
 class Token {
 public:
   TokenType type;
-  OperatorType optype;
+  int optype;
   A *atom;
   Token(TokenType t): type(t), optype(NONE_OPERATOR), atom(NULL) {}
-  Token(TokenType t, OperatorType o): type(t), optype(o), atom(NULL) {};
+  Token(TokenType t, int o): type(t), optype(o), atom(NULL) {};
   Token(TokenType t, A *a): type(t), optype(NONE_OPERATOR), atom(a) {};
   std::string to_string() {
     if (type==EMPTY_TOKEN) {

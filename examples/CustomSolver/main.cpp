@@ -3,7 +3,7 @@
 #include <memory>
 
 enum CustomOperatorType {
-  LENGTH_OPERATOR = NUM_OPERATOR_TYPES
+  LENGTH_OPERATOR = exs::NUM_OPERATOR_TYPES
 };
 
 typedef std::variant<std::string, bool, size_t> AtomValueType;
@@ -47,7 +47,7 @@ public:
 
 class OperatorLength: public exs::OperatorGroup<CustomAtom, 1> {
 public:
-  OperatorLength(): OperatorGroup<CustomAtom, 1>("len","len(",GREATER_OPERATOR) {}
+  OperatorLength(): OperatorGroup<CustomAtom, 1>("len","len(",LENGTH_OPERATOR) {}
   void operate_group(exs::TokenListBase<CustomAtom> *tokens) {
     exs::Token<CustomAtom> group1 = tokens->get_left();
     group1.atom->custom_length();
@@ -60,13 +60,13 @@ int main() {
 
   // modifying default operator symbols
   exs::OperatorList<CustomAtom> operators;
-  operators.append(LOWER_OPERATOR, std::make_shared<exs::OperatorLower<CustomAtom>>());
-  operators.append(GREATER_OPERATOR, std::make_shared<OperatorLength>());
+  operators.append(exs::LOWER_OPERATOR, std::make_shared<exs::OperatorLower<CustomAtom>>());
+  operators.append(LENGTH_OPERATOR, std::make_shared<OperatorLength>());
 
   // changing default operation steps
   exs::StepList steps;
-  steps.append(GROUP_OPERATION, {GREATER_OPERATOR});
-  steps.append(BINARY_OPERATION, {LOWER_OPERATOR});
+  steps.append(exs::GROUP_OPERATION, {LENGTH_OPERATOR});
+  steps.append(exs::BINARY_OPERATION, {exs::LOWER_OPERATOR});
   
   exs::Solver<CustomAtom> solver(operators, steps);
   CustomAtom atom = solver.solve("apple < len(hospital)");

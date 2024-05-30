@@ -19,7 +19,7 @@ public:
   void append(TokenType t) {
     right.push_back(Token<A>(t));
   };
-  void append(TokenType t, OperatorType o) {
+  void append(TokenType t, int o) {
     right.push_back(Token<A>(t, o));
   };
   void append(TokenType t, std::string s) {
@@ -58,7 +58,7 @@ public:
       right.push_front(t);
     }
   };
-  void operate(const std::vector<OperatorType> &ops, OperationType oitype) {
+  void operate(const std::vector<int> &ops, OperationType oitype) {
     /*
     std::cout << "token_list::operate oitype=" << oitype << " operators=[ ";
     for (auto i: ops) std::cout << i << " ";
@@ -116,7 +116,7 @@ public:
     return str.str();
   }
 private:
-  std::string print_details(TokenType type, OperatorType optype, A *atom) {
+  std::string print_details(TokenType type, int optype, A *atom) {
     std::stringstream str;
     switch (type) {
     case EMPTY_TOKEN:

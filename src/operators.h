@@ -10,9 +10,9 @@ class OperatorBase {
  public:
   std::string name;
   std::string symbol;
-  OperatorType type;
+  int type;
   std::vector<std::string> groups;
-  OperatorBase(std::string n, std::string s, OperatorType t): name(n), symbol(s), type(t) {};
+  OperatorBase(std::string n, std::string s, int t): name(n), symbol(s), type(t) {};
   virtual ~OperatorBase() = default;
   virtual void parse(Expression &expr) {
      if (expr.right.length()>0) {
@@ -34,7 +34,7 @@ public:
     std::string  n,
     std::string  s,
     std::string  so,
-    OperatorType t
+    int t
   ): OperatorBase<A>(n, s, t), symbol_other(so) {}
   virtual void parse(Expression &expr) {
     this->groups.clear();
@@ -64,7 +64,7 @@ public:
   OperatorGroup(
     std::string  n,
     std::string  s,
-    OperatorType t
+    int t
   ): OperatorBase<A>(n, s, t) {}
   virtual void parse(Expression &expr) {
     this->groups.clear();
