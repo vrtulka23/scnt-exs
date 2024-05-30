@@ -36,7 +36,7 @@ function run_code {
 
 function grep_code {
     if [[ "${1}" != "" ]]; then
-	    grep -Inr $1 ./src ./tests
+	    grep -Inr $1 ./src ./tests ./examples
     fi
 }
 

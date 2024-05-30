@@ -27,7 +27,7 @@ class Atom: public AtomBase<AtomValueType> {
 public:
   Atom(Atom &a): AtomBase(a) {};
   Atom(AtomValueType v): AtomBase(v) {};  
-  static AtomValueType parse(std::string s) {
+  static AtomValueType from_string(std::string s) {
     AtomValueType v;
     if (s=="true") {
       v=true; 
