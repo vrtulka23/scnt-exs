@@ -1,7 +1,5 @@
 #include "../../src/exs.h"
 
-#include <memory>
-
 enum CustomOperatorType {
   LENGTH_OPERATOR = exs::NUM_OPERATOR_TYPES
 };

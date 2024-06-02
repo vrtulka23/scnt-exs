@@ -10,7 +10,7 @@ In the future, this version is supposed to replace the original and further impr
 
 ## Setup
 
-For purpose of developing and debugging we created a simple **setup.sh** shell script that implements the most used routines: cleaning, building, testing, and running of the code. For more instructions on how to use this script, refer to its help section:
+For the purpose of developing and debugging, we created a simple **setup.sh** shell script that implements the most used routines: cleaning, building, testing, and running of the code. For more instructions on how to use this script, refer to its help section:
 
 ```bash
 ./setup.sh -h
