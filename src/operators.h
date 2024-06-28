@@ -55,17 +55,16 @@ public:
   };
 };
 
-template <class A, int N=1>
+template <class A, int N=0>
 class OperatorGroup: public OperatorBase<A> {
 public:
+  size_t num_groups            = N;
   std::string symbol_open      = "(";
   std::string symbol_separator = ",";
   std::string symbol_close     = ")";
-  OperatorGroup(
-    std::string  n,
-    std::string  s,
-    int t
-  ): OperatorBase<A>(n, s, t) {}
+  OperatorGroup(std::string n, std::string  s, int t): OperatorBase<A>(n, s, t) {}
+  OperatorGroup(std::string n, std::string  s, int t, std::string so, std::string ss, std::string sc):
+    OperatorBase<A>(n, s, t), symbol_open(so), symbol_separator(ss), symbol_close(sc) {}
   virtual void parse(Expression &expr) {
     this->groups.clear();
     expr.remove(this->symbol);
@@ -88,7 +87,8 @@ public:
       }
       expr.shift();
     }
-    if (this->groups.size()!=N) {
+    num_groups = this->groups.size();
+    if (N>0 && num_groups!=N) {
       throw std::logic_error("Wrong number of group members: "+std::to_string(this->groups.size())+", "+std::to_string(N));
     }
   };
