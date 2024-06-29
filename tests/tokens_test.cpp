@@ -5,6 +5,8 @@
 // Initialization of the Tokens class
 TEST(Tokens, Initialization) {
 
+  exs::Token<exs::Atom> t;
+  
   exs::OperatorList<exs::Atom> operators;
 
   exs::TokenList<exs::Atom> tokens(&operators);

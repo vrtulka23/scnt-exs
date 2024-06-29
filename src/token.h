@@ -11,6 +11,7 @@ public:
   TokenType type;
   int optype;
   A *atom;
+  Token(): type(EMPTY_TOKEN), optype(NONE_OPERATOR), atom(NULL) {}
   Token(TokenType t): type(t), optype(NONE_OPERATOR), atom(NULL) {}
   Token(TokenType t, int o): type(t), optype(o), atom(NULL) {};
   Token(TokenType t, A *a): type(t), optype(NONE_OPERATOR), atom(a) {};
