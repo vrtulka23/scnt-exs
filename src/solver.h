@@ -34,7 +34,7 @@ public:
             for (auto o : operators.order) {
                 OperatorBase<A> *op = operators.select(o);
                 //std::cout << op->symbol << std::endl;
-                if (expr.right.rfind(op->symbol, 0) == 0) {
+                if (op->check(expr)) {
                     is_operator = true;
                     std::string left = expr.pop_left();
                     if (left.length()>0) {

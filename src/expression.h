@@ -1,6 +1,8 @@
 #ifndef EXS_EXPRESSION_H
 #define EXS_EXPRESSION_H
 
+#include <sstream>
+
 namespace exs {
 
 class Expression {
@@ -25,8 +27,13 @@ public:
     left = "";
     return dummy;
   };
+  std::string to_string() {
+    std::stringstream ss;
+    ss << "Expression(L'" << left << "' R'" << right << "' E'" << expr << "')";
+    return ss.str();
+  }
   void print() {
-    std::cout << "Expression(L'" << left << "' R'" << right << "' E'" << expr << "')\n";
+    std::cout << to_string() << std::endl;
   };
 };
 

@@ -14,6 +14,9 @@ class OperatorBase {
   std::vector<std::string> groups;
   OperatorBase(std::string n, std::string s, int t): name(n), symbol(s), type(t) {};
   virtual ~OperatorBase() = default;
+  virtual bool check(Expression &expr) {
+    return expr.right.rfind(symbol, 0) == 0;
+  }
   virtual void parse(Expression &expr) {
      if (expr.right.length()>0) {
        expr.remove(symbol);
