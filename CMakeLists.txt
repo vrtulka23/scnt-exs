@@ -10,6 +10,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(ENV{PATH} "settings.env")
 
+# create export files
+###########################
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/scnt-exs-config.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/scnt-exs
+)
+
+install(FILES
+	"${CMAKE_CURRENT_BINARY_DIR}/scnt-exs-config.cmake"
+	"${CMAKE_CURRENT_BINARY_DIR}/scnt-exs-config-version.cmake"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/scnt-exs
+)
+
 # compile example solvers
 ##########################
 
