@@ -59,7 +59,7 @@ gtest_discover_tests(TestSolver)
 # create cmake export files
 ###########################
 
-set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install")
+#set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install")
 set(CMAKE_INSTALL_LIBDIR lib)
 set(CMAKE_INSTALL_INCLUDEDIR include)
 
