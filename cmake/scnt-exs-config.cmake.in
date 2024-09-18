@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+include("${CMAKE_CURRENT_LIST_DIR}/scnt-exs-targets.cmake")
+
+include("${CMAKE_CURRENT_LIST_DIR}/scnt-exs-config-version.cmake")
+

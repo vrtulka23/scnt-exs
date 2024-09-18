@@ -22,6 +22,12 @@ function build_code {
     cd $DIR_ROOT
 }
 
+function install_code {
+    cd $DIR_BUILD
+    make install
+    cd $DIR_ROOT
+}
+
 function test_code {
     if [[ "${1}" == "" ]]; then
 	    ./$DIR_BUILD/TestSolver
@@ -46,6 +52,7 @@ function show_help {
     echo "Options:"
     echo " -c|--clean          clean the build directory"
     echo " -b|--build          build code"
+    echo " -i|--install        install code"
     echo " -r|--run <example>  run an example code"
     echo " -t|--test [<test>]  run all/specific tests"
     echo " -g|--grep <expr>    find expression in a code"
@@ -67,6 +74,8 @@ while [[ $# -gt 0 ]]; do
 	    clean_code; shift;;
 	-b|--build)
 	    build_code; shift;;
+	-i|--install)
+	    install_code; shift;;
 	-r|--run)
 	    run_code $2; shift; shift;;
 	-t|--test)
