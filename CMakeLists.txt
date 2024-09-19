@@ -16,6 +16,7 @@ execute_process(
     OUTPUT_VARIABLE CODE_VERSION
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+message(STATUS "Version: ${CODE_VERSION}")
 
 # compile example solvers
 ##########################
