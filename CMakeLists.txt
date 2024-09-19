@@ -77,6 +77,7 @@ configure_package_config_file(
 	${CMAKE_CURRENT_SOURCE_DIR}/cmake/scnt-exs-config.cmake.in
   	"${CMAKE_CURRENT_BINARY_DIR}/scnt-exs-config.cmake"
   	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/scnt-exs
+	PATH_VARS CMAKE_INSTALL_INCLUDEDIR
 )
 
 write_basic_package_version_file(
