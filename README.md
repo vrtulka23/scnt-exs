@@ -1,4 +1,4 @@
-# SciNumTools v3: Expression Solver (EXS)
+# SciNumTools v3 <br/>Expression Solver (EXS)
 
 General purpose solver of textual expressions in C++
 
