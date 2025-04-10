@@ -16,6 +16,24 @@ For the purpose of developing and debugging, we created a simple **setup.sh** sh
 ./setup.sh -h
 ```
 
+## Installation
+
+On MacOS systems the module can also be installed using `Homebrew <https://brew.sh>`_ package manager.
+So far, the module is not available in the main Homebrew repository and needs to be tapped from a project repository.
+
+```bash
+brew tap vrtulka23/scinumtools
+brew install vrtulka23/scinumtools/scnt-exs
+```
+
+After installation, it is possible to link EXS module in CMake
+
+```cmake
+find_package(SCNT-EXS REQUIRED)
+```
+
+and use it for your projects.
+
 ## Example of use
 
 The Equation Solver is implemented in C++ as a header file template library.
@@ -24,7 +42,7 @@ A standard implementation of an ``Atom`` is provided in the code, nevertheless, 
 Source code of the following simple example can be found in the [examples/DefaultSolver](https://github.com/vrtulka23/exs-cpp/tree/main/examples/DefaultSolver) directory.
 
 ```cpp
-#include "../../src/exs.h"
+#include <scnt-exs/exs.h>
 
 using namespace exs;
 
