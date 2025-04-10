@@ -7,7 +7,7 @@ public:
   // Constructor from unique_ptr
   LogicalAtom(UniquePtrType b): AtomBase(std::move(b)) {};
   // Deep copy constructor
-  LogicalAtom(const LogicalAtom& a): AtomBase(std::make_unique<bool>(*a.value)) {};
+  LogicalAtom(const LogicalAtom& a);
   LogicalAtom& operator=(const LogicalAtom& a);
   // Move constructor
   LogicalAtom(LogicalAtom&& a) noexcept = default;

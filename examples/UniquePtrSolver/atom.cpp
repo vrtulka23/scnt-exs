@@ -3,6 +3,9 @@
 constexpr std::string_view KEYWORD_TRUE  = "true";
 constexpr std::string_view KEYWORD_FALSE = "false";
 
+LogicalAtom::LogicalAtom(const LogicalAtom& a): AtomBase(std::make_unique<bool>(*a.value)) {
+};
+
 LogicalAtom& LogicalAtom::operator=(const LogicalAtom& a) {
   if (this != &a) {
     value = std::make_unique<bool>(*a.value);
