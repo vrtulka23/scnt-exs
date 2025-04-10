@@ -13,8 +13,42 @@ template <typename T>
 class AtomBase {
 public:
   T value;
-  AtomBase(AtomBase &a): value(a.value) {};
-  AtomBase(T v): value(v) {};
+   // Copy constructor
+  AtomBase(const AtomBase& a) {
+    if constexpr (std::is_copy_constructible_v<T>) {
+      value = a.value;
+    } else {
+      static_assert(std::is_copy_constructible_v<T>, "T is not copyable");
+    }
+  }
+  // Move constructor
+  AtomBase(AtomBase&& a) noexcept {
+    if constexpr (std::is_move_constructible_v<T>) {
+      value = std::move(a.value);
+    } else {
+      static_assert(std::is_move_constructible_v<T>, "T is not movable");
+    }
+  }
+  // Constructor from value
+  AtomBase(T v): value(std::move(v)) {}
+   // Copy assignment
+  AtomBase& operator=(const AtomBase& a) {
+    if constexpr (std::is_copy_assignable_v<T>) {
+      value = a.value;
+    } else {
+      static_assert(std::is_copy_assignable_v<T>, "T is not copy-assignable");
+    }
+    return *this;
+  }
+  // Move assignment
+  AtomBase& operator=(AtomBase&& a) noexcept {
+    if constexpr (std::is_move_assignable_v<T>) {
+      value = std::move(a.value);
+    } else {
+      static_assert(std::is_move_assignable_v<T>, "T is not move-assignable");
+    }
+    return *this;
+  }
   virtual std::string to_string() =0;
   void print() {
     std::cout << to_string() << "\n";
