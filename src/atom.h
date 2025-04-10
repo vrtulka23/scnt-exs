@@ -62,6 +62,8 @@ public:
   Atom(Atom &a): AtomBase(a) {};
   Atom(AtomValueType v): AtomBase(v) {};  
   static AtomValueType from_string(std::string s) {
+    // NOTE: In case Settings are passed to the Solver, this method needs to be defined as
+    //       from_string(std::string s, Settings* set = nullptr)
     AtomValueType v;
     if (s=="true") {
       v=true; 

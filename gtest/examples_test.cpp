@@ -36,3 +36,8 @@ TEST(Examples, ArraySolver) {
     std::string output = run_program("./build/ArraySolver");
     EXPECT_EQ(output, "{5}\n{5 7 9}\n");
 }
+
+TEST(Examples, SettingsSolver) {
+    std::string output = run_program("./build/SettingsSolver");
+    EXPECT_EQ(output, "4\n");
+}

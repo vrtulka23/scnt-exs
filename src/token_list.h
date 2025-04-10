@@ -6,16 +6,19 @@
 #include <vector>
 #include <stdexcept>
 
+#include "settings.h"
+
 namespace exs {
   
-template <class A>
+template <class A, typename S = EmptySettings>
 class TokenList: public TokenListBase<A> {
 public:
   std::deque<Token<A>> left;
   std::deque<Token<A>> right;
   OperatorList<A> *operators;
-  AtomList<A> atoms;
-  TokenList(OperatorList<A> *o): operators(o) {};
+  S* settings;
+  AtomList<A, S> atoms;
+  TokenList(OperatorList<A>* o, S* set = nullptr): operators(o), settings(set) {};
   void append(TokenType t) {
     right.push_back(Token<A>(t));
   };
@@ -23,7 +26,7 @@ public:
     right.push_back(Token<A>(t, o));
   };
   void append(TokenType t, std::string s) {
-    A *a = atoms.append(s);
+    A *a = atoms.append(s, settings);
     right.push_back(Token<A>(t, a));
   };
   void append(TokenType t, A at) {

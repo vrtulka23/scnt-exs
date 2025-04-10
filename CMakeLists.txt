@@ -43,7 +43,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 # compile tests
 ################
 
-file(GLOB test_files "tests/*.h" "tests/*.cpp")
+file(GLOB test_files "gtest/*.h" "gtest/*.cpp")
 #list(REMOVE_ITEM source_files "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 
 enable_testing()
