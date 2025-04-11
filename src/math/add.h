@@ -3,11 +3,11 @@
 
 namespace exs {
 
-template <class A>
-class OperatorAdd: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorAdd: public OperatorBase<A, S> {
 public:
-  OperatorAdd(std::string s="+"): OperatorBase<A>("add", s, ADD_OPERATOR) {}
-  void operate_unary(TokenListBase<A> *tokens) {
+  OperatorAdd(std::string s="+"): OperatorBase<A, S>("add", s, ADD_OPERATOR) {}
+  void operate_unary(TokenListBase<A>* tokens) override {
     //std::cout << "operate_unary" << std::endl;
     //tokens->print(true);
     Token<A> left = tokens->get_left();
@@ -34,7 +34,7 @@ public:
       tokens->put_right(right);            
     }
   };
-  void operate_binary(TokenListBase<A> *tokens) {
+  void operate_binary(TokenListBase<A>* tokens) override {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     left.atom->math_add(right.atom);

@@ -3,11 +3,11 @@
 
 namespace exs {
   
-template <class A>
-class OperatorNotEqual: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorNotEqual: public OperatorBase<A, S> {
 public:
-    OperatorNotEqual(std::string s="!="): OperatorBase<A>("ne", s, NOT_EQUAL_OPERATOR) {}
-    void operate_binary(TokenListBase<A> *tokens) {
+  OperatorNotEqual(std::string s="!="): OperatorBase<A, S>("ne", s, NOT_EQUAL_OPERATOR) {}
+    void operate_binary(TokenListBase<A>* tokens) override {
         Token<A> left = tokens->get_left();
         Token<A> right = tokens->get_right();
         left.atom->comparison_not_equal(right.atom);

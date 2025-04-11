@@ -15,10 +15,10 @@ class TokenList: public TokenListBase<A> {
 public:
   std::deque<Token<A>> left;
   std::deque<Token<A>> right;
-  OperatorList<A> *operators;
+  OperatorList<A,S> *operators;
   S* settings;
   AtomList<A, S> atoms;
-  TokenList(OperatorList<A>* o, S* set = nullptr): operators(o), settings(set) {};
+  TokenList(OperatorList<A,S>* o, S* set = nullptr): operators(o), settings(set) {};
   void append(TokenType t) {
     right.push_back(Token<A>(t));
   };
@@ -73,19 +73,19 @@ public:
       Token<A> token = get_right();
       //token.print();
       if (std::find(ops.begin(), ops.end(), token.optype) != ops.end()) {
-        OperatorBase<A> *op = operators->select(token.optype);
+        OperatorBase<A, S> *op = operators->select(token.optype);
         // token is an operator
-        if (oitype==UNARY_OPERATION) {
-	  op->operate_unary(this);
-        } else if (oitype==BINARY_OPERATION) {
-	  op->operate_binary(this);
-        } else if (oitype==TERNARY_OPERATION) {
-	  op->operate_ternary(this);
-        } else if (oitype==GROUP_OPERATION) {
-	  op->operate_group(this);
-        } else {
+	if (oitype==UNARY_OPERATION) {
+	  op->operate_unary(this, settings);
+	} else if (oitype==BINARY_OPERATION) {
+	  op->operate_binary(this, settings);
+	} else if (oitype==TERNARY_OPERATION) {
+	  op->operate_ternary(this, settings);
+	} else if (oitype==GROUP_OPERATION) {
+	  op->operate_group(this, settings);
+	} else {
 	  throw std::invalid_argument("Invalid operation type: "+std::to_string(oitype));
-        }
+	}
       } else {
         // token is something else
 	//std::cout << "putting left" << std::endl;
@@ -129,7 +129,7 @@ private:
       str << "A{" << atom->to_string() << "} ";
       break;
     case OPERATOR_TOKEN:
-      OperatorBase<A> *op = operators->select(optype);
+      OperatorBase<A,S> *op = operators->select(optype);
       str << op->name << " ";
       break;
     }

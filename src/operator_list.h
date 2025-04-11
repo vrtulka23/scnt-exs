@@ -7,13 +7,13 @@
 
 namespace exs {
   
-template <class A>
+template <class A, typename S = EmptySettings>
 class OperatorList {
-  typedef std::unordered_map<int, std::shared_ptr<OperatorBase<A>>> OperatorListType;
+  typedef std::unordered_map<int, std::shared_ptr<OperatorBase<A, S>>> OperatorListType;
 public:
   OperatorListType operators;
   std::vector<int> order;
-  OperatorBase<A>* select(int otype) {
+  OperatorBase<A, S>* select(int otype) {
     auto it = operators.find(otype);
     if (it != operators.end()) {
       return &(*(it->second));
@@ -21,7 +21,7 @@ public:
       throw std::logic_error("Selecting non existing operator");
     }
   };
-  void append(int t, std::shared_ptr<OperatorBase<A>> o) {
+  void append(int t, std::shared_ptr<OperatorBase<A, S>> o) {
     operators[t] = o;
     order.push_back(t);
   };

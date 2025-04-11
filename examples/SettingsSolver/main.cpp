@@ -7,9 +7,9 @@ int main() {
   Settings settings({"?", 5});
 
   // modifying default operator symbols
-  exs::OperatorList<CustomAtom> operators;
-  operators.append(exs::ADD_OPERATOR,      std::make_shared<exs::OperatorAdd<CustomAtom>>());
-  operators.append(exs::SUBTRACT_OPERATOR, std::make_shared<exs::OperatorSubtract<CustomAtom>>());
+  exs::OperatorList<CustomAtom, Settings> operators;
+  operators.append(exs::ADD_OPERATOR,      std::make_shared<exs::OperatorAdd<CustomAtom, Settings>>());
+  operators.append(exs::SUBTRACT_OPERATOR, std::make_shared<exs::OperatorSubtract<CustomAtom, Settings>>());
   
   // changing default operation steps
   exs::StepList steps;

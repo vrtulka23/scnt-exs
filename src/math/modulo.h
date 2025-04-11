@@ -3,11 +3,11 @@
 
 namespace exs {
   
-template <class A>
-class OperatorModulo: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorModulo: public OperatorBase<A, S> {
 public:
-  OperatorModulo(std::string s="%"): OperatorBase<A>("mod", s, MODULO_OPERATOR) {}
-  void operate_binary(TokenListBase<A> *tokens) {
+  OperatorModulo(std::string s="%"): OperatorBase<A, S>("mod", s, MODULO_OPERATOR) {}
+  void operate_binary(TokenListBase<A>* tokens) override {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     left.atom->math_modulo(right.atom);

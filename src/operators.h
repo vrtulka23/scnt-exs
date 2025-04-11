@@ -3,9 +3,11 @@
 
 #include <stdexcept>
 
+#include "settings.h"
+
 namespace exs {
 
-template <class A>
+template <class A, typename S = EmptySettings>
 class OperatorBase {
  public:
   std::string name;
@@ -22,15 +24,19 @@ class OperatorBase {
        expr.remove(symbol);
      }  
   };
-  virtual void operate_unary(TokenListBase<A> *tokens)   {throw std::logic_error("Unary operation is not implemented");};
-  virtual void operate_binary(TokenListBase<A> *tokens)  {throw std::logic_error("Binary operation is not implemented");};
-  virtual void operate_ternary(TokenListBase<A> *tokens) {throw std::logic_error("Ternary operation is not implemented");};
-  virtual void operate_group(TokenListBase<A> *tokens)   {throw std::logic_error("Group operation is not implemented");};
+  virtual void operate_unary(TokenListBase<A>* tokens)   {throw std::logic_error("Unary operation is not implemented");};
+  virtual void operate_binary(TokenListBase<A>* tokens)  {throw std::logic_error("Binary operation is not implemented");};
+  virtual void operate_ternary(TokenListBase<A>* tokens) {throw std::logic_error("Ternary operation is not implemented");};
+  virtual void operate_group(TokenListBase<A>* tokens)   {throw std::logic_error("Group operation is not implemented");};
+  virtual void operate_unary(TokenListBase<A>* tokens, S* settings)   {operate_unary(tokens);};
+  virtual void operate_binary(TokenListBase<A>* tokens, S* settings)  {operate_binary(tokens);};
+  virtual void operate_ternary(TokenListBase<A>* tokens, S* settings) {operate_ternary(tokens);};
+  virtual void operate_group(TokenListBase<A>* tokens, S* settings)   {operate_group(tokens);};
   virtual void print() {};
 };
 
-template <class A>
-class OperatorTernary: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorTernary: public OperatorBase<A, S> {
 public:
   std::string symbol_other;
   OperatorTernary(
@@ -38,8 +44,8 @@ public:
     std::string  s,
     std::string  so,
     int t
-  ): OperatorBase<A>(n, s, t), symbol_other(so) {}
-  virtual void parse(Expression &expr) {
+  ): OperatorBase<A, S>(n, s, t), symbol_other(so) {}
+  virtual void parse(Expression &expr) override {
     this->groups.clear();
     expr.remove(this->symbol);
     bool closed = false;
@@ -58,17 +64,17 @@ public:
   };
 };
 
-template <class A, int N=0>
-class OperatorGroup: public OperatorBase<A> {
+template <class A, int N=0, typename S = EmptySettings>
+class OperatorGroup: public OperatorBase<A, S> {
 public:
   size_t num_groups            = N;
   std::string symbol_open      = "(";
   std::string symbol_separator = ",";
   std::string symbol_close     = ")";
-  OperatorGroup(std::string n, std::string  s, int t): OperatorBase<A>(n, s, t) {}
+  OperatorGroup(std::string n, std::string  s, int t): OperatorBase<A, S>(n, s, t) {}
   OperatorGroup(std::string n, std::string  s, int t, std::string so, std::string ss, std::string sc):
-    OperatorBase<A>(n, s, t), symbol_open(so), symbol_separator(ss), symbol_close(sc) {}
-  virtual void parse(Expression &expr) {
+    OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_separator(ss), symbol_close(sc) {}
+  virtual void parse(Expression &expr) override {
     this->groups.clear();
     expr.remove(this->symbol);
     int depth = 1;
@@ -95,7 +101,8 @@ public:
       throw std::logic_error("Wrong number of group members: "+std::to_string(this->groups.size())+", "+std::to_string(N));
     }
   };
-  void operate_group(TokenListBase<A> *tokens) {};
+  virtual void operate_group(TokenListBase<A>* tokens) override {};  // this should stay empty
+  virtual void operate_group(TokenListBase<A>* tokens, S* settings) override {operate_group(tokens);};
 };
 
 }

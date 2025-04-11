@@ -3,11 +3,11 @@
 
 namespace exs {
   
-template <class A>
-class OperatorAnd: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorAnd: public OperatorBase<A, S> {
 public:
-  OperatorAnd(std::string s="&&"): OperatorBase<A>("and", s, AND_OPERATOR) {}
-  void operate_binary(TokenListBase<A> *tokens) {
+  OperatorAnd(std::string s="&&"): OperatorBase<A, S>("and", s, AND_OPERATOR) {}
+  void operate_binary(TokenListBase<A>* tokens) override {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     left.atom->logical_and(right.atom);

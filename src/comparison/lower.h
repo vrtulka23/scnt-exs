@@ -3,11 +3,11 @@
 
 namespace exs {
   
-template <class A>
-class OperatorLower: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorLower: public OperatorBase<A, S> {
 public:
-    OperatorLower(std::string s="<"): OperatorBase<A>("lt", s, LOWER_OPERATOR) {}
-    void operate_binary(TokenListBase<A> *tokens) {
+  OperatorLower(std::string s="<"): OperatorBase<A, S>("lt", s, LOWER_OPERATOR) {}
+    void operate_binary(TokenListBase<A>* tokens) override {
         Token<A> left = tokens->get_left();
         Token<A> right = tokens->get_right();
         left.atom->comparison_lower(right.atom);

@@ -3,11 +3,11 @@
 
 namespace exs {
   
-template <class A>
-class OperatorPowerBase: public OperatorGroup<A, 2> {
+template <class A, typename S = EmptySettings>
+class OperatorPowerBase: public OperatorGroup<A, 2, S> {
 public:
-  OperatorPowerBase(): OperatorGroup<A, 2>("powb","powb(",POWER_BASE_OPERATOR) {}
-  void operate_group(TokenListBase<A> *tokens) {
+  OperatorPowerBase(): OperatorGroup<A, 2, S>("powb","powb(",POWER_BASE_OPERATOR) {}
+  void operate_group(TokenListBase<A>* tokens) override {
     Token<A> group2 = tokens->get_left();
     Token<A> group1 = tokens->get_left();
     group1.atom->math_power_base(group2.atom);

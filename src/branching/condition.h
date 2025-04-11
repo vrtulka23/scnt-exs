@@ -3,11 +3,11 @@
 
 namespace exs {
   
-template <class A>
-class OperatorCondition: public OperatorTernary<A> {
+template <class A, typename S = EmptySettings>
+class OperatorCondition: public OperatorTernary<A, S> {
 public:
-  OperatorCondition(): OperatorTernary<A>("cond", "?", ":", CONDITION_OPERATOR) {}
-  void operate_ternary(TokenListBase<A> *tokens) {
+  OperatorCondition(): OperatorTernary<A, S>("cond", "?", ":", CONDITION_OPERATOR) {}
+  void operate_ternary(TokenListBase<A>* tokens) override {
     Token<A> group2 = tokens->get_left();
     Token<A> group1 = tokens->get_left();
     Token<A> group3 = tokens->get_right();

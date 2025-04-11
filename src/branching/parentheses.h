@@ -3,10 +3,10 @@
 
 namespace exs {
   
-template <class A>
-class OperatorParentheses: public OperatorGroup<A, 1> {
+template <class A, typename S = EmptySettings>
+class OperatorParentheses: public OperatorGroup<A, 1, S> {
 public:
-  OperatorParentheses(): OperatorGroup<A, 1>("par","(",PARENTHESES_OPERATOR) {}
+  OperatorParentheses(): OperatorGroup<A, 1, S>("par","(",PARENTHESES_OPERATOR) {}
 };
 
 }

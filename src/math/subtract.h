@@ -3,11 +3,11 @@
 
 namespace exs {
 
-template <class A>
-class OperatorSubtract: public OperatorBase<A> {
+template <class A, typename S = EmptySettings>
+class OperatorSubtract: public OperatorBase<A, S> {
 public:
-  OperatorSubtract(std::string s="-"): OperatorBase<A>("sub", s, SUBTRACT_OPERATOR) {}
-  void operate_unary(TokenListBase<A> *tokens) {
+  OperatorSubtract(std::string s="-"): OperatorBase<A, S>("sub", s, SUBTRACT_OPERATOR) {}
+  void operate_unary(TokenListBase<A>* tokens) override {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     if (left.type==EMPTY_TOKEN && right.type==ATOM_TOKEN) {
@@ -29,7 +29,7 @@ public:
       tokens->put_right(right);            
     }
   };
-  void operate_binary(TokenListBase<A> *tokens) {
+  void operate_binary(TokenListBase<A>* tokens) override {
     Token<A> left = tokens->get_left();
     Token<A> right = tokens->get_right();
     left.atom->math_subtract(right.atom);
