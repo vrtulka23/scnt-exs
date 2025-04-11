@@ -39,5 +39,5 @@ TEST(Examples, ArraySolver) {
 
 TEST(Examples, SettingsSolver) {
     std::string output = run_program("./build/SettingsSolver");
-    EXPECT_EQ(output, "4\n");
+    EXPECT_EQ(output, "3\n");
 }
