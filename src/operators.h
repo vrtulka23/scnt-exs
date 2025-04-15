@@ -63,17 +63,18 @@ public:
     }
   };
 };
-
+  
 template <class A, int N=0, typename S = EmptySettings>
 class OperatorGroup: public OperatorBase<A, S> {
 public:
   size_t num_groups            = N;
-  std::string symbol_open      = "(";
-  std::string symbol_close     = ")";
-  std::string symbol_separator = ",";
-  OperatorGroup(const std::string n, const std::string  s, const int t): OperatorBase<A, S>(n, s, t) {}
+  std::string symbol_open;
+  std::string symbol_close;
+  std::string symbol_separator;
+  OperatorGroup(const std::string n, const std::string  s, const int t):
+    OperatorBase<A, S>(n, s, t), symbol_open("("), symbol_close(")"), symbol_separator(",") {}
   OperatorGroup(const std::string n, const std::string  s, const int t, const std::string so, const std::string sc):
-    OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_close(sc) {}
+    OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_close(sc), symbol_separator(",") {}
   OperatorGroup(const std::string n, const std::string  s, const int t, const std::string so, const std::string sc, const std::string ss):
     OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_close(sc), symbol_separator(ss) {}
   virtual void parse(Expression &expr) override {

@@ -2,7 +2,7 @@
 #define EXS_SETTINGS_H
 
 namespace exs {
-  
+
   struct EmptySettings {};
 
 }
