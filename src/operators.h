@@ -69,11 +69,13 @@ class OperatorGroup: public OperatorBase<A, S> {
 public:
   size_t num_groups            = N;
   std::string symbol_open      = "(";
-  std::string symbol_separator = ",";
   std::string symbol_close     = ")";
-  OperatorGroup(std::string n, std::string  s, int t): OperatorBase<A, S>(n, s, t) {}
-  OperatorGroup(std::string n, std::string  s, int t, std::string so, std::string ss, std::string sc):
-    OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_separator(ss), symbol_close(sc) {}
+  std::string symbol_separator = ",";
+  OperatorGroup(const std::string n, const std::string  s, const int t): OperatorBase<A, S>(n, s, t) {}
+  OperatorGroup(const std::string n, const std::string  s, const int t, const std::string so, const std::string sc):
+    OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_close(sc) {}
+  OperatorGroup(const std::string n, const std::string  s, const int t, const std::string so, const std::string sc, const std::string ss):
+    OperatorBase<A, S>(n, s, t), symbol_open(so), symbol_close(sc), symbol_separator(ss) {}
   virtual void parse(Expression &expr) override {
     this->groups.clear();
     expr.remove(this->symbol);
