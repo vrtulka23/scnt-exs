@@ -145,7 +145,7 @@ TEST(Solver, SolvingCondition) {
   EXPECT_EQ(atom.to_string(), "0");
 }
 
-TEST(Solver, CustomSteps) {
+TEST(Solver, CustomStepList) {
     
   // create custom step list
   exs::StepList steps;
@@ -159,7 +159,7 @@ TEST(Solver, CustomSteps) {
   EXPECT_EQ(atom.to_string(), "21.2");
 }
 
-TEST(Solver, CustomOperators) {
+TEST(Solver, CustomOperatorList) {
   
   // create custom operator list
   exs::OperatorList<exs::Atom> operators;
@@ -172,3 +172,28 @@ TEST(Solver, CustomOperators) {
   exs::Atom atom = solver.solve("1.2 + 5 * 2^2");
   EXPECT_EQ(atom.to_string(), "21.2");
 }
+
+class OperatorParentheses: public exs::OperatorGroup<exs::Atom, 1> {
+public:
+  OperatorParentheses(): OperatorGroup<exs::Atom, 1>("par","(",exs::PARENTHESES_OPERATOR,"(",")") {}
+};
+
+TEST(Operators, CustomParenthesesOperator) {
+
+  exs::OperatorList<exs::Atom> operators;
+  operators.append(exs::PARENTHESES_OPERATOR,    std::make_shared<OperatorParentheses>());
+  operators.append(exs::MULTIPLY_OPERATOR,       std::make_shared<exs::OperatorMultiply<exs::Atom>>());
+  operators.append(exs::DIVIDE_OPERATOR,         std::make_shared<exs::OperatorDivide<exs::Atom>>());
+  
+  // create custom step list
+  exs::StepList steps;
+  steps.append(exs::GROUP_OPERATION,  {exs::PARENTHESES_OPERATOR});
+  steps.append(exs::BINARY_OPERATION, {exs::MULTIPLY_OPERATOR, exs::DIVIDE_OPERATOR});
+
+  // test the solver
+  exs::Solver<exs::Atom> solver(operators);
+  exs::Atom atom = solver.solve("2 * (12 / 4)");
+  EXPECT_EQ(atom.to_string(), "6");
+  
+}
+

@@ -71,3 +71,4 @@ TEST(Operators, OpearateAdd) {
   tokens.operate(oper, exs::UNARY_OPERATION);
   //tokens.print(true);
 }
+
