@@ -2,6 +2,8 @@
 
 General purpose solver of textual expressions in C++
 
+This project is currently archived and is further developed in a new joint [SciNumTools v3 repository](https://github.com/vrtulka23/scinumtools3)
+
 ## Introduction
 
 This project is a reimplementation of an already existing [Expression Solver](https://vrtulka23.github.io/scinumtools/solver/index.html) into the C++ language.
